@@ -1,0 +1,393 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+.card-list-color {
+  background-color: #e6f0ff !important;
+}
+.card-list-color-reservation {
+  background-color: #e6f2ff !important;
+}
+
+.card-list-color-reservation-delay {
+  background-color: #cc0000 !important;
+}
+
+.card-list-color-rent-delay {
+  background-color: #fd8b8b !important;
+}
+
+.card-list-color-rent {
+  background-color: #ffd699 !important;
+}
+
+.title {
+  font-size: 2.7rem;
+}
+
+.btn-back {
+  background-color: #a0a0a0 !important;
+  border-color: #a0a0a0 !important;
+}
+
+@media only screen and (max-width: 1024px) {
+  .title {
+    font-size: 2rem;
+  }
+}
+
+/* Navbar */
+/* 
+.nav-position {
+  margin: auto;
+  width: 100%;
+} */
+
+.syling-navlink {
+  color: white !important;
+}
+
+.image-logo {
+  width: 120px;
+}
+
+/* ListOfCars */
+
+.styling-card {
+  margin: auto;
+  margin-top: 3rem;
+  width: 90%;
+}
+
+.bg-navbar {
+  background-color: #ffb84d !important;
+}
+
+/* FormContainer */
+
+.position-vertically {
+  margin-top: 2rem !important;
+}
+
+.form-msg-style {
+  font-style: italic;
+  font-size: 0.75rem;
+  color: red !important;
+  margin-bottom: 1rem !important;
+  margin-top: 0.25rem !important;
+}
+
+.intro-section {
+  margin-top: 1rem;
+  background-color: #80bfff;
+  color: white;
+  font-weight: bold;
+  padding: 1.5rem;
+  height: 90%;
+  font-size: 1.3rem;
+  border-radius: 21px 20px 20px 20px;
+}
+
+.position-center {
+  text-align: center;
+}
+
+.userlist-position {
+  text-align: right;
+}
+
+/* UsersList */
+
+.btn-position-right {
+  text-align: right;
+}
+
+.btn-margin-right {
+  margin-right: 0.5rem;
+}
+
+/* Location */
+
+.img-sizing {
+  width: 100px;
+  margin-right: 1rem;
+}
+
+.locationlist-position {
+  text-align: right;
+  position: absolute;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+.location-edit-title {
+  -ms-transform: translateY(25%);
+  transform: translateY(25%);
+  color: #a0a0a0;
+}
+
+.btn-location-edit {
+  background-color: #a0a0a0 !important;
+  border-color: #a0a0a0 !important;
+}
+
+.new-location-bg {
+  background-color: #787878 !important;
+}
+
+.localisation-title {
+  color: #787878 !important;
+}
+
+.location-short-name {
+  color: #787878;
+  font-size: 1.2rem;
+}
+
+@media screen and (max-width: 500px) {
+  .location-short-name {
+    color: #787878;
+    font-size: 1.5rem;
+  }
+}
+
+/* NewLocation */
+
+.text_img_uploaded {
+  margin-top: 0.5rem;
+}
+
+/* MainPage */
+.filter-location-position {
+  text-align: center;
+}
+
+.main-page-image {
+  width: 180px;
+}
+
+.btn-filter-location-position {
+  cursor: pointer;
+  background-color: #e6f2ff;
+  color: #2e2e1f;
+  font-weight: bold;
+  font-size: 1.5rem;
+  padding: 1rem;
+  margin: 1rem auto;
+  width: 50%;
+  min-width: 340px;
+  height: 250px;
+  border-radius: 21px 20px 20px 20px;
+}
+
+/* CarsAdmin */
+
+.title-car-admin {
+  color: #a0a0a0;
+}
+
+.btn-new-car-bg {
+  background-color: #a0a0a0 !important;
+  border-color: #a0a0a0 !important;
+}
+
+.card-car-admin-bg {
+  background-color: #f8f8f8 !important;
+}
+
+.carslist-position {
+  text-align: right;
+  position: absolute;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+.code_registration-position {
+  text-align: left;
+}
+
+.car-registration-style {
+  font-size: 0.8rem;
+}
+
+.car-admin-img-sizing {
+  width: 100px;
+}
+
+/* Car Edit */
+
+.car-edit-img-sizing {
+  width: 100px;
+  margin-left: 0.6rem;
+  margin-top: 0.6rem;
+}
+
+.car-show-img-sizing {
+  width: 120px;
+}
+
+.cars-edit-title {
+  display: inline-block;
+}
+
+.position-img {
+  text-align: right;
+}
+
+.right-position {
+  text-align: right;
+}
+
+/* Car List Location*/
+
+.car-list-location-position {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.btn-car-list-location {
+  margin-right: 1rem;
+}
+
+.btn-bg-car-list-location {
+  background-color: #f39c12 !important;
+  border-color: #f39c12 !important;
+  margin-right: 1rem;
+}
+
+.reservation-from-title {
+  margin: 0rem;
+}
+
+/* Car reservation*/
+.docTypeMessage-style {
+  font-style: italic;
+  font-size: 0.75rem;
+  color: red !important;
+  margin-bottom: 1rem !important;
+  margin-top: 0.25rem !important;
+}
+
+.btn-car-show-reservation {
+  background-color: #a0a0a0 !important;
+  border-color: #a0a0a0 !important;
+}
+
+.btn-reservation {
+  background-color: #e68a00 !important;
+}
+
+.form-reservation {
+  border-width: 3px !important;
+}
+
+.date-picker-style {
+  display: block;
+  width: 100%;
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #212529;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  -webkit-appearance: none;
+  appearance: none;
+  border-radius: 0.25rem;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+/* CarShow */
+.btn-position {
+  text-align: right;
+}
+
+/* Car edit reservation*/
+
+.card-edit-reservation {
+  padding: 1rem;
+}
+
+.date-reservation {
+  font-size: 0.85rem;
+}
+
+.carslist-edit-reservation {
+  text-align: right;
+  position: absolute;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+/* CarRent */
+.message-style {
+  font-style: italic;
+  font-size: 0.75rem;
+  color: red !important;
+  margin-bottom: 1rem !important;
+  margin-top: 0.25rem !important;
+}
+
+.form-rent-msg {
+  border-width: 3px !important;
+}
+
+.btn-position {
+  text-align: right;
+}
+
+.general-info-subtitle {
+  display: inline;
+  margin-right: 1rem;
+}
+
+.payment-info-subtitle {
+  display: inline;
+  margin-right: 1rem;
+}
+
+.calendar {
+  height: 500px !important;
+  margin: 2rem;
+  font-size: 1rem !important;
+}
+
+@media only screen and (max-width: 600px) {
+  .calendar {
+    margin: 1rem;
+    font-size: 0.9rem !important;
+  }
+}
+
+.btn-pickup {
+  background-color: #198754 !important;
+  border-color: #198754 !important;
+}
+
+.btn-show {
+  background-color: #c33c3c !important;
+  border-color: #c33c3c !important;
+}
+
+.btn-show-to-do {
+  background-color: #c33c3c !important;
+  border-color: black !important;
+}
+
+.other-location-title {
+  color: #c33c3c;
+}
