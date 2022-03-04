@@ -18,17 +18,19 @@ function Header() {
         dispatch(logout())
         dispatch(resetLocations())
     }
+    //href="/mainpage"
 
     return (
         <Navbar expand="lg" className='bg-navbar' id='navbar'>
         <Container container-fluid="true">
-            <Navbar.Brand href="/mainpage">
-                <Image 
-                    src = {Logo} 
-                    className='image-logo'
-                />
+            <Navbar.Brand>
+                <LinkContainer to="/mainpage">
+                    <Image src = {Logo} className='image-logo'/>
+                </LinkContainer>
             </Navbar.Brand>
-            <Navbar.Brand href="/mainpage">{userInfo.username}</Navbar.Brand>
+            <LinkContainer to="/mainpage"> 
+                <Navbar.Brand href="/mainpage">{userInfo.username}</Navbar.Brand>
+            </LinkContainer> 
             <Navbar.Toggle aria-controls="navbarScroll" />
             <Navbar.Collapse id="navbarScroll">
                 <Nav

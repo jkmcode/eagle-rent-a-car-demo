@@ -27,7 +27,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'core_app',
     'rest_framework',
-    "corsheaders"
+    'corsheaders',
+    'storages'
 ]
 
 
@@ -165,6 +166,13 @@ MEDIA_ROOT = BASE_DIR / 'static/images'
 STATIC_ROOT = BASE_DIR / 'staticfiles'  
 
 CORS_ALLOW_ALL_ORIGINS = True
+
+AWS_QUERYSTRING_AUTH = False
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+AWS_S3_ACCESS_KEY_ID = 'AKIA32BER3245DS7D2VD'
+AWS_S3_SECRET_ACCESS_KEY = '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'
+
+AWS_STORAGE_BUCKET_NAME = 'eagle-rent-car'
 
 if os.getcwd() == '/app':
     DEBUG = False
