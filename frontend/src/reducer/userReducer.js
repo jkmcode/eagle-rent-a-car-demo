@@ -12,6 +12,7 @@ import {
     USER_CREATE_REQUEST,
     USER_CREATE_SUCCESS, 
     USER_CREATE_FAIL,
+    USER_CREATE_RESET,
 
     USER_DETAILS_REQUEST,
     USER_DETAILS_SUCCESS, 
@@ -89,12 +90,12 @@ export const userCreateReducers = (state = {}, action) =>{
             return { loading: true }
 
         case USER_CREATE_SUCCESS:
-            return { loading: false, userInfo: action.payload }
+            return { loading: false, userInfo: action.payload, success:true }
 
         case USER_CREATE_FAIL:
             return { loading: false, error: action.payload }
 
-        case USER_LOGOUT:
+        case USER_CREATE_RESET:
             return {}
 
         default:

@@ -44,17 +44,21 @@ function CarsAdmin() {
                     </Col>
                     <Col className='btn-position-right'>
                         <div>
-                            <Button className='btn-new-car-bg' onClick={createCarsHandler}>
-                                <i className="fas fa-plus"></i> Nowy samochód
-                            </Button>
-                        </div>
-                        <div>
                             <LinkContainer to={`/admin`}>  
-                                <Button className='btn-md btn-back mt-1 mb-5'>
+                                <Button className='btn-md btn-back mt-1 mb-1'>
                                     <FontAwesomeIcon icon={faAngleDoubleLeft} /> Powrót
                                 </Button>
                             </LinkContainer>                            
                         </div>    
+                    </Col>
+                </Row>
+                <Row>
+                    <Col className='btn-position-right'>
+                        <div>
+                            <Button className='btn-new-car-bg mb-5' onClick={createCarsHandler}>
+                                <i className="fas fa-plus"></i> Nowy samochód
+                            </Button>
+                        </div>
                     </Col>
                 </Row>
                 {loading

@@ -4,10 +4,12 @@ import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from 'react-redux'
 import { createUser } from '../action/userAction'
 import { LinkContainer } from 'react-router-bootstrap';
+import { useNavigate } from 'react-router-dom';
 import FormContainer from '../components/FormContainer';
 import Header from './Header';
 import Message from './Message';
 import Loader from './Loader'
+import { USER_CREATE_RESET } from '../constants/UserConstants';
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { 
@@ -16,11 +18,13 @@ import {
 
 function CreateUser() {
 
+    const navigate = useNavigate()
+
     const [msgEmail, setMsgEmail] = useState(false)
     const [messagePassword, setMessagePassword] = useState('')
     const dispatch = useDispatch()
     const userCreateReducers = useSelector(state => state.userCreateReducers)
-    const {error, loading, userInfo} = userCreateReducers
+    const {error, loading, userInfo, success: successCreateUser} = userCreateReducers
 
     const {
         register,
@@ -42,13 +46,17 @@ function CreateUser() {
     }
 
     useEffect(() => {
-        const timeout = setTimeout(() =>{
-            setMsgEmail(false)
-            setMessagePassword('')
-        }, 5000)
-
-        return () => clearTimeout(timeout)
-    }, [msgEmail, messagePassword])
+        if(successCreateUser){
+            dispatch({type:USER_CREATE_RESET}) 
+            navigate('/admin/userslist')
+        }else{
+            const timeout = setTimeout(() =>{
+                setMsgEmail(false)
+                setMessagePassword('')
+            }, 5000)
+            return () => clearTimeout(timeout)
+        }
+    }, [msgEmail, messagePassword, successCreateUser])
 
     return (
         <main>

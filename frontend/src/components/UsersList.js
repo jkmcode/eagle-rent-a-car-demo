@@ -70,18 +70,22 @@ function UsersList() {
                                 </Col>
                                 <Col className='btn-position-right'>
                                     <div>
-                                        <Button onClick={createUserHandler}>
-                                            <i className='fas fa-plus'></i> Nowy użytkownik
-                                        </Button>
-                                    </div>
-                                    <div>
                                         <LinkContainer to={`/admin`}>  
                                             <Button 
-                                                className='btn-back mt-1 mb-5'
+                                                className='btn-back mt-1 mb-1'
                                             >
                                                 <FontAwesomeIcon icon={faAngleDoubleLeft} /> Powrót
                                             </Button>
                                         </LinkContainer>                                        
+                                    </div>
+                                </Col>
+                            </Row>
+                            <Row>
+                                <Col className='btn-position-right'>
+                                    <div>
+                                        <Button className="new-location-bg mb-5" onClick={createUserHandler}>
+                                            <i className='fas fa-plus'></i> Nowy użytkownik
+                                        </Button>
                                     </div>
                                 </Col>
                             </Row>

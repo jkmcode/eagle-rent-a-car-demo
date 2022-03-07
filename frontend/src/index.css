@@ -92,6 +92,7 @@ code {
   background-color: #80bfff;
   color: white;
   font-weight: bold;
+  min-width: 280px;
   padding: 1.5rem;
   height: 90%;
   font-size: 1.3rem;
@@ -152,13 +153,13 @@ code {
 
 .location-short-name {
   color: #787878;
-  font-size: 1.2rem;
+  font-size: 1.3rem;
 }
 
 @media screen and (max-width: 500px) {
   .location-short-name {
     color: #787878;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
   }
 }
 
@@ -183,10 +184,11 @@ code {
   color: #2e2e1f;
   font-weight: bold;
   font-size: 1.5rem;
-  padding: 1rem;
+  padding: 0.5rem;
   margin: 1rem auto;
-  width: 50%;
-  min-width: 340px;
+  /* width: 50%; */
+  max-width: 350px;
+  min-width: 200px;
   height: 250px;
   border-radius: 21px 20px 20px 20px;
 }
@@ -291,6 +293,12 @@ code {
 
 .form-reservation {
   border-width: 3px !important;
+}
+
+@media only screen and (max-width: 570px) {
+  .form-reservation {
+    font-size: 0.8rem;
+  }
 }
 
 .date-picker-style {

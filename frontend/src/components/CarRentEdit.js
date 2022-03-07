@@ -522,7 +522,7 @@ function CarRentEdit() {
                                         {errors.totalPrice && (<div className='form-msg-style'>{errors.totalPrice.message}</div>)}
                                         {totalPriceMsg ? <p className='docTypeMessage-style'>{totalPriceMsg}</p> : null}
                                     </Col>
-                                    <Col md={2} xs={2}>
+                                    <Col md={2} xs={4}>
                                         <Form.Label className="mt-3">{CAR_RENT_EDIT_TOTAL_PRICE_CURRENCY_TITLE}</Form.Label>
                                         <Form.Control
                                             type="text"
@@ -548,7 +548,6 @@ function CarRentEdit() {
                                         <Form.Select
                                             aria-label="Default select example"
                                             name = 'location'
-                                            aria-label="Default select example"
                                             {...register("location")}                             
                                             onChange = {selectlocationHandler}
                                             className='form-reservation'

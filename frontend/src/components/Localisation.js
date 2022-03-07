@@ -66,18 +66,22 @@ function Localisation() {
                                 <Col >
                                     <h2 className="localisation-title">Lokalizacje</h2>
                                 </Col>
-                                <Col className='btn-position-right '>
-                                    <div>
-                                        <Button className="new-location-bg" onClick={createLocateHandler}>
-                                            <i className="fas fa-plus"></i> Nowa lokalizacja  
-                                        </Button>
-                                    </div>
+                                <Col className='btn-position-right'>
                                     <div>
                                         <LinkContainer to={`/admin`}>  
-                                            <Button className='btn-md btn-back mt-1 mb-5'>
+                                            <Button className='btn-md btn-back mt-1 mb-1'>
                                                 <FontAwesomeIcon icon={faAngleDoubleLeft} /> Powrót
                                             </Button>
                                         </LinkContainer>                                          
+                                    </div>
+                                </Col>
+                            </Row>
+                            <Row>
+                                <Col className='btn-position-right'>
+                                    <div>
+                                        <Button className="new-location-bg mb-5" onClick={createLocateHandler}>
+                                            <i className="fas fa-plus"></i> Nowa lokalizacja  
+                                        </Button>
                                     </div>
                                 </Col>
                             </Row>
@@ -92,7 +96,9 @@ function Localisation() {
                                                                 <Image src = {location.image} className='img-sizing'/>
                                                                 {location.short_name}
                                                             </Col>
-                                                            <Col className='locationlist-position'>
+                                                        </Row>
+                                                        <Row >
+                                                            <Col className='btn-position-right'>
                                                                 <LinkContainer to={`/admin/location/${location.id}/edit`}>
                                                                     <Button variant='warning' className='btn-md'>
                                                                         <FontAwesomeIcon icon={faEdit} /> Edycja

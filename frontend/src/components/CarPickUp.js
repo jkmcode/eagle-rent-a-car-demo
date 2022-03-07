@@ -180,6 +180,7 @@ function CarPickUp() {
 
     //Fetch carRentDetails from database
     useEffect(() => {
+      scroller.scrollTo('navbar', {smooth: true, offset: -90,duration: 10,})
       if(!error){
         if(!rent.client_name || rent.id_cars.id != carId){
           dispatch(getRentDetailsByCarId(carId))

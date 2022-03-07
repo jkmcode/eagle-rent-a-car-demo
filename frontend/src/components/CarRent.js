@@ -542,7 +542,6 @@ function CarRent() {
                                 <Form.Select 
                                     aria-label="Default select example"
                                     name = 'documentType'
-                                    aria-label="Default select example"
                                     {...register("documentType", 
                                         {
                                             required: 'Pole wymagane',
@@ -692,7 +691,6 @@ function CarRent() {
                                 <Form.Select
                                     aria-label="Default select example"
                                     name = 'depositCurrency'
-                                    aria-label="Default select example"
                                     {...register("depositCurrency")}                             
                                     onChange = {selectCurrencyHandler}
                                     className='form-reservation'
@@ -746,7 +744,6 @@ function CarRent() {
                                 <Form.Select
                                     aria-label="Default select example"
                                     name = 'totalCurrency'
-                                    aria-label="Default select example"
                                     {...register("totalCurrency")}                             
                                     onChange = {selectTotalCurrencyHandler}
                                     className='form-reservation'
@@ -783,7 +780,6 @@ function CarRent() {
                                 <Form.Select
                                     aria-label="Default select example"
                                     name = 'location'
-                                    aria-label="Default select example"
                                     {...register("location")}                             
                                     onChange = {selectlocationHandler}
                                     className='form-reservation'

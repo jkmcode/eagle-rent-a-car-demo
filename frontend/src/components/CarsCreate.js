@@ -1,15 +1,21 @@
-import axios from 'axios'
 import React,{ useState, useEffect } from 'react'
 import Header from './Header';
 import FormContainer from './FormContainer';
 import Loader from './Loader';
 import Message from './Message';
-import { Form, Button, Dropdown } from 'react-bootstrap';
+import { LinkContainer } from 'react-router-bootstrap';
+import { Form, Button, Row, Col } from 'react-bootstrap';
 import { useForm } from "react-hook-form";
 import { useDispatch,useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { createCar, createCarUploadImage } from '../action/carsAction';
-import { CARS_DETAILS_RESET, CARS_CREATE_RESET, CARS_CREATE_UPLOAD_IMAGE_RESET } from '../constants/CarsConstans';
+import { CARS_DETAILS_RESET,
+         CARS_CREATE_RESET,
+         CARS_CREATE_UPLOAD_IMAGE_RESET } from '../constants/CarsConstans';
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faAngleDoubleLeft } from "@fortawesome/free-solid-svg-icons"
+        
 
 function CarsCreate() {
 
@@ -178,10 +184,21 @@ function CarsCreate() {
         <main>
             <Header />
             <FormContainer>
-               <h2>Dodaj nowy samochód</h2>
                {success &&<Message variant='success'>{successMessage}</Message>}
                {error &&<Message variant='danger'>{errorMessage}</Message>}
                {errorUploadImage &&<Message variant='info'>{errorMessageImage}</Message>}
+                <Row>
+                    <Col>
+                        <h2>Dodaj nowy samochód</h2>
+                    </Col>
+                    <Col className='btn-position'>
+                        <LinkContainer to={`/admin/cars`}>  
+                            <Button className='btn-md btn-back'>
+                                <FontAwesomeIcon icon={faAngleDoubleLeft} /> Powrót
+                            </Button>
+                        </LinkContainer>                    
+                    </Col>
+                </Row>
                         <Form onSubmit={handleSubmit(onSubmit)}>
                                 <Form.Group controlId='name'>
                                     <Form.Label>Nazwa samochodu</Form.Label>
@@ -190,7 +207,6 @@ function CarsCreate() {
                                         placeholder = 'Brak nazwy samochodu'
                                         {...register("name", 
                                             {
-                                                //required: 'Pole wymagane',
                                                 minLength: {
                                                     value: 10,
                                                     message: 'Nazwa samochodu musi składać się z przynajmniej 10 liter',
@@ -212,7 +228,6 @@ function CarsCreate() {
                                             placeholder = 'Brak nazwy skróconej'
                                             {...register("shortName", 
                                             {
-                                                //required: 'Pole wymagane',
                                                 minLength: {
                                                     value: 2,
                                                     message: 'Nazwa samochodu musi składać się z przynajmniej 2 liter',
@@ -238,7 +253,6 @@ function CarsCreate() {
                                             placeholder = 'Brak kodu rejestracyjnego'
                                             {...register("codeRegistration", 
                                             {
-                                                //required: 'Pole wymagane',
                                                 minLength: {
                                                     value: 6,
                                                     message: 'Kod rejestracyjny musi składać się przynajmniej z 6 znaków',
@@ -257,11 +271,7 @@ function CarsCreate() {
                                     <Form.Label className="mt-3">Lokalizacja początkowa</Form.Label>
                                     <Form.Select 
                                         aria-label="Default select example"
-                                            {...register("selectLocation", 
-                                                {
-                                                    //required: 'Pole wymagane',
-                                                }                               
-                                            )}
+                                            {...register("selectLocation",{})}                                  
                                         name = 'selectLocation'
                                         onChange = {selectHandler}
                                     >

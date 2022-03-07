@@ -103,7 +103,7 @@ function CarShow() {
                     <Col>
                         <Image src = {car.image} className='car-show-img-sizing'/>
                         <h4> {car.name}</h4>
-                        <h5> Nr rejestracyjny: {car.code_registration}</h5>
+                        <h6> Nr rejestracyjny: {car.code_registration}</h6>
                     </Col>
                     {locationId && action == 'edit' 
                     ?                     
