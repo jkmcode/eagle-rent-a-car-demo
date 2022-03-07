@@ -176,5 +176,5 @@ AWS_S3_SECRET_ACCESS_KEY = '7ZosQVagOSnTRmgFbxvw3B/aont2sqT8iixYrNAo'
 
 AWS_STORAGE_BUCKET_NAME = 'eagle-rent-car'
 
-if os.getcwd() == '/app':
-    DEBUG = False
+# if os.getcwd() == '/app':
+#     DEBUG = False
