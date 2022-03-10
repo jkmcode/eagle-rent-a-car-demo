@@ -118,10 +118,11 @@ def updateUser(request, pk):
 
 #LOCATIONS
 
+
 @api_view(['GET'])
-@permission_classes([IsAdminUser])
+@permission_classes([IsAuthenticated])
 def getLocations(request):
-    locations = Locations.objects.filter(is_active=True)
+    locations = Locations.objects.filter(is_active=True).order_by('name')
     serializer = LocationsSerializer(locations, many=True)
     return Response(serializer.data)
 
@@ -130,7 +131,9 @@ def getLocations(request):
 @permission_classes([IsAdminUser])
 def createLocation(request):
     data = request.data
+    print('data', data)
     try:
+        print('wchodzę do funcji try')
         location = Locations.objects.create(
             name=data['name'],
             short_name=data['shortName'],
@@ -201,6 +204,8 @@ def locationUploadImage(request):
 def newLocationUploadImage(request):
     data = request.data
     supp_unique = data['suppUniqueVar']
+
+    print('supp_unique', supp_unique)
 
     locationWithImage = Locations.objects.get(supp_unique_var=supp_unique)
     locationWithImage.image = request.FILES.get('image')  

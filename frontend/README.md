@@ -123,16 +123,14 @@ Pytania
 
 To DO:
 
--- Uzytkownik -- obsługa błedów dla całości
--- CarRent -- lista walut i rodzaje dokumentów mogłaby być w jednej zmiennej środowiskowej (dokończyć dla pozostałych komponentów)
 -- CARLISTBYLOCATION dokończyć zmienne środowiskowe
 -- klucz traci swoją warzność po 30 dniach (chyba) i trzeba się przelogować. należy cofnąć użytjownika do logowania lub przy włanczaniu głównego menu oddowić localstorage.
--- Wyłączyć funkcjonalność "Wróć do mnie" RentCar, CarReservation, carRentEdit (dokończyć dla CarReservation, carRentEdit i inne)
 -- Wygląg komponentu Login
 -- kasuje rezerwacje jak dajemy na najem w zadania na dziś
 -- w mainpage poprawic button (powiiny być traktowne jako tło -- link bo otwierania nowych kart -- teraz pojawia się zdjęcie w nowym linku)
 -- lista utworzonych rezerwacji dla konkretnego pracownika oraz lista skasowanych rezerwacji (dostęne do 7 dni)
 -- imie, nazwisko, nazwa samochodu 6 znaków
+-- nie działa porawidłowo Create i Edit Localisation (najprawdopodobniej bład po stronie backendu w views: createLocation -- na SQLite działa okey)
 
 TO DISCUSS:
 -- Paginacja (Wszędzie)
@@ -152,6 +150,9 @@ Kalendarz -
 Odbierz -
 Edycja -
 
+<!-- -- Wyłączyć funkcjonalność "Wróć do mnie" RentCar, CarReservation, carRentEdit (dokończyć dla CarReservation, carRentEdit i inne) -->
+<!-- -- CarRent -- lista walut i rodzaje dokumentów mogłaby być w jednej zmiennej środowiskowej (dokończyć dla pozostałych komponentów) -->
+<!-- -- Uzytkownik -- obsługa błedów dla całości -->
 <!-- -- edycja samochodu uwzględniając zniecie nie działa okey -->
 <!-- -- "ZADANIA NA DZIŚ" rozwijane informacje powinny być tylko dla jednego rekordu -->
 <!-- -- "CarRentEdit" -- Dopłata za wydłużony czas najmu -- pole przyjmuje warość 0 na samym początku -->

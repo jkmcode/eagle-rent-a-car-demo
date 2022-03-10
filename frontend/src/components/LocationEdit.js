@@ -97,8 +97,9 @@ function LocationEdit() {
             shortName: data.shortName,
             isActive: true
         }))
+
         dispatch(listLocation()) 
-        reset()
+        reset({name:data.name, shortName:data.shortName})
 
     }
 

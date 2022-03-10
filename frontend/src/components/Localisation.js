@@ -38,15 +38,9 @@ function Localisation() {
         if(error){
             if(error==='Request failed with status code 500'){
                 setErrorMessage('Błąd serwera lub brak dostępu do internetu. Sprawdź połaczenie z internetem i uruchom aplikacje jeszcze raz.')
-                // const timeout = setTimeout(() =>{
-                //     setErrorMessage('')
-                // }, 7500)
                 
             }else if (error==='Podany kod rejestracyjny już istnieje'){
                 setErrorMessage(error)
-                // const timeout = setTimeout(() =>{
-                //     setErrorMessage('')
-                // }, 7500)
             }
         }
   
@@ -91,14 +85,14 @@ function Localisation() {
                                             <Card key={location.id} className='mb-3 '>
                                                 <ListGroup variant="flush" >
                                                     <ListGroup.Item className='card-list-color'>
-                                                        <Row >
+                                                        <Row>
                                                             <Col className='location-short-name'>
                                                                 <Image src = {location.image} className='img-sizing'/>
                                                                 {location.short_name}
                                                             </Col>
-                                                        </Row>
-                                                        <Row >
-                                                            <Col className='btn-position-right'>
+                                                        
+                                                        
+                                                            <Col className='btn-location-edit-position'>
                                                                 <LinkContainer to={`/admin/location/${location.id}/edit`}>
                                                                     <Button variant='warning' className='btn-md'>
                                                                         <FontAwesomeIcon icon={faEdit} /> Edycja
