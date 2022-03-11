@@ -120,12 +120,18 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': str(os.getenv('ENGINE')),
-        'NAME': str(os.getenv('NAME')),
-        'USER': str(os.getenv('USER')),
-        'PASSWORD': str(os.getenv('PASSWORD')),
-        'HOST': str(os.getenv('HOST')),
-        'PORT': str(os.getenv('PORT'))
+        # 'ENGINE': str(os.getenv('ENGINE')),
+        # 'NAME': str(os.getenv('NAME')),
+        # 'USER': str(os.getenv('USER')),
+        # 'PASSWORD': str(os.getenv('PASSWORD')),
+        # 'HOST': str(os.getenv('HOST')),
+        # 'PORT': str(os.getenv('PORT'))
+        'ENGINE' : 'django.db.backends.postgresql',
+        'NAME' : 'd3erbj2qjdab2h',
+        'USER' : 'lyhpmidbjggdlp',
+        'PASSWORD' : 'bf25fc9d06aa19ffcba58d072b3732d9adc6520f0b0c1dda0a15698094bd543c',
+        'HOST' : 'ec2-52-214-125-106.eu-west-1.compute.amazonaws.com',        
+        'PORT' : '5432'
     }
 }
 
@@ -182,13 +188,19 @@ STATIC_ROOT = BASE_DIR / 'staticfiles'
 CORS_ALLOW_ALL_ORIGINS = True
 
 AWS_QUERYSTRING_AUTH = False
-DEFAULT_FILE_STORAGE = str(os.getenv('DEFAULT_FILE_STORAGE'))
+# DEFAULT_FILE_STORAGE = str(os.getenv('DEFAULT_FILE_STORAGE'))
 
-AWS_S3_ACCESS_KEY_ID = str(os.getenv('AWS_S3_ACCESS_KEY_ID'))
+# AWS_S3_ACCESS_KEY_ID = str(os.getenv('AWS_S3_ACCESS_KEY_ID'))
 
-AWS_S3_SECRET_ACCESS_KEY = str(os.getenv('AWS_S3_SECRET_ACCESS_KEY'))
+# AWS_S3_SECRET_ACCESS_KEY = str(os.getenv('AWS_S3_SECRET_ACCESS_KEY'))
 
-AWS_STORAGE_BUCKET_NAME = str(os.getenv('AWS_STORAGE_BUCKET_NAME'))
+# AWS_STORAGE_BUCKET_NAME = str(os.getenv('AWS_STORAGE_BUCKET_NAME'))
+
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+AWS_S3_ACCESS_KEY_ID = 'AKIA32BER3245DS7D2VD'
+AWS_S3_SECRET_ACCESS_KEY = '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'
+AWS_STORAGE_BUCKET_NAME = 'eagle-rent-car'
+
 
 # if os.getcwd() == '/app':
 #     DEBUG = False
