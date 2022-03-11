@@ -125,13 +125,13 @@ DATABASES = {
         'USER': str(os.getenv('USER')),
         'PASSWORD': str(os.getenv('PASSWORD')),
         'HOST': str(os.getenv('HOST')),
-        # 'PORT': str(os.getenv('PORT'))
+        'PORT': str(os.getenv('PORT'))
         # 'ENGINE' : 'django.db.backends.postgresql',
         # 'NAME' : 'd3erbj2qjdab2h',
         # 'USER' : 'lyhpmidbjggdlp',
         # 'PASSWORD' : 'bf25fc9d06aa19ffcba58d072b3732d9adc6520f0b0c1dda0a15698094bd543c',
         # 'HOST' : 'ec2-52-214-125-106.eu-west-1.compute.amazonaws.com',        
-        'PORT' : '5432'
+        #'PORT' : '5432'
     }
 }
 
