@@ -11,7 +11,6 @@ colorama==0.4.4
 cookiecutter==1.7.3
 Django==4.0.1
 django-cors-headers==3.10.1
-django-pwa==1.0.10
 django-simple-pwa==2.2.1
 django-storages==1.12.3
 djangorestframework==3.13.1
