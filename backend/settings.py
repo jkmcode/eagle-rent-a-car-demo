@@ -11,17 +11,17 @@ load_dotenv()
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-# SECRET_KEY = 'django-insecure-qo^^ui)pig)x!ajl4q*dqz5u$qzr3z7id@w1^*n(^$=)x7%xce'
 SECRET_KEY = str(os.getenv('SECRET_KEY'))
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'eagle-rent-car.herokuapp.com', 'rent-car-demo.herokuapp.com']
 
 # Application definition
 
 INSTALLED_APPS = [
+    'pwa',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -31,7 +31,9 @@ INSTALLED_APPS = [
     'core_app',
     'rest_framework',
     'corsheaders',
-    'storages'
+    'storages',
+
+    #'webpack_boilerplate'
 ]
 
 
@@ -85,12 +87,11 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'backend.urls'
-
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
-            os.path.join(BASE_DIR, 'frontend/build')
+            os.path.join(BASE_DIR, 'frontend/build') 
         ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -108,16 +109,6 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 
 
 # Database
-#https://docs.djangoproject.com/en/4.0/ref/settings/#databases
-
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
-
-
 DATABASES = {
     'default': {
         'ENGINE': str(os.getenv('ENGINE')),
@@ -125,12 +116,7 @@ DATABASES = {
         'USER': str(os.getenv('USER')),
         'PASSWORD': str(os.getenv('PASSWORD')),
         'HOST': str(os.getenv('HOST')),
-        'PORT' : '5432'
-        # 'ENGINE' : 'django.db.backends.postgresql',
-        # 'NAME' : 'd3erbj2qjdab2h',
-        # 'USER' : 'lyhpmidbjggdlp',
-        # 'PASSWORD' : 'bf25fc9d06aa19ffcba58d072b3732d9adc6520f0b0c1dda0a15698094bd543c',
-        # 'HOST' : 'ec2-52-214-125-106.eu-west-1.compute.amazonaws.com',        
+        'PORT' : '5432',        
     }
 }
 
@@ -172,9 +158,105 @@ STATIC_URL = 'static/'
 MEDIA_URL = '/images/'
 
 STATICFILES_DIRS = [
-    BASE_DIR / 'static',
-    BASE_DIR / 'frontend/build/static'
+    #BASE_DIR / 'static',
+    #BASE_DIR / 'frontend/build',
+    #BASE_DIR / 'frontend/build/static'
+
+    os.path.join(BASE_DIR, 'frontend/build/static')
 ]
+
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+PWA_CONFIG = {
+        "name": "Rent a car",
+        "short_name": "PWA",
+        "theme_color": "#7820f5",
+        "background_color": "#7820f5",
+        "display": "standalone",
+        "orientation": "portrait",
+        "scope": "/",
+        "start_url": "/",
+        "icons": [
+                {
+                        "src": "/static/pwa/icons/72x72.png",
+                        "type": "image/png",
+                        "sizes": "72x72"
+                },
+                {
+                        "src": "/static/pwa/icons/96x96.png",
+                        "type": "image/png",
+                        "sizes": "96x96"
+                },
+                {
+                        "src": "/static/pwa/icons/128x128.png",
+                        "type": "image/png",
+                        "sizes": "128x128"
+                },
+                {
+                        "src": "/static/pwa/icons/144x144.png",
+                        "type": "image/png",
+                        "sizes": "144x144"
+                },
+                {
+                        "src": "/static/pwa/icons/152x152.png",
+                        "type": "image/png",
+                        "sizes": "152x152"
+                },
+                {
+                        "src": "/static/pwa/icons/192x192.png",
+                        "type": "image/png",
+                        "sizes": "192x192"
+                },
+                {
+                        "src": "/static/pwa/icons/384x384.png",
+                        "type": "image/png",
+                        "sizes": "384x384"
+                },
+                {
+                        "src": "/static/pwa/icons/512x512.png",
+                        "type": "image/png",
+                        "sizes": "512x512"
+                }
+                ],
+        "lang": "en",
+        "dir": "ltr",
+        "description": "Progressive Web app powerd by Django",
+        "version": "1.",
+        "manifest_version": "1.0",
+        "permissions": [
+                "notifications",
+                "webRequest"
+        ],
+        "author": "PWA-django"
+}
+
+
+# PWA_APP_NAME = 'Nazwa'
+# PWA_APP_DESCRIPTION = "My app description"
+# PWA_APP_THEME_COLOR  = '#0A0302'
+# PWA_APP_BACKGROUND_COLOR = '#ffffff' 
+# PWA_APP_DISPLAY = 'standalone'
+# PWA_APP_SCOPE = '/'
+# PWA_APP_ORIENTATION = 'any'
+# PWA_APP_START_URL = '/' 
+# PWA_APP_STATUS_BAR_COLOR = 'default'
+# PWA_APP_ICONS = [ { 'src': '/static/images/my_app_icon.png', 'sizes': '160x160' } ] 
+# PWA_APP_ICONS_APPLE = [ { 'src': '/static/images/my_apple_icon.png', 'sizes': '160x160' } ] 
+# PWA_APP_SPLASH_SCREEN = [
+#      { 
+#         'src': '/static/images/icons/splash-640x1136.png',
+#         'media': '(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)' } 
+# ]
+# PWA_APP_DIR = 'ltr' 
+# PWA_APP_LANG = 'en-US'
+
+# STATICFILES_DIRS = (
+#     os.path.join(os.path.join(BASE_DIR, 'frontend'), 'build', 'static'),
+# )
+
+# WEBPACK_LOADER = {
+#     'MANIFEST_FILE': os.path.join(BASE_DIR, "frontend/build/manifest.json"),
+# }
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
@@ -187,19 +269,11 @@ STATIC_ROOT = BASE_DIR / 'staticfiles'
 CORS_ALLOW_ALL_ORIGINS = True
 
 AWS_QUERYSTRING_AUTH = False
+
 DEFAULT_FILE_STORAGE = str(os.getenv('DEFAULT_FILE_STORAGE'))
-
 AWS_S3_ACCESS_KEY_ID = str(os.getenv('AWS_S3_ACCESS_KEY_ID'))
-
 AWS_S3_SECRET_ACCESS_KEY = str(os.getenv('AWS_S3_SECRET_ACCESS_KEY'))
-
 AWS_STORAGE_BUCKET_NAME = str(os.getenv('AWS_STORAGE_BUCKET_NAME'))
 
-# DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-# AWS_S3_ACCESS_KEY_ID = 'AKIA32BER3245DS7D2VD'
-# AWS_S3_SECRET_ACCESS_KEY = '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'
-# AWS_STORAGE_BUCKET_NAME = 'eagle-rent-car'
-
-
-# if os.getcwd() == '/app':
-#     DEBUG = False
+if os.getcwd() == '/app':
+    DEBUG = False

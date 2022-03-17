@@ -10,7 +10,7 @@ class Locations(models.Model):
     date_of_entry = models.DateTimeField(auto_now_add=True)
     is_active = models.BooleanField(default=True)
     creator = models.CharField(max_length=255)
-    supp_unique_var = models.IntegerField(unique=True, blank=True, null=True)
+    supp_unique_var = models.BigIntegerField(unique=True, blank=True, null=True)
 
     def __str__(self):
         return str(self.short_name)

@@ -16,6 +16,15 @@ import {
         faAngleDoubleLeft
 } from "@fortawesome/free-solid-svg-icons"
 
+import {
+    USERS_LIST_TITLE,
+    BTN_BACK,
+    BTN_NEW_USER,
+    BTN_EDIT,
+    BTN_DELETE,
+    DELETE_MESSAGE
+} from '../constants/EnvConstans'
+
 
 function UsersList() {
     const navigate = useNavigate()
@@ -45,7 +54,7 @@ function UsersList() {
 
 
     const deleteHandler = (id) =>{
-        if(window.confirm('Czy jesteś pewny, że chcesz skasować użytkownika?')){
+        if(window.confirm(DELETE_MESSAGE)){
             dispatch(deleteUser(id))
         }
     }
@@ -66,7 +75,7 @@ function UsersList() {
                         <div>
                             <Row>
                                 <Col>
-                                    <h2>Lista użytkowników</h2>
+                                    <h2>{USERS_LIST_TITLE}</h2>
                                 </Col>
                                 <Col className='btn-position-right'>
                                     <div>
@@ -74,7 +83,7 @@ function UsersList() {
                                             <Button 
                                                 className='btn-back mt-1 mb-1'
                                             >
-                                                <FontAwesomeIcon icon={faAngleDoubleLeft} /> Powrót
+                                                <FontAwesomeIcon icon={faAngleDoubleLeft} /> {BTN_BACK}
                                             </Button>
                                         </LinkContainer>                                        
                                     </div>
@@ -84,7 +93,7 @@ function UsersList() {
                                 <Col className='btn-position-right'>
                                     <div>
                                         <Button className="new-location-bg mb-5" onClick={createUserHandler}>
-                                            <i className='fas fa-plus'></i> Nowy użytkownik
+                                            <i className='fas fa-plus'></i> {BTN_NEW_USER}
                                         </Button>
                                     </div>
                                 </Col>
@@ -101,13 +110,13 @@ function UsersList() {
                                                     <div>
                                                         <LinkContainer to={`/admin/user/${user._id}/edit`}>
                                                             <Button variant='warning' className='btn-md'>
-                                                                <FontAwesomeIcon icon={faEdit} /> Edycja
+                                                                <FontAwesomeIcon icon={faEdit} /> {BTN_EDIT}
                                                             </Button>
                                                         </LinkContainer>
                                                     </div>
                                                     <div>
                                                         <Button variant='danger' className='btn-md mt-1' onClick={() => deleteHandler(user._id)}>
-                                                            <i class="fas fa-trash"></i> Kasuj
+                                                            <i className="fas fa-trash"></i> {BTN_DELETE}
                                                         </Button>
                                                     </div>
                                                 </Col>

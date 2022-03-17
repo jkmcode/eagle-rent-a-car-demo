@@ -15,7 +15,42 @@ import { CARS_DETAILS_RESET,
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleDoubleLeft } from "@fortawesome/free-solid-svg-icons"
-        
+
+import {
+    CARS_CREATE_TITLE,
+    CARS_CREATE_CAR_NAME_TITLE,
+    CARS_CREATE_CAR_SHORT_NAME_TITLE,
+    CARS_CREATE_CAR_REGISTRATION_NO_TITLE,
+    CARS_CREATE_CAR_MAIN_LOCATION_TITLE,
+    CARS_CREATE_CHOOSE_PICTURE,
+
+    CARS_CREATE_CAR_NAME_PLACEHOLDER,
+    CARS_CREATE_CAR_SHORT_NAME_PLACEHOLDER,
+    CARS_CREATE_CAR_REGISTRATION_NO_PLACEHOLDER,
+
+    CARS_CREATE_CAR_NAME_REQUIRED,
+    CARS_CREATE_CAR_NAME_MIN_LENGTH,
+
+    CARS_CREATE_CAR_SHORT_NAME_REQUIRED,
+    CARS_CREATE_CAR_SHORT_NAME_MIN_LENGTH,
+
+    CARS_CREATE_CAR_REGISTRATION_NO_REQUIRED,
+    CARS_CREATE_CAR_REGISTRATION_MIN_LENGTH,
+
+    CARS_CREATE_CAR_MAIN_LOCATION_REQUIRED,
+    OPTION_0,
+
+    REQUEST_FAILED_WITH_STATUS_CODE_500,
+    REQUEST_FAILED_WITH_STATUS_CODE_500_PL,
+    REGISTRATION_NO_ALREADY_EXIST,
+    REQUEST_FAILED_REST_OF_STATUS_CODE,
+    ERROR_UPLOAD_PICTURE,
+    SUCCESS_CAR_ADD,
+
+    BTN_BACK,
+    BTN_SAVE
+} from '../constants/EnvConstans'
+
 
 function CarsCreate() {
 
@@ -57,29 +92,29 @@ function CarsCreate() {
     const onSubmit = async (data, e) =>  {
 
 
-        if(data.selectLocation === '0'){
-            setLocatisationMessage('Pole wymagane')
+        if(data.selectLocation === OPTION_0){
+            setLocatisationMessage(CARS_CREATE_CAR_MAIN_LOCATION_REQUIRED)
         } 
         
         if(!data.name){
-            setCarName('Pole wymagane')
+            setCarName(CARS_CREATE_CAR_NAME_REQUIRED)
         }else{
            setCarName('') 
         }
         
         if(!data.shortName){
-            setCarShortName('Pole wymagane')
+            setCarShortName(CARS_CREATE_CAR_SHORT_NAME_REQUIRED)
         }else{
             setCarShortName('')
         }
         
         if(!data.codeRegistration){
-            setCodeRegistration('Pole wymagane')
+            setCodeRegistration(CARS_CREATE_CAR_REGISTRATION_NO_REQUIRED)
         }else{
             setCodeRegistration('')
         }
         
-        if(data.selectLocation !== '0'
+        if(data.selectLocation !== OPTION_0
            && data.name
            && data.shortName
            && data.codeRegistration
@@ -158,17 +193,17 @@ function CarsCreate() {
     //UseEffect -słownik błędów
     useEffect(() => {
         if(error){
-            if(error==='Request failed with status code 500'){
-                setErrorMessage('Błąd serwera lub brak dostępu do internetu. Sprawdź połaczenie z internetem i uruchom aplikacje jeszcze raz.')
-            }else if (error==='Podany kod rejestracyjny już istnieje'){
+            if(error===REQUEST_FAILED_WITH_STATUS_CODE_500){
+                setErrorMessage(REQUEST_FAILED_WITH_STATUS_CODE_500_PL)
+            }else if (error===REGISTRATION_NO_ALREADY_EXIST){
                 setErrorMessage(error)
             }else{
-                setErrorMessage('Błąd sieciowy. Sprawdź połaczenie z internetem i uruchom aplikacje jeszcze raz.')
+                setErrorMessage(REQUEST_FAILED_REST_OF_STATUS_CODE)
             }   
         }
 
         if(errorUploadImage){
-            setErrorMessageImage('Błąd sieciowy. Zdjęcie nie zostało dodane.')
+            setErrorMessageImage(ERROR_UPLOAD_PICTURE)
         }
   
     }, [error, errorUploadImage])
@@ -176,7 +211,7 @@ function CarsCreate() {
     //UseEffect - komunikat success
     useEffect(() => {
         if(success){
-            setSuccessMessage('Samochód został dodany do listy')
+            setSuccessMessage(SUCCESS_CAR_ADD)
         }
     }, [success])
 
@@ -189,27 +224,27 @@ function CarsCreate() {
                {errorUploadImage &&<Message variant='info'>{errorMessageImage}</Message>}
                 <Row>
                     <Col>
-                        <h2>Dodaj nowy samochód</h2>
+                        <h2>{CARS_CREATE_TITLE}</h2>
                     </Col>
                     <Col className='btn-position'>
                         <LinkContainer to={`/admin/cars`}>  
                             <Button className='btn-md btn-back'>
-                                <FontAwesomeIcon icon={faAngleDoubleLeft} /> Powrót
+                                <FontAwesomeIcon icon={faAngleDoubleLeft} /> {BTN_BACK}
                             </Button>
                         </LinkContainer>                    
                     </Col>
                 </Row>
                         <Form onSubmit={handleSubmit(onSubmit)}>
                                 <Form.Group controlId='name'>
-                                    <Form.Label>Nazwa samochodu</Form.Label>
+                                    <Form.Label>{CARS_CREATE_CAR_NAME_TITLE}</Form.Label>
                                     <Form.Control
                                         type='text'
-                                        placeholder = 'Brak nazwy samochodu'
+                                        placeholder = {CARS_CREATE_CAR_NAME_PLACEHOLDER}
                                         {...register("name", 
                                             {
                                                 minLength: {
                                                     value: 10,
-                                                    message: 'Nazwa samochodu musi składać się z przynajmniej 10 liter',
+                                                    message: CARS_CREATE_CAR_NAME_MIN_LENGTH,
                                                 },
                                             }                               
                                         )}
@@ -222,20 +257,16 @@ function CarsCreate() {
                                 </Form.Group>
 
                                 <Form.Group controlId='shortName'>
-                                    <Form.Label>Nazwa skrócona</Form.Label>
+                                    <Form.Label>{CARS_CREATE_CAR_SHORT_NAME_TITLE}</Form.Label>
                                         <Form.Control
                                             type="text"
-                                            placeholder = 'Brak nazwy skróconej'
+                                            placeholder = {CARS_CREATE_CAR_SHORT_NAME_PLACEHOLDER}
                                             {...register("shortName", 
                                             {
                                                 minLength: {
                                                     value: 2,
-                                                    message: 'Nazwa samochodu musi składać się z przynajmniej 2 liter',
-                                                },
-                                                pattern: {
-                                                    value: /[A-Za-z -]/,
-                                                    message: 'Można uzywać tylko liter',
-                                                },
+                                                    message: CARS_CREATE_CAR_SHORT_NAME_MIN_LENGTH,
+                                                }
                                             }                               
                                         )}
                                             onKeyUp={() => {trigger("shortName")}}
@@ -247,15 +278,15 @@ function CarsCreate() {
                                 </Form.Group> 
 
                                 <Form.Group controlId='codeRegistration'>
-                                    <Form.Label>Numer rejestracyjny</Form.Label>
+                                    <Form.Label>{CARS_CREATE_CAR_REGISTRATION_NO_TITLE}</Form.Label>
                                         <Form.Control
                                             type="text"
-                                            placeholder = 'Brak kodu rejestracyjnego'
+                                            placeholder = {CARS_CREATE_CAR_REGISTRATION_NO_PLACEHOLDER}
                                             {...register("codeRegistration", 
                                             {
                                                 minLength: {
                                                     value: 6,
-                                                    message: 'Kod rejestracyjny musi składać się przynajmniej z 6 znaków',
+                                                    message: CARS_CREATE_CAR_REGISTRATION_MIN_LENGTH,
                                                 },
                                             }                               
                                         )}
@@ -268,7 +299,7 @@ function CarsCreate() {
                                 </Form.Group> 
 
                                 <Form.Group controlId='selectLocation'>
-                                    <Form.Label className="mt-3">Lokalizacja początkowa</Form.Label>
+                                    <Form.Label className="mt-3">{CARS_CREATE_CAR_MAIN_LOCATION_TITLE}</Form.Label>
                                     <Form.Select 
                                         aria-label="Default select example"
                                             {...register("selectLocation",{})}                                  
@@ -283,7 +314,7 @@ function CarsCreate() {
                                     {locatisationMessage ? <p className='docTypeMessage-style'>{locatisationMessage}</p> : null}
                                 </Form.Group>                    
 
-                                <Form.Label className="mt-3">Wybierz zdjęcie</Form.Label>
+                                <Form.Label className="mt-3">{CARS_CREATE_CHOOSE_PICTURE}</Form.Label>
                                 <Form.Group controlId="formFile" className='test-img'>
                                     <Form.Control 
                                         type="file"
@@ -292,7 +323,7 @@ function CarsCreate() {
                                 </Form.Group>
 
                                 <Button type='submit' variant='primary' className='my-3 bnt-block bg-brown rounded'>
-                                    Zapisz
+                                    {BTN_SAVE}
                                 </Button>
                             </Form>
                     

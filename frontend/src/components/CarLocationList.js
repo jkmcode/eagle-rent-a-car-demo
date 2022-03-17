@@ -20,8 +20,6 @@ import {
         faCalendar, 
         faAddressBook, 
         faEdit,
-        faArrowCircleDown,
-        faArrowCircleUp
 } from "@fortawesome/free-solid-svg-icons"
 
 import { 
@@ -32,6 +30,9 @@ import {
     CAR_LOCATION_LIST_RESERVATIONS_SUBTITLE,
     CAR_LOCATION_LIST_EDIT_RESERVATION_SUBTITLE,
     CAR_LOCATION_LIST_IN_USE_DATE_SUBTITLE,
+    CAR_LOCATION_LIST_EDIT_RESERVATION_FROM_SUBTITLE,
+    CAR_LOCATION_LIST_OTHER_LOCATISATION,
+    CAR_LOCATION_LIST_FILTERS,
 
     CAR_LOCATION_LIST_RENT_BTN_NAME,
     CAR_LOCATION_LIST_IN_USE_BTN_NAME,
@@ -56,11 +57,23 @@ import {
 
     CAR_LOCATION_LIST_AMOUNT_OF_POSITIONS,
 
+    BTN_SHOW,
+    BTN_CALENDAR,
+    BTN_PICK_UP,
+    BTN_RENT,
+    BTN_RESRVATION,
+    BTN_EDIT,
+
+    CONDITION_RENT,
+    CONDITION_DELAY_RENT,
+    CONDITION_RESERVATION,
+    CONDITION_DELAY_RESERVATION,
+
     REQUEST_FAILED_WITH_STATUS_CODE_500,
     REQUEST_FAILED_WITH_STATUS_CODE_500_PL,
     REQUEST_FAILED_REST_OF_STATUS_CODE,  
     CAR_LOCATION_LIST_DELETE_MSG,  
-    DELETE
+    DELETE,
 } from '../constants/EnvConstans'
 
             
@@ -330,7 +343,7 @@ function CarLocationList() {
                             ? 
                             <div>
                                 <hr />
-                                <h4>Filtry</h4>
+                                <h4>{CAR_LOCATION_LIST_FILTERS}</h4>
                                     <Button 
                                         className={filterAll ? 'btn-bg-car-list-location' : 'btn-car-list-location'}
                                         onClick={filterAllHandler}
@@ -358,10 +371,10 @@ function CarLocationList() {
 
                                                 className={classNames('card-list-color',
                                                 {
-                                                 'card-list-color-rent': car.type === "Najem",
-                                                 'card-list-color-rent-delay': car.type === "Najem opóźniony",
-                                                 'card-list-color-reservation': car.type==="Rezerwacja",
-                                                 'card-list-color-reservation-delay': car.type==="Rezerwacja opóźniona"
+                                                 'card-list-color-rent': car.type === CONDITION_RENT,
+                                                 'card-list-color-rent-delay': car.type === CONDITION_DELAY_RENT,
+                                                 'card-list-color-reservation': car.type === CONDITION_RESERVATION,
+                                                 'card-list-color-reservation-delay': car.type === CONDITION_DELAY_RESERVATION
                                                 })}
                                             >
                                                 <Row>
@@ -370,7 +383,7 @@ function CarLocationList() {
                                                             ?
                                                             <div>
                                                                 <h4 className='other-location-title'>
-                                                                    Samochód w innej lokalizacji
+                                                                    {CAR_LOCATION_LIST_OTHER_LOCATISATION}
                                                                 </h4>
                                                             </div> 
                                                             : null
@@ -383,10 +396,10 @@ function CarLocationList() {
                                                         <div>
                                                             <h5 className='car-registration-style'>{car.id_cars.code_registration}</h5>
                                                         </div>
-                                                        {car.type === "Rezerwacja" || car.type === "Rezerwacja opóźniona"
+                                                        {car.type === CONDITION_RESERVATION || car.type === CONDITION_DELAY_RESERVATION
                                                             ?
                                                                 <div>
-                                                                    <h6 className='reservation-from-title'>Rezerwacja od:</h6>
+                                                                    <h6 className='reservation-from-title'>{CAR_LOCATION_LIST_EDIT_RESERVATION_FROM_SUBTITLE}</h6>
                                                                     <div>
                                                                         {car.start_year}
                                                                         -{car.start_month > 9 ? car.start_month : `0${car.start_month}`}
@@ -397,7 +410,7 @@ function CarLocationList() {
                                                                 </div>
                                                             : null                                                                                                                 
                                                         }
-                                                        {car.type === "Najem" || car.type ==="Najem opóźniony"
+                                                        {car.type === CONDITION_RENT || car.type === CONDITION_DELAY_RENT
                                                             ?
                                                                 <div>
                                                                     {car.end_year}
@@ -422,7 +435,7 @@ function CarLocationList() {
                                                                 className='btn-md btn-show-to-do'
                                                                 onClick={() => moreInfoHandler(index + 1)}
                                                             >
-                                                                Pokaż 
+                                                                {BTN_SHOW} 
                                                             </Button>
 
                                                             {(index + 1 === iterator)
@@ -437,7 +450,7 @@ function CarLocationList() {
                                                                             ? <h6>{CAR_LOCATION_LIST_CONTACT_INFO_EMAIL} {car.client_email}</h6>
                                                                             : null
                                                                         }
-                                                                        {car.type === "Najem"
+                                                                        {car.type === CONDITION_RENT
                                                                             ? 
                                                                             <div>
                                                                                 <h6>{CAR_LOCATION_LIST_CONTACT_INFO_DEPOSIT} {car.deposit} {car.deposit_currency}</h6>
@@ -455,7 +468,7 @@ function CarLocationList() {
 
                                                     </Col>
                                                     <Col className='carslist-position'>
-                                                    {car.type === "Rezerwacja" || car.type === "Rezerwacja opóźniona"
+                                                    {car.type === CONDITION_RESERVATION || car.type === CONDITION_DELAY_RESERVATION
                                                         ?
                                                         
                                                         <div>
@@ -486,7 +499,7 @@ function CarLocationList() {
                                                         : null
                                                     }
 
-                                                    {car.type === "Najem" || car.type === "Najem opóźniony"
+                                                    {car.type === CONDITION_RENT || car.type === CONDITION_DELAY_RENT
                                                         ?
                                                         <div>
                                                             <div>
@@ -522,8 +535,8 @@ function CarLocationList() {
                                                 <ListGroup.Item 
                                                     className={classNames('card-list-color',
                                                     {
-                                                    'card-list-color-rent': car.type === "Najem",
-                                                    'card-list-color-rent-delay': car.type === "Najem opóźniony",
+                                                    'card-list-color-rent': car.type === CONDITION_RENT,
+                                                    'card-list-color-rent-delay': car.type === CONDITION_DELAY_RENT,
                                                     })}  
                                                 >
                                                     <Row>
@@ -561,14 +574,14 @@ function CarLocationList() {
                                                                 <div className='mt-1'>
                                                                     <LinkContainer to={`/car/${car.id_cars.id}/show/in-use/${locationId}`}>  
                                                                         <Button variant='info' className='btn-md'>
-                                                                            <FontAwesomeIcon icon={faCalendar} /> Kalendarz 
+                                                                            <FontAwesomeIcon icon={faCalendar} /> {BTN_CALENDAR}
                                                                         </Button>
                                                                     </LinkContainer> 
                                                                 </div> 
                                                                 <div>
                                                                     <LinkContainer to={`/car/${car.id_cars.id}/pick-up/${locationId}`}> 
                                                                         <Button variant='success' className='btn-md btn-pickup mt-1'>
-                                                                            <FontAwesomeIcon icon={faArrowAltCircleLeft} /> Odbierz 
+                                                                            <FontAwesomeIcon icon={faArrowAltCircleLeft} /> {BTN_PICK_UP} 
                                                                         </Button>
                                                                     </LinkContainer>
                                                                 </div> 
@@ -591,15 +604,7 @@ function CarLocationList() {
                                     {cars.map(car=> (
                                         <Card key={car.id} className='mb-3'>
                                             <ListGroup variant="flush">
-                                                <ListGroup.Item 
-                                                    className={classNames('card-list-color',
-                                                    {
-                                                    'card-list-color-rent': car.type === "Najem",
-                                                    'card-list-color-rent-delay': car.type === "Najem opóźniony",
-                                                    'card-list-color-reservation': car.type==="Rezerwacja",
-                                                    'card-list-color-reservation-delay': car.type==="Rezerwacja opóźniona"
-                                                    })}  
-                                                >
+                                                <ListGroup.Item className = 'card-list-color'>
                                                     <Row>
                                                         <Col>
                                                             <div>
@@ -625,7 +630,7 @@ function CarLocationList() {
                                                                     <div>
                                                                         <LinkContainer to={`/car/${car.id}/rent/${locationId}`}> 
                                                                             <Button variant='info' className='btn-md'>
-                                                                                <FontAwesomeIcon icon={faCar} /> Najem 
+                                                                                <FontAwesomeIcon icon={faCar} /> {BTN_RENT} 
                                                                             </Button>
                                                                         </LinkContainer> 
                                                                     </div>                                                
@@ -638,14 +643,14 @@ function CarLocationList() {
                                                                         
                                                                         <LinkContainer to={`/car/${car.id}/pick-up/${locationId}`}> 
                                                                             <Button variant='warning' className='btn-md mb-2'>
-                                                                                <FontAwesomeIcon icon={faArrowAltCircleLeft} /> Odbierz 
+                                                                                <FontAwesomeIcon icon={faArrowAltCircleLeft} /> {BTN_PICK_UP} 
                                                                             </Button>
                                                                         </LinkContainer>
                                                                     </div> 
                                                                     <div>
                                                                         <LinkContainer to={`/car/${car.id}/show`}>  
                                                                             <Button variant='info' className='btn-md'>
-                                                                                <FontAwesomeIcon icon={faCalendar} /> Kalendarz 
+                                                                                <FontAwesomeIcon icon={faCalendar} /> {BTN_CALENDAR} 
                                                                             </Button>
                                                                         </LinkContainer> 
                                                                     </div> 
@@ -658,7 +663,7 @@ function CarLocationList() {
                                                                     <div>
                                                                         <LinkContainer to={`/car/${car.id}/show/id-location/${locationId}`}>  
                                                                             <Button variant='warning' className='btn-md'>
-                                                                                <FontAwesomeIcon icon={faAddressBook} /> Rezerwuj
+                                                                                <FontAwesomeIcon icon={faAddressBook} /> {BTN_RESRVATION}
                                                                             </Button>
                                                                             
                                                                         </LinkContainer> 
@@ -671,7 +676,7 @@ function CarLocationList() {
                                                                     <div> 
                                                                         <LinkContainer to={`/car/${car.id}/${locationId}/edit-reservation`}>  
                                                                             <Button variant='warning' className='btn-md'>
-                                                                                <FontAwesomeIcon icon={faEdit} /> Edytuj
+                                                                                <FontAwesomeIcon icon={faEdit} /> {BTN_EDIT}
                                                                             </Button>
                                                                         </LinkContainer> 
                                                                     </div>                                    

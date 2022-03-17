@@ -3,11 +3,48 @@ import Header from './Header';
 import FormContainer from './FormContainer';
 import Message from './Message';
 import { Form, Button, Row, Col } from 'react-bootstrap';
+import { LinkContainer } from 'react-router-bootstrap';
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from 'react-redux';
 import { updateUser, getUserDetails } from '../action/userAction';
 import { useParams, useNavigate } from 'react-router-dom';
-import { USER_UPDATE_RESET } from '../constants/UserConstants'
+import { USER_UPDATE_RESET } from '../constants/UserConstants';
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { 
+        faAngleDoubleLeft
+} from "@fortawesome/free-solid-svg-icons";
+
+import {
+    USER_EDIT_TITLE,
+    USER_EDIT_NAME_TITLE,
+    USER_EDIT_EMAIL_TITLE,
+    USER_EDIT_CHANGE_PASSWORD_TITLE,
+    USER_EDIT_PASSWORD_TITLE,
+    USER_EDIT_CONFIRM_PASSWORD_TITLE,
+    USER_EDIT_ADMIN_TITLE,
+
+    USER_EDIT_NAME_PLACEHOLDER,
+    USER_EDIT_EMAIL_PLACEHOLDER,
+    USER_EDIT_PASSWORD_PLACEHOLDER,
+    USER_EDIT_CONFIRM_PASSWORD_PLACEHOLDER,
+
+    USER_EDIT_NAME_REQUIRED,
+    USER_EDIT_NAME_MIN_LENGTH,
+    USER_EDIT_NAME_PATTERN,
+
+    USER_EDIT_EMAIL_PATTERN,
+
+    USER_EDIT_PASSWORD_REQUIRED,
+    USER_EDIT_PASSWORD_MIN_LENGTH,
+
+    USER_EDIT_CONFIRM_PASSWORD_REQUIRED,
+    USER_EDIT_CONFIRM_PASSWORD_MIN_LENGTH,
+
+    ENTERED_PASSWORD_ARE_NOT_THE_SAME,
+    BTN_BACK,
+    BTN_CHANGE
+} from '../constants/EnvConstans'
 
 function UserEdit() {
     const params = useParams()
@@ -24,10 +61,10 @@ function UserEdit() {
     }
 
     const userDetails = useSelector(state => state.userDetails)
-    const {error, loading, user} = userDetails
+    const {user} = userDetails
 
     const userUpdate = useSelector(state => state.userUpdate)
-    const { error: errorUpdate, loading:loadingUpdate, success: successUpdate } = userUpdate
+    const { success: successUpdate } = userUpdate
 
     const {
         register,
@@ -60,7 +97,7 @@ function UserEdit() {
     const submitHandler = (data) => {
         if(changingPassword){
             if(data.password != data.passwordConfirm){
-                setMessagePassword('Podane hasła nie są takie same')
+                setMessagePassword(ENTERED_PASSWORD_ARE_NOT_THE_SAME)
                 reset({password:'', passwordConfirm:''})
             }else{
                 dispatch(updateUser({id:user._id, name: data.name, email: data.email, password:data.password, isAdmin, changingPassword}))
@@ -82,24 +119,37 @@ function UserEdit() {
         <main>
             <Header />
             <FormContainer>
-                    <h1>Edycja Użytkownika</h1>
                     {messagePassword && <Message variant='danger'>{messagePassword}</Message>}
+                    <Row>
+                        <Col>
+                            <h2>{USER_EDIT_TITLE}</h2>
+                        </Col>
+                        <Col className='btn-position'>
+                            <LinkContainer to={`/admin/userslist`}>  
+                                <Button className='btn-md btn-back'>
+                                    <FontAwesomeIcon icon={faAngleDoubleLeft} /> {BTN_BACK}
+                                </Button>
+                            </LinkContainer>                                                  
+                        </Col>
+
+                    </Row>
+
                     <Form onSubmit={handleSubmit(submitHandler)}>
                         <Form.Group controlId='name'>
-                            <Form.Label>Nazwa użytkownika</Form.Label>
+                            <Form.Label>{USER_EDIT_NAME_TITLE}</Form.Label>
                             <Form.Control
                                 type='text'
-                                placeholder = 'Brak nazwy użytkownika'
+                                placeholder = {USER_EDIT_NAME_PLACEHOLDER}
                                 {...register("name", 
                                 {
-                                    required: 'Pole wymagane',
+                                    required: USER_EDIT_NAME_REQUIRED,
                                     pattern: {
                                     value: /[A-Za-z -]/,
-                                    message: 'Można uzywać tylko liter',
+                                    message: USER_EDIT_NAME_PATTERN,
                                     },
                                     minLength: {
                                         value: 2,
-                                        message: 'Nazwa uzytkownika musi składać się z przynajmniej 2 liter',
+                                        message: USER_EDIT_NAME_MIN_LENGTH,
                                     },
                                 }                               
                                 )}
@@ -111,17 +161,16 @@ function UserEdit() {
                                 </Form.Group>                         
 
                             <Form.Group controlId='email'>
-                                    <Form.Label>Email</Form.Label>
+                                    <Form.Label>{USER_EDIT_EMAIL_TITLE}</Form.Label>
                                         <Form.Control
                                             type="text"
-                                            placeholder = 'Brak adresu email'
+                                            placeholder = {USER_EDIT_EMAIL_PLACEHOLDER}
                                             {...register("email", {
                                                 pattern: {
                                                 value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                                                message: 'Niepoprawny format email',                                
+                                                message: {USER_EDIT_EMAIL_PATTERN},                                
                                         
                                             }})}
-                                            // onChange={(e) => setEmail(e.target.value)}
                                             onKeyUp={() => {trigger("email")}}
                                             name = 'email'
                                         >
@@ -131,7 +180,7 @@ function UserEdit() {
                                 <Form.Group controlId='changingPassword' className='mt-3 mb-3'>
                                     <Form.Check
                                         type='checkbox'
-                                        label = 'Chcę zmienić hasło pracownika/użytkownika'
+                                        label = {USER_EDIT_CHANGE_PASSWORD_TITLE}
                                         checked ={changingPassword}
                                         name = 'changingPassword'
                                         onChange={(e) => setChangingPassword(e.target.checked)}
@@ -141,16 +190,16 @@ function UserEdit() {
                                 {changingPassword ?
                                 <section> 
                                     <Form.Group controlId='password'>
-                                        <Form.Label>Hasło</Form.Label>
+                                        <Form.Label>{USER_EDIT_PASSWORD_TITLE}</Form.Label>
                                         <Form.Control
                                             type='password'
-                                            placeholder = 'Hasło'
+                                            placeholder = {USER_EDIT_PASSWORD_PLACEHOLDER}
                                             {...register("password", 
                                                 {
-                                                    required: 'Pole wymagane',
+                                                    required: USER_EDIT_PASSWORD_REQUIRED,
                                                     minLength: {
                                                         value: 8,
-                                                        message: 'Hasło musi mieć przynajmniej 8 znaków',
+                                                        message: USER_EDIT_PASSWORD_MIN_LENGTH,
                                                     },
                                                 }                               
                                             )}
@@ -163,16 +212,16 @@ function UserEdit() {
                                  
                                 
                                     <Form.Group controlId='passwordConfirm'>
-                                        <Form.Label>Powtórz hasło</Form.Label>
+                                        <Form.Label>{USER_EDIT_CONFIRM_PASSWORD_TITLE}</Form.Label>
                                         <Form.Control
                                             type='password'
-                                            placeholder = 'Potwierdź hasło'
+                                            placeholder = {USER_EDIT_CONFIRM_PASSWORD_PLACEHOLDER}
                                             {...register("passwordConfirm", 
                                                 {
-                                                    required: 'Pole wymagane',
+                                                    required: USER_EDIT_CONFIRM_PASSWORD_REQUIRED,
                                                     minLength: {
                                                         value: 8,
-                                                        message: 'Hasło musi mieć przynajmniej 8 znaków',
+                                                        message: USER_EDIT_CONFIRM_PASSWORD_MIN_LENGTH,
                                                     },
                                                 }                               
                                             )}
@@ -187,7 +236,7 @@ function UserEdit() {
                                 <Form.Group controlId='isadmin'>
                                     <Form.Check
                                         type='checkbox'
-                                        label = 'Admin'
+                                        label = {USER_EDIT_ADMIN_TITLE}
                                         checked ={isAdmin}
                                         name = 'isadmin'
                                         onChange={(e) => setIsAdmin(e.target.checked)}
@@ -196,7 +245,7 @@ function UserEdit() {
                                 </Form.Group>
 
                                 <Button type='submit' variant='primary' className='bnt-block bg-brown rounded my-3'>
-                                    Zmień
+                                    {BTN_CHANGE}
                                 </Button>
                     </Form>
             </FormContainer>

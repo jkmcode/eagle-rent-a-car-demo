@@ -11,7 +11,6 @@ import Message from './Message';
 import { scroller } from "react-scroll";
 
 import { getRentDetailsByCarId, carUpdateRentbyId } from '../action/carsAction';
-import { CAR_RENT_UPDATE_RESET, CAR_RENT_DETAILS_RESET } from '../constants/CarsConstans';
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { 
@@ -52,12 +51,17 @@ import {
   REQUEST_FAILED_WITH_STATUS_CODE_500,
   REQUEST_FAILED_WITH_STATUS_CODE_500_PL,
   REQUEST_FAILED_REST_OF_STATUS_CODE,
-
+  SUCCESS,
+  SUCCESS_PICK_UP,
   CAR_PICK_UP_BUTTON_NAME,
 
-  TIME_CLEAR_MSG,
+  BTN_BACK,
+  BTN_SHOW_MORE,
+  BTN_WRAP_OUT,
 
-  PICK_UP_ICON
+
+
+  TIME_CLEAR_MSG,
 } from '../constants/EnvConstans'
 
 function CarPickUp() {
@@ -74,7 +78,6 @@ function CarPickUp() {
     formState: { errors },
     reset,
     handleSubmit,
-    trigger,
   } = useForm()
 
   const carRentDetails = useSelector(state => state.carRentDetails)
@@ -162,8 +165,8 @@ function CarPickUp() {
 
     //Success and error useEffect
     useEffect(() => {
-        if(carUpdateRentMsg==='Success'){
-            setPickUpMsgSuccess('Samochód został odebrany od klienta')     
+        if(carUpdateRentMsg===SUCCESS){
+            setPickUpMsgSuccess(SUCCESS_PICK_UP)     
             const timeout = setTimeout(() =>{
               navigate(`/mainpage/${locationId}/car-list`)
             }, TIME_CLEAR_MSG)
@@ -234,7 +237,7 @@ function CarPickUp() {
                                 <Button 
                                     className='btn-back m-1'
                                 >
-                                    <FontAwesomeIcon icon={faAngleDoubleLeft} /> Powrót
+                                    <FontAwesomeIcon icon={faAngleDoubleLeft} /> {BTN_BACK}
                                 </Button>
                             </LinkContainer>                            
                           </Col>
@@ -249,14 +252,14 @@ function CarPickUp() {
                                   className='btn-show'
                                   onClick={showGeneralInfo}
                                 >
-                                  <FontAwesomeIcon icon={faArrowCircleDown} /> Pokaż
+                                  <FontAwesomeIcon icon={faArrowCircleDown} /> {BTN_SHOW_MORE}
                                 </Button>
                               :
                                 <Button 
                                   className='btn-show'
                                   onClick={showGeneralInfo}
                                 >
-                                  <FontAwesomeIcon icon={faArrowCircleUp} /> Zwiń
+                                  <FontAwesomeIcon icon={faArrowCircleUp} /> {BTN_WRAP_OUT}
                                 </Button>                              
                             }
 
@@ -302,14 +305,14 @@ function CarPickUp() {
                                   className='btn-show'
                                   onClick={showPaymentInfo}
                                 >
-                                  <FontAwesomeIcon icon={faArrowCircleDown} /> Pokaż
+                                  <FontAwesomeIcon icon={faArrowCircleDown} /> {BTN_SHOW_MORE}
                                 </Button>
                               :
                                 <Button 
                                   className='btn-show'
                                   onClick={showPaymentInfo}
                                 >
-                                  <FontAwesomeIcon icon={faArrowCircleUp} /> Zwiń
+                                  <FontAwesomeIcon icon={faArrowCircleUp} /> {BTN_WRAP_OUT}
                                 </Button>                              
                             }
                           </Col>

@@ -35,7 +35,6 @@ import {
     CAR_RESERVATION_NOTE_TITLE,
     CAR_RESERVATION_LOCATISATION_SUBTITLE,
     CAR_RESERVATION_LOCATION_TITLE,
-    CAR_RESERVATION_COME_BACK_TITLE,
 
     CAR_RESERVATION_NO_CUSTOMER_NAME,
     CAR_RESERVATION_DATE_FROM,
@@ -88,7 +87,11 @@ import {
     TIME_MAX_VALUE,
     TIME_DEFAULT_VALUE_START,
     TIME_DEFAULT_VALUE_END,
-    TRANSFER_TIME
+    TRANSFER_TIME,
+
+    BTN_BACK,
+    OPTION_0,
+    BTN_RESRVATION
 } from '../constants/EnvConstans'
 
 
@@ -219,7 +222,7 @@ function CarReservation() {
             setFlag(false)
         }
 
-        if(data.documentType === '0'){
+        if(data.documentType === OPTION_0){
             setDocTypeMessage(CAR_RESERVATION_SELECT_FROM_THE_LIST)
             setFlag(false)
         }
@@ -242,7 +245,7 @@ function CarReservation() {
             && startDateTimeCombiner  
             && getEndTimeHoursAndMinutes  
             && endDateTimeCombiner
-            && (data.documentType !== '0')
+            && (data.documentType !== OPTION_0)
             && (startDateTimeCombiner > (new Date().valueOf() + SET_DATE_TIME_RESERVATION))
             && ((endDateTimeCombiner - MIN_DURATION) > startDateTimeCombiner)
             )
@@ -421,9 +424,9 @@ function CarReservation() {
                         <LinkContainer to={`/car/${carId}/show/id-location/${locationId}`}>  
                             <Button 
                                 variant='warning' 
-                                className='btn-reservation bg-brown rounded'
+                                className='btn-back'
                             >
-                                <FontAwesomeIcon icon={faAngleDoubleLeft} /> Powrót
+                                <FontAwesomeIcon icon={faAngleDoubleLeft} /> {BTN_BACK}
                             </Button>
                         </LinkContainer>
                     </Col>
@@ -460,7 +463,6 @@ function CarReservation() {
                                 <Form.Select 
                                     aria-label="Default select example"
                                     name = 'documentType'
-                                    aria-label="Default select example"
                                     {...register("documentType")}                               
                                     onChange = {selectHandler}
                                     className='form-reservation'
@@ -581,7 +583,6 @@ function CarReservation() {
                                 <DatePicker 
                                     dateFormat="yyyy-MM-dd" 
                                     autoComplete='off'
-                                    autocomplete="off"
                                     placeholderText={CAR_RESERVATION_DATE_TO}
                                     selected={newEvent.end}
                                     style={{ marginRight: "10px" }} 
@@ -621,7 +622,6 @@ function CarReservation() {
                                 <Form.Select
                                     aria-label="Default select example"
                                     name = 'location'
-                                    aria-label="Default select example"
                                     {...register("location")}                             
                                     onChange = {selectlocationHandler}
                                     className='form-reservation'
@@ -657,7 +657,7 @@ function CarReservation() {
                         variant='warning' 
                         className='btn-reservation bg-brown rounded my-3'
                     >
-                        <FontAwesomeIcon icon={faAddressBook} /> Rezerwuj
+                        <FontAwesomeIcon icon={faAddressBook} /> {BTN_RESRVATION}
                     </Button>
                 </Form>
             </FormContainer>

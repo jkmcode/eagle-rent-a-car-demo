@@ -1,9 +1,8 @@
-import React,{ useState, useEffect } from 'react';
+import React,{ useEffect } from 'react';
 import Header from './Header';
 import FormContainer from './FormContainer';
-import ReservationCalendar from './ReservationCalendar';
 import { Image, Button, Row, Col } from 'react-bootstrap';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { getCarDetails } from '../action/carsAction';
 import { LinkContainer } from 'react-router-bootstrap';
@@ -24,6 +23,12 @@ import {
     faAngleDoubleLeft
 } from "@fortawesome/free-solid-svg-icons"
 
+import {
+    CAR_SHOW_REGISTRATION_NO_TITLE,
+    BTN_BACK,
+    BTN_ADD_RESRVATION
+} from '../constants/EnvConstans'
+
 
 function CarShow() {
 
@@ -37,7 +42,7 @@ function CarShow() {
     const dispatch = useDispatch()
 
     const carDetails = useSelector(state => state.carDetails)
-    const {error, loading, car} = carDetails
+    const { car } = carDetails
 
     const carsListReservation = useSelector(state => state.carsListReservation)
     const {reservations} = carsListReservation
@@ -103,14 +108,14 @@ function CarShow() {
                     <Col>
                         <Image src = {car.image} className='car-show-img-sizing'/>
                         <h4> {car.name}</h4>
-                        <h6> Nr rejestracyjny: {car.code_registration}</h6>
+                        <h6> {CAR_SHOW_REGISTRATION_NO_TITLE} {car.code_registration}</h6>
                     </Col>
                     {locationId && action == 'edit' 
                     ?                     
                         <Col className="btn-position">
                             <LinkContainer to={`/car/${carId}/rent/edit/${idRent}/location/${locationId}`}> 
                                 <Button className='btn-car-show-reservation'>
-                                    <FontAwesomeIcon icon={faAngleDoubleLeft} /> Powrót 
+                                    <FontAwesomeIcon icon={faAngleDoubleLeft} /> {BTN_BACK}
                                 </Button>
                             </LinkContainer>  
                         </Col>  
@@ -120,10 +125,9 @@ function CarShow() {
                     {locationId && action == 'rent' 
                     ?
                         <Col className="btn-position">
-                            <h4>Rezerwacje</h4>
                             <LinkContainer to={`/car/${carId}/rent/${locationId}`}> 
                                 <Button className='btn-car-show-reservation'>
-                                    <FontAwesomeIcon icon={faAngleDoubleLeft} /> Powrót 
+                                    <FontAwesomeIcon icon={faAngleDoubleLeft} /> {BTN_BACK} 
                                 </Button>
                             </LinkContainer>  
                         </Col>
@@ -134,7 +138,7 @@ function CarShow() {
                         <Col className="btn-position">
                             <LinkContainer to={`/reservation/car/${locationId}/${carId}/${action}/${idRes}`}> 
                                 <Button className='btn-car-show-reservation'>
-                                    <FontAwesomeIcon icon={faAngleDoubleLeft} /> Powrót 
+                                    <FontAwesomeIcon icon={faAngleDoubleLeft} /> {BTN_BACK} 
                                 </Button>
                             </LinkContainer>  
                         </Col>
@@ -146,13 +150,13 @@ function CarShow() {
                             <Col className="btn-position">
                                 <LinkContainer to={`/mainpage/${locationId}/car-list`}> 
                                     <Button className='btn-car-show-reservation m-1'>
-                                        <FontAwesomeIcon icon={faAngleDoubleLeft} /> Powrót
+                                        <FontAwesomeIcon icon={faAngleDoubleLeft} /> {BTN_BACK}
                                     </Button>
                                 </LinkContainer> 
 
                                 <LinkContainer to={`/car/${carId}/reservation/id-location/${locationId}`}> 
                                     <Button className='btn-car-show-reservation'>
-                                        <i className="fas fa-plus"></i> Dodaj rezerwacje
+                                        <i className="fas fa-plus"></i> {BTN_ADD_RESRVATION}
                                     </Button>
                                 </LinkContainer>  
                             </Col>  
@@ -164,7 +168,7 @@ function CarShow() {
                             <Col className="btn-position">
                                 <LinkContainer to={`/car/${carId}/${locationId}/edit-reservation`}> 
                                     <Button className='btn-car-show-reservation m-1'>
-                                        <FontAwesomeIcon icon={faAngleDoubleLeft} /> Powrót
+                                        <FontAwesomeIcon icon={faAngleDoubleLeft} /> {BTN_BACK}
                                     </Button>
                                 </LinkContainer> 
                             </Col>  
@@ -176,7 +180,7 @@ function CarShow() {
                             <Col className="btn-position">
                                 <LinkContainer to={`/reservation/car/${locationId}/${carId}/single-edit/${idRes}`}> 
                                     <Button className='btn-car-show-reservation m-1'>
-                                        <FontAwesomeIcon icon={faAngleDoubleLeft} /> Powrót
+                                        <FontAwesomeIcon icon={faAngleDoubleLeft} /> {BTN_BACK}
                                     </Button>
                                 </LinkContainer> 
                             </Col>  
@@ -188,7 +192,7 @@ function CarShow() {
                             <Col className="btn-position">
                                 <LinkContainer to={`/car/${carId}/rent/${locationId}/res-to-rent/${idRes}`}> 
                                     <Button className='btn-car-show-reservation m-1'>
-                                        <FontAwesomeIcon icon={faAngleDoubleLeft} /> Powrót
+                                        <FontAwesomeIcon icon={faAngleDoubleLeft} /> {BTN_BACK}
                                     </Button>
                                 </LinkContainer> 
                             </Col>  
@@ -200,7 +204,7 @@ function CarShow() {
                             <Col className="btn-position">
                                 <LinkContainer to={`/mainpage/${locationId}/car-list`}> 
                                     <Button className='btn-car-show-reservation m-1'>
-                                        <FontAwesomeIcon icon={faAngleDoubleLeft} /> Powrót
+                                        <FontAwesomeIcon icon={faAngleDoubleLeft} /> {BTN_BACK}
                                     </Button>
                                 </LinkContainer> 
                             </Col>  
@@ -212,7 +216,7 @@ function CarShow() {
                             <Col className="btn-position">
                                 <LinkContainer to={`/admin/cars`}> 
                                     <Button className='btn-car-show-reservation m-1'>
-                                        <FontAwesomeIcon icon={faAngleDoubleLeft} /> Powrót
+                                        <FontAwesomeIcon icon={faAngleDoubleLeft} /> {BTN_BACK}
                                     </Button>
                                 </LinkContainer> 
                             </Col>  

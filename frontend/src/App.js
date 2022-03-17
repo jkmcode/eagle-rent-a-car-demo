@@ -1,5 +1,4 @@
 import './App.css';
-import Header from './components/Header';
 import MainPage from './components/MainPage';
 import Login from './components/Login';
 import MyProfile from './components/MyProfile';
@@ -26,8 +25,7 @@ import CarSingleEditReservation from './components/CarSingleEditReservation'
 import UploadImage from './components/UploadImage';
 import ReservationCalendar from './components/ReservationCalendar';
 import UploadImageLocation from './components/UploadImageLocation';
-import { Container } from 'react-bootstrap';
-import { HashRouter as Router, Route, Routes, Link} from 'react-router-dom';
+import { HashRouter as Router, Route, Routes } from 'react-router-dom';
 
 function App() {
   return (

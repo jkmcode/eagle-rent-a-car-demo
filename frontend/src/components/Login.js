@@ -2,13 +2,35 @@ import React,{ useState, useEffect } from 'react';
 import FormContainer from './FormContainer';
 import Loader from './Loader';
 import Message from './Message';
-import { Form, Button, Row, Col } from 'react-bootstrap';
+import { Form, Button } from 'react-bootstrap';
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { login } from '../action/userAction';
 import { listLocation } from '../action/locationAction';
-import { USER_LOGOUT, DATE_LOGIN_SUCCESS } from '../constants/UserConstants'
+
+import {
+    LOGIN_TITLE,
+    LOGIN_SUBTITLE,
+    LOGIN_USER_NAME_TITLE,
+    LOGIN_PASSWORD,
+    LOGIN_USER_NAME_PLACEHOLDER,
+    LOGIN_PASSWORD_PLACEHOLDER,
+    LOGIN_USER_NAME_REQUIRED,
+    LOGIN_USER_NAME_MIN_LENGTH,
+    LOGIN_USER_NAME_PATTERN,
+    LOGIN_PASSWORD_REQUIRED,
+    LOGIN_PASSWORD_MIN_LENGTH,
+    SUBMIT_BTN,
+    
+    REQUEST_FAILED_WITH_STATUS_CODE_500,
+    REQUEST_FAILED_WITH_STATUS_CODE_500_PL,
+    WRONG_CREDENTIALS,
+    WRONG_CREDENTIALS_PL,
+    REQUEST_FAIL_WITH_STATUS_CODE_404,
+    REQUEST_FAIL_WITH_STATUS_CODE_404_PL
+
+} from '../constants/EnvConstans'
 
 function Login() {
     const navigate = useNavigate()
@@ -22,12 +44,12 @@ function Login() {
 
     useEffect(() =>{
         setErrorMsg(error)
-        if(error=='Request failed with status code 404'){  
-            setErrorMsg('Brak połaczenia z serwerem')
-        }else if(error=='Request failed with status code 500'){  
-            setErrorMsg('Bład serwera')
-        }else if(error=='No active account found with the given credentials'){  
-            setErrorMsg('Niepoprawna nazwa użytkownika lub hasła')
+        if(error=={REQUEST_FAIL_WITH_STATUS_CODE_404}){  
+            setErrorMsg({REQUEST_FAIL_WITH_STATUS_CODE_404_PL})
+        }else if(error=={REQUEST_FAILED_WITH_STATUS_CODE_500}){  
+            setErrorMsg({REQUEST_FAILED_WITH_STATUS_CODE_500_PL})
+        }else if(error=={WRONG_CREDENTIALS}){  
+            setErrorMsg({WRONG_CREDENTIALS_PL})
         }else{
             setErrorMsg(error)
         }
@@ -64,26 +86,26 @@ function Login() {
 
     return (
         <FormContainer className='center-position'>
-                <h2>Wypożyczalnia samochodów</h2>
-                <h4>Logowanie do systemu</h4>
+                <h2>{LOGIN_TITLE}</h2>
+                <h4>{LOGIN_SUBTITLE}</h4>
                 {loading && <Loader/>}
                 {errorMsg && <Message variant='danger'>{errorMsg}</Message>}
                 <Form onSubmit={handleSubmit(onSubmit)}>
                     <Form.Group controlId='userName'>
-                        <Form.Label>Nazwa użytkownika</Form.Label>
+                        <Form.Label>{LOGIN_USER_NAME_TITLE}</Form.Label>
                             <Form.Control
                                 type="text"
-                                placeholder = 'Nazwa użytkownika'
+                                placeholder = {LOGIN_USER_NAME_PLACEHOLDER}
                                 {...register("userName", 
                                     {
-                                        required: 'Pole wymagane',
+                                        required: LOGIN_USER_NAME_REQUIRED,
                                         minLength: {
                                             value: 2,
-                                            message: 'Nazwa uzytkownika musi składać się z przynajmniej 2 liter',
+                                            message: LOGIN_USER_NAME_MIN_LENGTH,
                                         },
                                         pattern: {
                                             value: /[A-Za-z -]/,
-                                            message: 'Można używać tylko liter',
+                                            message: LOGIN_USER_NAME_PATTERN,
                                         },
                                     }                               
                                 )}
@@ -96,16 +118,16 @@ function Login() {
                     </Form.Group> 
 
                     <Form.Group controlId='password'>
-                        <Form.Label>Hasło</Form.Label>
+                        <Form.Label>{LOGIN_PASSWORD}</Form.Label>
                         <Form.Control
                             type='password'
-                            placeholder = 'Hasło'
+                            placeholder = {LOGIN_PASSWORD_PLACEHOLDER}
                             {...register("password", 
                                 {
-                                    required: 'Pole wymagane',
+                                    required: LOGIN_PASSWORD_REQUIRED,
                                     minLength: {
                                         value: 8,
-                                        message: 'Hasło musi mieć przynajmniej 8 znaków',
+                                        message: LOGIN_PASSWORD_MIN_LENGTH,
                                     },
                                 }                               
                             )}
@@ -121,7 +143,7 @@ function Login() {
                         variant='primary' 
                         className = 'mt-1'
                     >
-                        Zaloguj się
+                        {SUBMIT_BTN}
                     </Button>
                 </Form>
         </FormContainer>

@@ -13,6 +13,13 @@ import {
     faAngleDoubleLeft,
 } from "@fortawesome/free-solid-svg-icons"
 
+import {
+    UPLOAD_IMAGE_REGISTRATION_NO_TITLE,
+    UPLOAD_IMAGE_CHOOSE_PICTURE,
+
+    BTN_BACK
+} from '../constants/EnvConstans'
+
 function UploadImage() {
 
     const params = useParams()
@@ -43,15 +50,15 @@ function UploadImage() {
                 <Row>
                     <Col>
                         <div>
-                            <h4>Nazwa samochodu: {car.short_name}</h4>
-                            <h6>Numer rejestracyjny: {car.code_registration}</h6>
+                            <h4>{car.short_name}</h4>
+                            <h6>{UPLOAD_IMAGE_REGISTRATION_NO_TITLE} {car.code_registration}</h6>
                         </div>
                     </Col>
                     <Col className='position-img'>
                         <div>
                             <LinkContainer to={`/admin/car/${carId}/edit`}>
                                 <Button className='btn-md btn-back'>
-                                    <FontAwesomeIcon icon={faAngleDoubleLeft} /> Powrót
+                                    <FontAwesomeIcon icon={faAngleDoubleLeft} /> {BTN_BACK}
                                 </Button>
                             </LinkContainer>
                         </div>
@@ -63,7 +70,7 @@ function UploadImage() {
                     </Col>
                 </Row>
                 <Form.Group controlId="formFile" className='test-img'>
-                    <Form.Label className="mt-3">Wybierz zdjęcie</Form.Label>
+                    <Form.Label className="mt-3">{UPLOAD_IMAGE_CHOOSE_PICTURE}</Form.Label>
                     <Form.Control
                         type="file"
                         onChange={uploadFileHandler}

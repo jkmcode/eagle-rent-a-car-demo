@@ -1,0 +1,26 @@
+{% load webpack_loader %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Index</title>
+    {% stylesheet_pack 'app' %}
+</head>
+
+<body>
+
+    <div class="bg-light py-5">
+        <div class="container">
+            <h1 class="display-3">Hello, world!</h1>
+            <p>This tutorial tutorial series will teach you how to bring PWA to Django</p>
+            <p><a class="btn btn-primary btn-lg d-none" href="#" role="button" id="installButton">Install PWA</a></p>
+        </div>
+    </div>
+
+    {% javascript_pack 'app' %}
+
+</body>
+
+</html>

@@ -7,7 +7,6 @@ import { useForm } from "react-hook-form";
 import { useDispatch,useSelector } from 'react-redux';
 import { createLocation, createLocatisationUploadImage } from '../action/locationAction';
 import { useNavigate } from 'react-router-dom';
-import Loader from './Loader';
 import Message from './Message';
 import { 
     LOCATION_CREATE_UPLOAD_IMAGE_RESET, 
@@ -19,6 +18,33 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { 
         faAngleDoubleLeft
 } from "@fortawesome/free-solid-svg-icons"
+    
+import {
+    NEW_LOCATION_TITLE,
+    NEW_LOCATION_LOCATION_NAME_TITLE,
+    NEW_LOCATION_LOCATION_SHORT_NAME_TITLE,
+    NEW_LOCATION_CHOOSE_PICTURE,
+    NEW_LOCATION_LOCATION_NAME_PLACEHOLDER,
+    NEW_LOCATION_LOCATION_SHORT_NAME_PLACEHOLDER,
+    NEW_LOCATION_LOCATION_NAME_REQUIRED,
+    NEW_LOCATION_LOCATION_SHORT_NAME_REQUIRED,
+    NEW_LOCATION_LOCATION_NAME_MIN_LENGTH,
+    NEW_LOCATION_LOCATION_SHORT_NAME_MIN_LENGTH,
+    NEW_LOCATION_LOCATION_NAME_PATTERN,
+    NEW_LOCATION_LOCATION_SHORT_NAME_PATTERN,
+
+    BTN_SAVE,
+    BTN_BACK,
+
+    REQUEST_FAILED_WITH_STATUS_CODE_500,
+    REQUEST_FAILED_WITH_STATUS_CODE_500_PL,
+    REQUEST_FAILED_REST_OF_STATUS_CODE,
+    NAME_ALREADY_EXIST,
+    SUCCESS_MESSAGE_EDIT_RESERVATION,
+    SUCCESS_LOCATION_ADD
+
+
+} from '../constants/EnvConstans'
 
 
 function NewLocation() {
@@ -126,21 +152,21 @@ function NewLocation() {
     //UseEffect -słownik błędów
     useEffect(() => {
         if(error){
-            if(error==='Request failed with status code 500'){
-                setErrorMessage('Błąd serwera lub brak dostępu do internetu. Sprawdź połaczenie z internetem i uruchom aplikacje jeszcze raz.')
+            if(error===REQUEST_FAILED_WITH_STATUS_CODE_500){
+                setErrorMessage(REQUEST_FAILED_WITH_STATUS_CODE_500_PL)
                 const timeout = setTimeout(() =>{
                     dispatch({type:LOCATION_CREATE_RESET}) 
                     setErrorMessage('')
                 }, 7500)
                 
-            }else if (error==='Podana nazwa już istnieje'){
+            }else if (error===NAME_ALREADY_EXIST){
                 setErrorMessage(error)
                 const timeout = setTimeout(() =>{
                     dispatch({type:LOCATION_CREATE_RESET})
                     setErrorMessage('')
                 }, 7500)
             }else{
-                setErrorMessage('Błąd sieciowy. Sprawdź połaczenie z internetem i uruchom aplikacje jeszcze raz.')
+                setErrorMessage(REQUEST_FAILED_REST_OF_STATUS_CODE)
                 const timeout = setTimeout(() =>{
                     dispatch({type:LOCATION_CREATE_RESET})
                     setErrorMessage('')
@@ -149,7 +175,7 @@ function NewLocation() {
         }
 
         if(errorUploadImage){
-            setErrorMessageImage('Błąd sieciowy. Zdjęcie nie zostało dodane.')
+            setErrorMessageImage(SUCCESS_MESSAGE_EDIT_RESERVATION)
             dispatch({type:LOCATION_CREATE_RESET})
             setErrorMessageImage('')
         }
@@ -159,7 +185,7 @@ function NewLocation() {
     //UseEffect - komunikat success
     useEffect(() => {
         if(success){
-            setSuccessMessage('Lokalizacja została dodana do listy')
+            setSuccessMessage(SUCCESS_LOCATION_ADD)
         }
     }, [success])
 
@@ -173,12 +199,12 @@ function NewLocation() {
                {errorUploadImage &&<Message variant='danger'>{errorMessageImage}</Message>}
                <Row>
                    <Col>
-                        <h2>Utwórz Lokalizacje</h2>
+                        <h2>{NEW_LOCATION_TITLE}</h2>
                    </Col>
                    <Col className='btn-position'>
                         <LinkContainer to={`/admin/localisation`}>  
                             <Button className='btn-md btn-back'>
-                                <FontAwesomeIcon icon={faAngleDoubleLeft} /> Powrót
+                                <FontAwesomeIcon icon={faAngleDoubleLeft} /> {BTN_BACK}
                             </Button>
                         </LinkContainer> 
                    </Col>
@@ -186,20 +212,20 @@ function NewLocation() {
                
                <Form onSubmit={handleSubmit(onSubmit)}>
                     <Form.Group controlId='name'>
-                        <Form.Label>Nazwa lokalizacja</Form.Label>
+                        <Form.Label>{NEW_LOCATION_LOCATION_NAME_TITLE}</Form.Label>
                         <Form.Control
                             type='text'
-                            placeholder = 'Brak nazwy lokalizacji'
+                            placeholder = {NEW_LOCATION_LOCATION_NAME_PLACEHOLDER}
                             {...register("name", 
                                 {
-                                    required: 'Pole wymagane',
+                                    required: NEW_LOCATION_LOCATION_NAME_REQUIRED,
                                     minLength: {
                                         value: 10,
-                                        message: 'Nazwa lokalizacji musi składać się z przynajmniej 10 liter',
+                                        message: NEW_LOCATION_LOCATION_NAME_MIN_LENGTH,
                                     },
                                     pattern: {
                                         value: /[A-Za-z -]/,
-                                        message: 'Można uzywać tylko liter',
+                                        message: NEW_LOCATION_LOCATION_NAME_PATTERN,
                                     },
                                 }                               
                             )}
@@ -211,20 +237,20 @@ function NewLocation() {
                     </Form.Group>
 
                     <Form.Group controlId='shortName'>
-                        <Form.Label>Nazwa skrócona</Form.Label>
+                        <Form.Label>{NEW_LOCATION_LOCATION_SHORT_NAME_TITLE}</Form.Label>
                             <Form.Control
                                 type="text"
-                                placeholder = 'Brak nazwy skróconej'
+                                placeholder = {NEW_LOCATION_LOCATION_SHORT_NAME_PLACEHOLDER}
                                 {...register("shortName", 
                                 {
-                                    required: 'Pole wymagane',
+                                    required: NEW_LOCATION_LOCATION_SHORT_NAME_REQUIRED,
                                     minLength: {
                                         value: 2,
-                                        message: 'Nazwa lokalizacji musi składać się z przynajmniej 2 liter',
+                                        message: NEW_LOCATION_LOCATION_SHORT_NAME_MIN_LENGTH,
                                     },
                                     pattern: {
                                         value: /[A-Za-z -]/,
-                                        message: 'Można uzywać tylko liter',
+                                        message: NEW_LOCATION_LOCATION_SHORT_NAME_PATTERN,
                                     },
                                 }                               
                             )}
@@ -236,7 +262,7 @@ function NewLocation() {
                     </Form.Group> 
 
                     <Form.Group controlId="formFile" className='test-img'>
-                    <Form.Label className="mt-3">Wybierz zdjęcie</Form.Label>
+                    <Form.Label className="mt-3">{NEW_LOCATION_CHOOSE_PICTURE}</Form.Label>
                         <Form.Control 
                             type="file"
                             onChange={uploadFileHandler}
@@ -244,7 +270,7 @@ function NewLocation() {
                     </Form.Group>
 
                     <Button type='submit' variant='primary' className='my-3 bnt-block bg-brown rounded'>
-                        Zapisz
+                        {BTN_SAVE}
                     </Button>
                 </Form>
             </FormContainer>

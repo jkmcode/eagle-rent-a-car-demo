@@ -84,6 +84,10 @@ import {
     TIME_DEFAULT_VALUE_END,
     TIME_CLEAR_MSG,
     MIN_DURATION,
+
+    BTN_SHOW_MORE,
+    BTN_WRAP_OUT,
+    BTN_EDIT
 } from '../constants/EnvConstans'
 
 function CarRentEdit() {
@@ -381,14 +385,14 @@ function CarRentEdit() {
                                         className = 'btn-show'
                                         onClick={showGeneralInfo}
                                     >
-                                        <FontAwesomeIcon icon={faArrowCircleDown} /> Pokaż
+                                        <FontAwesomeIcon icon={faArrowCircleDown} /> {BTN_SHOW_MORE}
                                     </Button> 
                                     :
                                     <Button 
                                     className='btn-show'
                                     onClick={showGeneralInfo}
                                     >
-                                    <FontAwesomeIcon icon={faArrowCircleUp} /> Zwiń
+                                    <FontAwesomeIcon icon={faArrowCircleUp} /> {BTN_WRAP_OUT}
                                     </Button>                                     
                                 }
 
@@ -435,14 +439,14 @@ function CarRentEdit() {
                                         className = 'btn-show' 
                                         onClick={showPaymentInfo}
                                     >
-                                        <FontAwesomeIcon icon={faArrowCircleDown} /> Pokaż
+                                        <FontAwesomeIcon icon={faArrowCircleDown} /> {BTN_SHOW_MORE}
                                     </Button>
                                     :
                                     <Button 
                                         className='btn-show'
                                         onClick={showPaymentInfo}
                                     >
-                                        <FontAwesomeIcon icon={faArrowCircleUp} /> Zwiń
+                                        <FontAwesomeIcon icon={faArrowCircleUp} /> {BTN_WRAP_OUT}
                                     </Button>                                 
                                 }
 
@@ -577,7 +581,7 @@ function CarRentEdit() {
                                 </Row>
                             </Form.Group>
                             <Button type='submit' variant='warning' className='rounded my-3'>
-                                <FontAwesomeIcon icon={faEdit} /> Edycja 
+                                <FontAwesomeIcon icon={faEdit} /> {BTN_EDIT} 
                             </Button>
                         </Form>
                     </section>

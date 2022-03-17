@@ -16,6 +16,14 @@ import {
         faEye
 } from "@fortawesome/free-solid-svg-icons"
 
+import {
+    CARS_ADMIN_TITLE,
+    BTN_SHOW,
+    BTN_EDIT,
+    BTN_BACK,
+    BTN_NEW_CAR
+} from '../constants/EnvConstans'
+
 function CarsAdmin() {
 
     const carsList = useSelector(state => state.carsList)
@@ -40,13 +48,13 @@ function CarsAdmin() {
             <FormContainer>
                 <Row>
                     <Col>
-                        <h2 className='title-car-admin'>Lista samochodów</h2>
+                        <h2 className='title-car-admin'>{CARS_ADMIN_TITLE}</h2>
                     </Col>
                     <Col className='btn-position-right'>
                         <div>
                             <LinkContainer to={`/admin`}>  
                                 <Button className='btn-md btn-back mt-1 mb-1'>
-                                    <FontAwesomeIcon icon={faAngleDoubleLeft} /> Powrót
+                                    <FontAwesomeIcon icon={faAngleDoubleLeft} /> {BTN_BACK}
                                 </Button>
                             </LinkContainer>                            
                         </div>    
@@ -56,7 +64,7 @@ function CarsAdmin() {
                     <Col className='btn-position-right'>
                         <div>
                             <Button className='btn-new-car-bg mb-5' onClick={createCarsHandler}>
-                                <i className="fas fa-plus"></i> Nowy samochód
+                                <i className="fas fa-plus"></i> {BTN_NEW_CAR}
                             </Button>
                         </div>
                     </Col>
@@ -94,14 +102,14 @@ function CarsAdmin() {
                                                     <div>
                                                         <LinkContainer to={`/car/${car.id}/show/${action}`}>
                                                             <Button variant='info' className='btn-md'>
-                                                                <FontAwesomeIcon icon={faEye} /> Pokaż
+                                                                <FontAwesomeIcon icon={faEye} /> {BTN_SHOW}
                                                             </Button>
                                                         </LinkContainer>
                                                     </div>
                                                     <div>
                                                         <LinkContainer to={`/admin/car/${car.id}/edit`}>
                                                             <Button variant='warning' className='btn-md mt-1'>
-                                                                <FontAwesomeIcon icon={faEdit} /> Edycja
+                                                                <FontAwesomeIcon icon={faEdit} /> {BTN_EDIT}
                                                             </Button>
                                                         </LinkContainer>
                                                     </div>

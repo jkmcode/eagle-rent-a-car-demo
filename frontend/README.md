@@ -123,33 +123,29 @@ Pytania
 
 To DO:
 
--- CARLISTBYLOCATION dokończyć zmienne środowiskowe
 -- klucz traci swoją warzność po 30 dniach (chyba) i trzeba się przelogować. należy cofnąć użytjownika do logowania lub przy włanczaniu głównego menu oddowić localstorage.
 -- Wygląg komponentu Login
 -- kasuje rezerwacje jak dajemy na najem w zadania na dziś
 -- w mainpage poprawic button (powiiny być traktowne jako tło -- link bo otwierania nowych kart -- teraz pojawia się zdjęcie w nowym linku)
 -- lista utworzonych rezerwacji dla konkretnego pracownika oraz lista skasowanych rezerwacji (dostęne do 7 dni)
 -- imie, nazwisko, nazwa samochodu 6 znaków
--- nie działa porawidłowo Create i Edit Localisation (najprawdopodobniej bład po stronie backendu w views: createLocation -- na SQLite działa okey)
+-- https://www.accordbox.com/blog/add-web-app-manifest-to-django/
+-- https://blog.lawrencemcdaniel.com/adding-react-to-a-django-project/
 
 TO DISCUSS:
 -- Paginacja (Wszędzie)
 -- zrozumieć dobrze funkcje timezone() na backendzie
 -- filtry na w zadanich na dzis nie działą przy rezerwacji opóżnionej --- sprawdzić czy działa
 -- Jak otwieramy CarRentEdit przez 'zadania na dziś' przycuskiem Edit to uruchomiamy action 'getRentDetailsByCarId'. We wiusie pobieramy rekord metodą GET (wtedy jest wszytsko w porzątku). Gdy zmieniamy metode z GET na FILTER to dochodzi do zapętlenia useEffecta który w list dependecy ma rent (jeżeli nie ma rent w list dependency to jest okey). --- Dowiedzieć się dlaczego dochodzi do zapętlenia
--- Jednolity format wyświetlania daty (ZADANIE DLA MAMY)
 
 STYLING:
 --ujednolicić przysiki jak jest w "W użyciu" oraz wszytskie przysicki muszą być jednakowej długości. Kolory przycisków zgodnie ze słownikiem
 --rozszerzyć kalendarz na małym ekranie + smartfony
 --w navbarze skasować superUser i IsAdmin. Dodać lokalizację
 
-SŁOWNIK KOLORÓW:
-Najem - niebieski
-Kalendarz -
-Odbierz -
-Edycja -
-
+<!-- -- Jednolity format wyświetlania daty (ZADANIE DLA MAMY) -->
+<!-- -- CARLISTBYLOCATION dokończyć zmienne środowiskowe -->
+<!-- -- nie działa porawidłowo Create i Edit Localisation (najprawdopodobniej bład po stronie backendu w views: createLocation -- na SQLite działa okey) -->
 <!-- -- Wyłączyć funkcjonalność "Wróć do mnie" RentCar, CarReservation, carRentEdit (dokończyć dla CarReservation, carRentEdit i inne) -->
 <!-- -- CarRent -- lista walut i rodzaje dokumentów mogłaby być w jednej zmiennej środowiskowej (dokończyć dla pozostałych komponentów) -->
 <!-- -- Uzytkownik -- obsługa błedów dla całości -->

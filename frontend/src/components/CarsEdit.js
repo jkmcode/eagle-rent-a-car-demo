@@ -13,10 +13,44 @@ import { LinkContainer } from 'react-router-bootstrap';
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { 
-        faEdit,
         faAngleDoubleLeft,
-        faEye
 } from "@fortawesome/free-solid-svg-icons"
+
+import {
+    CARS_EDIT_TITLE,
+    CARS_EDIT_CAR_NAME_TITLE,
+    CARS_EDIT_CAR_SHORT_NAME_TITLE,
+    CARS_EDIT_CAR_REGISTRATION_NO_TITLE,
+    CARS_EDIT_CAR_MAIN_LOCATION_TITLE,
+    CARS_EDIT_CAR_NEW_MAIN_LOCATION_TITLE,
+    CARS_EDIT_CHECKBOX_READY_FOR_RENT,
+
+    CARS_EDIT_CAR_NAME_PLACEHOLDER,
+    CARS_EDIT_CAR_SHORT_NAME_PLACEHOLDER,
+    CARS_EDIT_CAR_REGISTRATION_NO_PLACEHOLDER,
+
+    CARS_EDIT_CAR_NAME_REQUIRED,
+    CARS_EDIT_CAR_NAME_MIN_LENGTH,
+
+    CARS_EDIT_CAR_SHORT_NAME_REQUIRED,
+    CARS_EDIT_CAR_SHORT_NAME_MIN_LENGTH,
+
+    CARS_EDIT_CAR_REGISTRATION_NO_REQUIRED,
+    CARS_EDIT_CAR_REGISTRATION_MIN_LENGTH,
+
+    CARS_EDIT_CAR_NEW_MAIN_LOCATION_REQUIRED,
+
+    BTN_BACK,
+    BTN_CHANGE,
+    BTN_ADD_PICTURE,
+
+    REQUEST_FAILED_WITH_STATUS_CODE_500,
+    REQUEST_FAILED_WITH_STATUS_CODE_500_PL,
+    REQUEST_FAILED_REST_OF_STATUS_CODE,   
+    REGISTRATION_NO_ALREADY_EXIST,
+    SUCCESS_CAR_EDIT 
+
+} from '../constants/EnvConstans'
 
 function CarsEdit() {
 
@@ -79,17 +113,17 @@ function CarsEdit() {
     //UseEffect -słownik błędów
     useEffect(() => {
         if(error || errorCarUpdate || errorEditUploadImage){
-            if(error==='Request failed with status code 500' 
-               || errorCarUpdate==='Request failed with status code 500'
-               || errorEditUploadImage==='Request failed with status code 500'
+            if(error===REQUEST_FAILED_WITH_STATUS_CODE_500 
+               || errorCarUpdate===REQUEST_FAILED_WITH_STATUS_CODE_500
+               || errorEditUploadImage===REQUEST_FAILED_WITH_STATUS_CODE_500
             ){
-                setErrorMessage('Błąd serwera lub brak dostępu do internetu. Sprawdź połaczenie z internetem i uruchom aplikacje jeszcze raz.')
+                setErrorMessage(REQUEST_FAILED_WITH_STATUS_CODE_500_PL)
             }
-            else if (errorCarUpdate==='Podany kod rejestracyjny już istnieje'){
+            else if (errorCarUpdate===REGISTRATION_NO_ALREADY_EXIST){
                 setErrorMessage(errorCarUpdate)
             }
             else{
-                setErrorMessage('Błąd sieciowy. Sprawdź połaczenie z internetem i uruchom aplikacje jeszcze raz.')
+                setErrorMessage(REQUEST_FAILED_REST_OF_STATUS_CODE)
             }   
         } 
 
@@ -99,7 +133,7 @@ function CarsEdit() {
     //UseEffect - komunikat success
     useEffect(() => {
         if(success){
-            setSuccessMessage('Dane samochodu zostały zminione poprawnie')
+            setSuccessMessage(SUCCESS_CAR_EDIT)
         }
     }, [success])
 
@@ -159,7 +193,7 @@ function CarsEdit() {
                                 {success &&<Message variant='success'>{successMessage}</Message>}
                                 <Row>
                                     <Col>
-                                        <h2 className='cars-edit-title'>Edycja samochodu</h2>
+                                        <h2 className='cars-edit-title'>{CARS_EDIT_TITLE}</h2>
                                     </Col>
                                     <Col className='position-img'>
                                         {car.image
@@ -168,11 +202,11 @@ function CarsEdit() {
                                                     <div>
                                                         <LinkContainer to={`/admin/cars`}>
                                                             <Button className='btn-back'>
-                                                                <FontAwesomeIcon icon={faAngleDoubleLeft} /> Powrót
+                                                                <FontAwesomeIcon icon={faAngleDoubleLeft} /> {BTN_BACK}
                                                             </Button>
                                                         </LinkContainer>
                                                         <LinkContainer to={`/upload-image/${carId}/`}>
-                                                            <Button className='m-1'>Zmień</Button>
+                                                            <Button className='m-1'>{BTN_CHANGE}</Button>
                                                         </LinkContainer>
                                                     </div>
                                                     <div>
@@ -182,23 +216,23 @@ function CarsEdit() {
                                             )
                                             : 
                                             <LinkContainer to={`/upload-image/${carId}/`}>
-                                                <Button>Dodaj zdjęcie</Button>
+                                                <Button>{BTN_ADD_PICTURE}</Button>
                                             </LinkContainer>   
                                         }
                                     </Col>
                                 </Row>
                                 <Form onSubmit={handleSubmit(submitHandler)}>
                                     <Form.Group controlId='name'>
-                                        <Form.Label>Nazwa samochodu</Form.Label>
+                                        <Form.Label>{CARS_EDIT_CAR_NAME_TITLE}</Form.Label>
                                         <Form.Control
                                             type='text'
-                                            placeholder = 'Brak nazwy samochodu'
+                                            placeholder = {CARS_EDIT_CAR_NAME_PLACEHOLDER}
                                             {...register("name", 
                                                 {
-                                                    required: 'Pole wymagane',
+                                                    required: CARS_EDIT_CAR_NAME_REQUIRED,
                                                     minLength: {
                                                         value: 10,
-                                                        message: 'Nazwa samochodu musi składać się z przynajmniej 10 liter',
+                                                        message: CARS_EDIT_CAR_NAME_MIN_LENGTH,
                                                     },
                                                 }                               
                                             )}
@@ -210,20 +244,16 @@ function CarsEdit() {
                                     </Form.Group>  
 
                                     <Form.Group controlId='shortName'>
-                                        <Form.Label>Nazwa skrócona</Form.Label>
+                                        <Form.Label>{CARS_EDIT_CAR_SHORT_NAME_TITLE}</Form.Label>
                                             <Form.Control
                                                 type="text"
-                                                placeholder = 'Brak nazwy skróconej'
+                                                placeholder = {CARS_EDIT_CAR_SHORT_NAME_PLACEHOLDER}
                                                 {...register("shortName", 
                                                 {
-                                                    required: 'Pole wymagane',
+                                                    required: CARS_EDIT_CAR_SHORT_NAME_REQUIRED,
                                                     minLength: {
                                                         value: 2,
-                                                        message: 'Nazwa lokalizacji musi składać się z przynajmniej 2 litery',
-                                                    },
-                                                    pattern: {
-                                                        value: /[A-Za-z -]/,
-                                                        message: 'Można uzywać tylko liter',
+                                                        message: CARS_EDIT_CAR_SHORT_NAME_MIN_LENGTH,
                                                     },
                                                 }                               
                                             )}
@@ -235,16 +265,16 @@ function CarsEdit() {
                                     </Form.Group> 
 
                                     <Form.Group controlId='codeRegistration'>
-                                        <Form.Label>Kod rejestracyjny</Form.Label>
+                                        <Form.Label>{CARS_EDIT_CAR_REGISTRATION_NO_TITLE}</Form.Label>
                                             <Form.Control
                                                 type="text"
-                                                placeholder = 'Brak kodu rejestracyjnego'
+                                                placeholder = {CARS_EDIT_CAR_REGISTRATION_NO_PLACEHOLDER}
                                                 {...register("codeRegistration", 
                                                 {
-                                                    required: 'Pole wymagane',
+                                                    required: CARS_EDIT_CAR_REGISTRATION_NO_REQUIRED,
                                                     minLength: {
                                                         value: 6,
-                                                        message: 'Kod rejestracyjny musi składać się przynajmniej z 6 znaków',
+                                                        message: CARS_EDIT_CAR_REGISTRATION_MIN_LENGTH,
                                                     },
                                                 }                               
                                             )}
@@ -258,7 +288,7 @@ function CarsEdit() {
                                     <Form.Group controlId='mainLocation' >
                                         <Row >
                                             <Col md={6} xs={12}>
-                                                <Form.Label className="mt-3">Lokalizacja początkowa</Form.Label>
+                                                <Form.Label className="mt-3">{CARS_EDIT_CAR_MAIN_LOCATION_TITLE}</Form.Label>
                                                 <Form.Control
                                                     type="text"
                                                     disabled
@@ -270,12 +300,12 @@ function CarsEdit() {
                                         
 
                                             <Col md={6} xs={12}>
-                                            <Form.Label className="mt-3">Nowa lokalizacja początkowa</Form.Label>
+                                            <Form.Label className="mt-3">{CARS_EDIT_CAR_NEW_MAIN_LOCATION_TITLE}</Form.Label>
                                             <Form.Select 
                                                 aria-label="Default select example"
                                                     {...register("selectLocation", 
                                                         {
-                                                            required: 'Pole wymagane',
+                                                            required: CARS_EDIT_CAR_NEW_MAIN_LOCATION_REQUIRED,
                                                         }                               
                                                     )}
                                                 name = 'selectLocation'
@@ -297,7 +327,7 @@ function CarsEdit() {
                                     <Form.Group controlId='isactive' className='mt-3'>
                                         <Form.Check
                                             type='checkbox'
-                                            label = 'Gotowy do wynajmu'
+                                            label = {CARS_EDIT_CHECKBOX_READY_FOR_RENT}
                                             checked ={isActive}
                                             name = 'isactive'
                                             onChange={(e) => setIsActive(e.target.checked)}
@@ -306,7 +336,7 @@ function CarsEdit() {
                                     </Form.Group>
 
                                     <Button type='submit' variant='primary' className='bnt-block bg-brown rounded my-3'>
-                                        Zmień
+                                        {BTN_CHANGE}
                                     </Button>
                                 </Form>
                             </article>

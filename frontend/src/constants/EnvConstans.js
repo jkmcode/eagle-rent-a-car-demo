@@ -1,4 +1,4 @@
-//************GLOBAL************//
+//************************************GLOBAL************************************//
 export const SET_DATE_TIME_RESERVATION = 1000*60*60
 export const SET_DATE_TIME_RESERVATION_MSG = 'Data rezerwacji musi być z godzinnym wyprzedzeniem'
 export const MIN_DURATION = 1000*60*60
@@ -27,13 +27,270 @@ export const EDIT = "fas fa-pen"
 export const DELETE = "fas fa-trash"
 export const PICK_UP_ICON = "fas fa-arrow-circle-left"
 
+//Delete message
+export const DELETE_MESSAGE = 'Czy jesteś pewny, że chcesz skasować użytkownika?'
 
 //Errors and Success
+export const REQUEST_FAIL_WITH_STATUS_CODE_404 = 'Request failed with status code 404'
+export const REQUEST_FAIL_WITH_STATUS_CODE_404_PL = 'Brak połaczenia z serwerem'
 export const REQUEST_FAILED_WITH_STATUS_CODE_500 = 'Request failed with status code 500'
 export const REQUEST_FAILED_REST_OF_STATUS_CODE = 'Błąd sieciowy. Sprawdź połaczenie z internetem i uruchom aplikacje jeszcze raz.'
 export const REQUEST_FAILED_WITH_STATUS_CODE_500_PL = 'Błąd serwera lub brak dostępu do internetu. Sprawdź połaczenie z internetem i uruchom aplikacje jeszcze raz.'
-export const SUCCESS_MESSAGE_EDIT_RESERVATION = 'Rezerwacja została zmieniona pomyślnie'
+export const WRONG_CREDENTIALS = 'No active account found with the given credentials'
+export const WRONG_CREDENTIALS_PL = 'Niepoprawna nazwa użytkownika lub hasło'
+export const REGISTRATION_NO_ALREADY_EXIST = 'Podany kod rejestracyjny już istnieje'
+export const NAME_ALREADY_EXIST = 'Podana nazwa już istnieje'
+export const ERROR_UPLOAD_PICTURE = 'Błąd sieciowy. Zdjęcie nie zostało dodane.'
+export const ENTERED_PASSWORD_ARE_NOT_THE_SAME = 'Podane hasła nie są takie same'
 
+export const SUCCESS_MESSAGE_EDIT_RESERVATION = 'Rezerwacja została zmieniona pomyślnie'
+export const SUCCESS_LOCATION_ADD = 'Lokalizacja została dodana do listy'
+export const SUCCESS_CAR_ADD = 'Samochód został dodany do listy'
+export const SUCCESS_CAR_EDIT = 'Dane samochodu zostały zminione poprawnie'
+export const SUCCESS = 'Success'
+export const SUCCESS_PICK_UP = 'Samochód został odebrany od klienta'
+export const SUCCESS_EDIT_RESERVATION = 'Operacja zakończona sukcesem'
+
+export const ERROR_HANDLING_EXIST_RANGE_DATE_EX_1 = 'zakres dat istnieje dla dataStart'
+export const ERROR_HANDLING_EXIST_RANGE_DATE_EX_2 = 'zakres dat istnieje dla dataEnd'
+export const ERROR_HANDLING_EXIST_RANGE_DATE_EX_3 = 'zawarty zakres dat'
+export const ERROR_HANDLING_EXIST_RANGE_DATE_EX_4 = 'zakres dat najmu istnieje dla dataStart'
+export const ERROR_HANDLING_EXIST_RANGE_DATE_EX_5 = 'zakres dat najmu istnieje dla dataEnd'
+export const ERROR_HANDLING_EXIST_RANGE_DATE_EX_6 = 'zawarty zakres dat dla najmu'
+
+export const ERROR_HANDLING_EXIST_RANGE_DATE_EX_1_MSG = 'Rezerwacja w tych przedziałach czasu już istnieje dla daty początkowej.'
+export const ERROR_HANDLING_EXIST_RANGE_DATE_EX_2_MSG = 'Rezerwacja w tych przedziałach czasu już istnieje dla daty końcowej.'
+export const ERROR_HANDLING_EXIST_RANGE_DATE_EX_3_MSG = 'Rezerwacja w tych przedziałach czasu już istnieje.'
+export const ERROR_HANDLING_EXIST_RANGE_DATE_EX_4_MSG = 'Najem w tych przedziałach czasu już istnieje dla daty początkowej.'
+export const ERROR_HANDLING_EXIST_RANGE_DATE_EX_5_MSG = 'Najem w tych przedziałach czasu już istnieje dla daty końcowej.'
+export const ERROR_HANDLING_EXIST_RANGE_DATE_EX_6_MSG = 'Najem w tych przedziałach czasu już istnieje.'
+
+
+//Button 
+export const BTN_BACK = 'Powrót'
+export const BTN_NEW_USER = 'Nowy użytkownik'
+export const BTN_NEW_CAR = 'Nowy samochód'
+export const BTN_NEW_LOCALISATION = 'Nowa lokalizacja'
+export const BTN_EDIT = 'Edycja'
+export const BTN_DELETE = 'Kasuj'
+export const SUBMIT_BTN = 'Zaloguj się'
+export const BTN_CHANGE = 'Zmień'
+export const BTN_SAVE = 'Zapisz'
+export const BTN_CALENDAR = 'Kalendarz'
+export const BTN_SHOW = 'Pokaż'
+export const BTN_ADD_PICTURE = 'Dodaj zdjęcie'
+export const BTN_ADD_RESRVATION =  'Dodaj rezerwacje'
+export const BTN_PICK_UP = 'Obierz'
+export const BTN_RENT = 'Najem'
+export const BTN_RESRVATION = 'Rezerwuj'
+export const BTN_SHOW_MORE = 'Pokaż'
+export const BTN_WRAP_OUT = 'Zwiń'
+
+//Options
+export const OPTION_0 = '0'
+
+//Conditions
+export const CONDITION_RENT = 'Najem'
+export const CONDITION_DELAY_RENT = 'Najem opóźniony'
+export const CONDITION_RESERVATION = 'Rezerwacja'
+export const CONDITION_DELAY_RESERVATION = 'Rezerwacja opóźniona'
+
+
+//************************************COMPONENTS************************************//
+
+
+//************Login************//
+//Title
+export const LOGIN_TITLE = 'Wypożyczalnia samochodów'
+export const LOGIN_SUBTITLE = 'Logowanie do systemu'
+export const LOGIN_USER_NAME_TITLE = 'Nazwa użytkownika'
+export const LOGIN_PASSWORD = 'Hasło'
+
+
+//Placeholder
+export const LOGIN_USER_NAME_PLACEHOLDER = 'Nazwa użytkownika'
+export const LOGIN_PASSWORD_PLACEHOLDER = 'Hasło'
+
+//Validators
+export const LOGIN_USER_NAME_REQUIRED = 'Pole wymagane'
+export const LOGIN_USER_NAME_MIN_LENGTH = 'Nazwa uzytkownika musi składać się z przynajmniej 2 liter'
+export const LOGIN_USER_NAME_PATTERN = 'Można używać tylko liter'
+export const LOGIN_PASSWORD_REQUIRED = 'Pole wymagane'
+export const LOGIN_PASSWORD_MIN_LENGTH = 'Hasło musi mieć przynajmniej 8 znaków'
+
+
+//************MainPage************//
+export const MAINPAGE_TITLE = 'Wybierz lokalizacje'
+
+//************Admin************//
+export const ADMIN_USERS_TITLE = 'Użytkownicy'
+export const ADMIN_LOCATIONS_TITLE = 'Lokalizacje'
+export const ADMIN_CARS_TITLE = 'Samochody'
+
+//************UsersList************//
+export const USERS_LIST_TITLE = 'Lista użytkowników'
+
+//************CreateUser************//
+//Title
+export const CREATE_USER_TITLE = 'Utwórz konto'
+export const CREATE_USER_NAME_TITLE = 'Nazwa użytkownika'
+export const CREATE_USER_EMAIL_TITLE = 'Email'
+export const CREATE_USER_PASSWORD_TITLE = 'Hasło'
+export const CREATE_USER_CONFIRM_PASSWORD_TITLE = 'Powtórz hasło'
+
+//Placeholder
+export const CREATE_USER_NAME_PLACEHOLDER = 'Brak nazwy użytkownika'
+export const CREATE_USER_EMAIL_PLACEHOLDER = 'Brak adresu email'
+export const CREATE_USER_PASSWORD_PLACEHOLDER = 'Hasło'
+export const CREATE_USER_CONFIRM_PASSWORD_PLACEHOLDER = 'Potwierdź hasło'
+
+//Validators
+export const CREATE_USER_NAME_REQUIRED = 'Pole wymagane'
+export const CREATE_USER_NAME_MIN_LENGTH = 'Nazwa użytkownika musi składać się z przynajmniej 2 liter'
+export const CREATE_USER_NAME_PATTERN = 'Można używać tylko liter'
+
+export const CREATE_USER_EMAIL_PATTERN = 'Niepoprawny format email'
+
+export const CREATE_USER_PASSWORD_REQUIRED = 'Pole wymagane'
+export const CREATE_USER_PASSWORD_MIN_LENGTH = 'Hasło musi mieć przynajmniej 8 znaków'
+
+export const CREATE_USER_CONFIRM_PASSWORD_REQUIRED = 'Pole wymagane'
+export const CREATE_USER_CONFIRM_PASSWORD_MIN_LENGTH = 'Hasło musi mieć przynajmniej 8 znaków'
+
+//************UserEdit************//
+//Title
+export const USER_EDIT_TITLE = 'Edycja Użytkownika'
+export const USER_EDIT_NAME_TITLE = 'Nazwa użytkownika'
+export const USER_EDIT_EMAIL_TITLE = 'Email'
+export const USER_EDIT_CHANGE_PASSWORD_TITLE = 'Chcę zmienić hasło pracownika/użytkownika'
+export const USER_EDIT_PASSWORD_TITLE = 'Hasło'
+export const USER_EDIT_CONFIRM_PASSWORD_TITLE = 'Powtórz hasło'
+export const USER_EDIT_ADMIN_TITLE = 'Admin'
+
+//Placeholder
+export const USER_EDIT_NAME_PLACEHOLDER = 'Brak nazwy użytkownika'
+export const USER_EDIT_EMAIL_PLACEHOLDER = 'Brak adresu email'
+export const USER_EDIT_PASSWORD_PLACEHOLDER = 'Hasło'
+export const USER_EDIT_CONFIRM_PASSWORD_PLACEHOLDER = 'Potwierdź hasło'
+
+//Validators
+export const USER_EDIT_NAME_REQUIRED = 'Pole wymagane'
+export const USER_EDIT_NAME_MIN_LENGTH = 'Nazwa użytkownika musi składać się z przynajmniej 2 liter'
+export const USER_EDIT_NAME_PATTERN = 'Można używać tylko liter'
+
+export const USER_EDIT_EMAIL_PATTERN = 'Niepoprawny format email'
+
+export const USER_EDIT_PASSWORD_REQUIRED = 'Pole wymagane'
+export const USER_EDIT_PASSWORD_MIN_LENGTH = 'Hasło musi mieć przynajmniej 8 znaków'
+
+export const USER_EDIT_CONFIRM_PASSWORD_REQUIRED = 'Pole wymagane'
+export const USER_EDIT_CONFIRM_PASSWORD_MIN_LENGTH = 'Hasło musi mieć przynajmniej 8 znaków'
+
+
+//************Localisation************//
+export const LOCALISATION_TITLE = 'Lista lokalizacji'
+export const LACK_OF_LOCALISATION = 'Brak lokalizacji'
+
+//************LocationEdit************//
+//Title
+export const LOCATION_EDIT_TITLE = 'Edytowanie lokalizacji'
+export const LOCATION_EDIT_LOCATION_NAME_TITLE = 'Nazwa lokalizacji'
+export const LOCATION_EDIT_LOCATION_SHORT_NAME_TITLE = 'Nazwa skrócona'
+export const LOCATION_EDIT_CHOOSE_PICTURE = 'Wybierz zdjęcie'
+
+//Placeholder
+export const LOCATION_EDIT_LOCATION_NAME_PLACEHOLDER = 'Brak nazwy lokalizacji'
+export const LOCATION_EDIT_LOCATION_SHORT_NAME_PLACEHOLDER = 'Brak nazwy skróconej'
+
+//Validators
+export const LOCATION_EDIT_LOCATION_NAME_REQUIRED = 'Pole wymagane'
+export const LOCATION_EDIT_LOCATION_SHORT_NAME_REQUIRED = 'Pole wymagane'
+export const LOCATION_EDIT_LOCATION_NAME_MIN_LENGTH = 'Nazwa lokalizacji musi składać się z przynajmniej 10 liter'
+export const LOCATION_EDIT_LOCATION_SHORT_NAME_MIN_LENGTH = 'Nazwa lokalizacji musi składać się z przynajmniej 2 litery'
+export const LOCATION_EDIT_LOCATION_NAME_PATTERN = 'Można uzywać tylko liter'
+export const LOCATION_EDIT_LOCATION_SHORT_NAME_PATTERN = 'Można uzywać tylko liter'
+
+//************NewLocation************//
+//Title
+export const NEW_LOCATION_TITLE = 'Utwórz Lokalizacje'
+export const NEW_LOCATION_LOCATION_NAME_TITLE = 'Nazwa lokalizacji'
+export const NEW_LOCATION_LOCATION_SHORT_NAME_TITLE = 'Nazwa skrócona'
+export const NEW_LOCATION_CHOOSE_PICTURE = 'Wybierz zdjęcie'
+
+//Placeholder
+export const NEW_LOCATION_LOCATION_NAME_PLACEHOLDER = 'Brak nazwy lokalizacji'
+export const NEW_LOCATION_LOCATION_SHORT_NAME_PLACEHOLDER = 'Brak nazwy skróconej'
+
+//Validators
+export const NEW_LOCATION_LOCATION_NAME_REQUIRED = 'Pole wymagane'
+export const NEW_LOCATION_LOCATION_SHORT_NAME_REQUIRED = 'Pole wymagane'
+export const NEW_LOCATION_LOCATION_NAME_MIN_LENGTH = 'Nazwa lokalizacji musi składać się z przynajmniej 10 liter'
+export const NEW_LOCATION_LOCATION_SHORT_NAME_MIN_LENGTH = 'Nazwa lokalizacji musi składać się z przynajmniej 2 litery'
+export const NEW_LOCATION_LOCATION_NAME_PATTERN = 'Można uzywać tylko liter'
+export const NEW_LOCATION_LOCATION_SHORT_NAME_PATTERN = 'Można uzywać tylko liter'
+
+//************CarsAdmin************//
+export const CARS_ADMIN_TITLE = 'Lista samochodów'
+
+//************CarsCreate************//
+//Title
+export const CARS_CREATE_TITLE = 'Dodaj nowy samochód'
+export const CARS_CREATE_CAR_NAME_TITLE = 'Nazwa samochodu'
+export const CARS_CREATE_CAR_SHORT_NAME_TITLE = 'Nazwa skrócona'
+export const CARS_CREATE_CAR_REGISTRATION_NO_TITLE = 'Numer rejestracyjny'
+export const CARS_CREATE_CAR_MAIN_LOCATION_TITLE = 'Lokalizacja początkowa'
+export const CARS_CREATE_CHOOSE_PICTURE = 'Wybierz zdjęcie'
+
+//Placeholder
+export const CARS_CREATE_CAR_NAME_PLACEHOLDER = 'Brak nazwy samochodu'
+export const CARS_CREATE_CAR_SHORT_NAME_PLACEHOLDER = 'Brak nazwy skróconej'
+export const CARS_CREATE_CAR_REGISTRATION_NO_PLACEHOLDER = 'Brak kodu rejestracyjnego'
+
+//Validators
+export const CARS_CREATE_CAR_NAME_REQUIRED = 'Pole wymagane'
+export const CARS_CREATE_CAR_NAME_MIN_LENGTH = 'Nazwa samochodu musi składać się z przynajmniej 10 znaków'
+
+export const CARS_CREATE_CAR_SHORT_NAME_REQUIRED = 'Pole wymagane'
+export const CARS_CREATE_CAR_SHORT_NAME_MIN_LENGTH = 'Nazwa samochodu musi składać się z przynajmniej 2 znaków'
+
+export const CARS_CREATE_CAR_REGISTRATION_NO_REQUIRED = 'Pole wymagane'
+export const CARS_CREATE_CAR_REGISTRATION_MIN_LENGTH = 'Kod rejestracyjny musi składać się przynajmniej z 6 znaków'
+
+export const CARS_CREATE_CAR_MAIN_LOCATION_REQUIRED = 'Pole wymagane'
+
+//************CarsEdit************//
+//Title
+export const CARS_EDIT_TITLE = 'Edycja samochodu'
+export const CARS_EDIT_CAR_NAME_TITLE = 'Nazwa samochodu'
+export const CARS_EDIT_CAR_SHORT_NAME_TITLE = 'Nazwa skrócona'
+export const CARS_EDIT_CAR_REGISTRATION_NO_TITLE = 'Numer rejestracyjny'
+export const CARS_EDIT_CAR_MAIN_LOCATION_TITLE = 'Lokalizacja początkowa'
+export const CARS_EDIT_CAR_NEW_MAIN_LOCATION_TITLE = 'Nowa lokalizacja początkowa'
+export const CARS_EDIT_CHECKBOX_READY_FOR_RENT = 'Gotowy do wynajmu'
+
+//Placeholder
+export const CARS_EDIT_CAR_NAME_PLACEHOLDER = 'Brak nazwy samochodu'
+export const CARS_EDIT_CAR_SHORT_NAME_PLACEHOLDER = 'Brak nazwy skróconej'
+export const CARS_EDIT_CAR_REGISTRATION_NO_PLACEHOLDER = 'Brak kodu rejestracyjnego'
+
+//Validators
+export const CARS_EDIT_CAR_NAME_REQUIRED = 'Pole wymagane'
+export const CARS_EDIT_CAR_NAME_MIN_LENGTH = 'Nazwa samochodu musi składać się z przynajmniej 10 znaków'
+
+export const CARS_EDIT_CAR_SHORT_NAME_REQUIRED = 'Pole wymagane'
+export const CARS_EDIT_CAR_SHORT_NAME_MIN_LENGTH = 'Nazwa samochodu musi składać się z przynajmniej 2 znaków'
+
+export const CARS_EDIT_CAR_REGISTRATION_NO_REQUIRED = 'Pole wymagane'
+export const CARS_EDIT_CAR_REGISTRATION_MIN_LENGTH = 'Kod rejestracyjny musi składać się przynajmniej z 6 znaków'
+
+export const CARS_EDIT_CAR_NEW_MAIN_LOCATION_REQUIRED = 'Pole wymagane'
+
+//************UploadImage************//
+export const UPLOAD_IMAGE_REGISTRATION_NO_TITLE = 'Numer rejestracyjny:'
+export const UPLOAD_IMAGE_CHOOSE_PICTURE = 'Wybierz zdjęcie'
+
+//************CarShow************//
+export const CAR_SHOW_REGISTRATION_NO_TITLE = 'Numer rejestracyjny:'
 
 //************CarLocationList************//
 // Title
@@ -43,7 +300,10 @@ export const CAR_LOCATION_LIST_IN_USE_SUBTITLE = 'Lista samochodów w użyciu'
 export const CAR_LOCATION_LIST_TO_DO_SUBTITLE = 'Lista zadań na dziś'
 export const CAR_LOCATION_LIST_RESERVATIONS_SUBTITLE = 'Lista dostępnych aut do rezerwacji'
 export const CAR_LOCATION_LIST_EDIT_RESERVATION_SUBTITLE = 'Lista aut posiadających rezerwacje'
+export const CAR_LOCATION_LIST_EDIT_RESERVATION_FROM_SUBTITLE = 'Rezerwacja od:'
 export const CAR_LOCATION_LIST_IN_USE_DATE_SUBTITLE = 'W użyciu do: '
+export const CAR_LOCATION_LIST_OTHER_LOCATISATION = 'Samochód w innej lokalizacji'
+export const CAR_LOCATION_LIST_FILTERS = 'Filtry'
 
 //Button
 export const CAR_LOCATION_LIST_RENT_BTN_NAME = "Najem"
@@ -73,6 +333,7 @@ export const CAR_LOCATION_LIST_CONTACT_INFO_TOTAL_PRICE = "Cena najmu: "
 
 //Delete
 export const CAR_LOCATION_LIST_DELETE_MSG = 'Czy jesteś pewny, że chcesz skasować rezerwacje?'
+
 
 //************CarEditReservation************//
 
@@ -108,6 +369,7 @@ export const CAR_SINGLE_EDIT_RESERVATION_TIME_TITLE = "Godzina"
 export const CAR_SINGLE_EDIT_RESERVATION_REGISTRATION_NO = "Numer rejestracyjny: "
 export const CAR_SINGLE_EDIT_RESERVATION_LOCATISATION_SUBTITLE = "Miejsce odbioru samochodu: "
 export const CAR_SINGLE_EDIT_RESERVATION_SUBTITLE = "Nowe miejsce odbioru samochodu"
+export const CAR_SINGLE_EDIT_RESERVATION_ADDITIONAL_INFO_TITLE = 'Uwagi do rezerwacji'
 
 /// Placeholder 
 export const CAR_SINGLE_EDIT_RESERVATION_NO_CUSTOMER_NAME = 'Brak nazwy klienta'
@@ -144,6 +406,7 @@ export const CAR_SINGLE_EDIT_RESERVATION_BTN_BACK_TO_MENU = 'Powórt do menu'
 
 //Title
 export const CAR_RENT_TITLE = 'Wynajem auta'
+export const CAR_RENT_RENT_BASED_ON_RESERVATION = 'Wynajem auta na podstawie rezerwacji'
 
 //Form
 

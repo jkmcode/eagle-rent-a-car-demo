@@ -1,11 +1,14 @@
 import React,{ useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { Row, Col, Container, Image } from 'react-bootstrap'
 import { LinkContainer } from 'react-router-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import Header from './Header';
 import Loader from './Loader';
-import Message from './Message';
+
+import {
+    MAINPAGE_TITLE
+} from '../constants/EnvConstans'
 
 
 function MainPage() {
@@ -32,7 +35,7 @@ function MainPage() {
                     <div>
                         <Header />
                         <Container className="justify-content-md-center filter-location-position">
-                            <h1 className='title mt-3'>Wybierz lokalizacje</h1>
+                            <h1 className='title mt-3'>{MAINPAGE_TITLE}</h1>
                             <Row xs={1} md={1} lg={2} >
                                     {locations.map(location => (
                                         <section key={location.id}>

@@ -25,7 +25,7 @@ import {
     faCalendar
 } from "@fortawesome/free-solid-svg-icons"
 
-import { CAR_RESERVATION_RESET, CAR_SINGLE_EDIT_RESERVATION_RESET } from '../constants/CarsConstans';
+import { CAR_SINGLE_EDIT_RESERVATION_RESET } from '../constants/CarsConstans';
 
 import { 
     CAR_SINGLE_EDIT_RESERVATION_TITLE,
@@ -41,7 +41,7 @@ import {
     CAR_SINGLE_EDIT_RESERVATION_REGISTRATION_NO,
     CAR_SINGLE_EDIT_RESERVATION_LOCATISATION_SUBTITLE,
     CAR_SINGLE_EDIT_RESERVATION_SUBTITLE,
-
+    CAR_SINGLE_EDIT_RESERVATION_ADDITIONAL_INFO_TITLE,
 
     CAR_SINGLE_EDIT_RESERVATION_MIN_LENGTH_MSG,
     CAR_SINGLE_EDIT_RESERVATION_MIN_LENGTH_VALUE,
@@ -70,6 +70,20 @@ import {
     CAR_SINGLE_EDIT_RESERVATION_BTN_BACK,
     CAR_SINGLE_EDIT_RESERVATION_BTN_BACK_TO_MENU,
 
+    ERROR_HANDLING_EXIST_RANGE_DATE_EX_1,
+    ERROR_HANDLING_EXIST_RANGE_DATE_EX_2,
+    ERROR_HANDLING_EXIST_RANGE_DATE_EX_3,
+    ERROR_HANDLING_EXIST_RANGE_DATE_EX_4,
+    ERROR_HANDLING_EXIST_RANGE_DATE_EX_5,
+    ERROR_HANDLING_EXIST_RANGE_DATE_EX_6,
+
+    ERROR_HANDLING_EXIST_RANGE_DATE_EX_1_MSG,
+    ERROR_HANDLING_EXIST_RANGE_DATE_EX_2_MSG,
+    ERROR_HANDLING_EXIST_RANGE_DATE_EX_3_MSG,
+    ERROR_HANDLING_EXIST_RANGE_DATE_EX_4_MSG,
+    ERROR_HANDLING_EXIST_RANGE_DATE_EX_5_MSG,
+    ERROR_HANDLING_EXIST_RANGE_DATE_EX_6_MSG,
+
     SET_DATE_TIME_RESERVATION, 
     MIN_DURATION, MIN_DURATION_MSG, 
     SET_DATE_TIME_RESERVATION_MSG,
@@ -81,7 +95,11 @@ import {
     SUCCESS_MESSAGE_EDIT_RESERVATION,
     REQUEST_FAILED_REST_OF_STATUS_CODE,
     TIME_CLEAR_MSG,
-    TRANSFER_TIME 
+    TRANSFER_TIME,
+    OPTION_0,
+    SUCCESS_EDIT_RESERVATION,
+    BTN_CALENDAR
+    
 } from '../constants/EnvConstans'
 
 
@@ -169,7 +187,7 @@ function CarSingleEditReservation() {
             setClientNameMsg(CAR_SINGLE_EDIT_RESERVATION_REQUIRED_CLIENT_NAME)
         }
 
-        if(data.documentType === '0'){
+        if(data.documentType === OPTION_0){
             setDocTypeMessage(CAR_SINGLE_EDIT_RESERVATION_SELECT_FROM_THE_LIST)
         }
 
@@ -229,7 +247,7 @@ function CarSingleEditReservation() {
             && endDateTimeCombiner
             && (startDateTimeCombiner > (new Date().valueOf() + SET_DATE_TIME_RESERVATION))
             && ((endDateTimeCombiner - MIN_DURATION) > startDateTimeCombiner)
-            && (data.documentType !== '0')
+            && (data.documentType !== OPTION_0)
             && (data.location !== CAR_SINGLE_EDIT_RESERVATION_OPTION_0)
         )
 
@@ -365,27 +383,27 @@ function CarSingleEditReservation() {
             }   
         }
 
-        if(reservationUpdate==='zakres dat istnieje dla dataStart'){
-            setErrorMessage('Rezerwacja w tych przedziałach czasu już istnieje dla daty początkowej.')
+        if(reservationUpdate===ERROR_HANDLING_EXIST_RANGE_DATE_EX_1){
+            setErrorMessage(ERROR_HANDLING_EXIST_RANGE_DATE_EX_1_MSG)
         } 
-        if(reservationUpdate==='zakres dat istnieje dla dataEnd'){
-            setErrorMessage('Rezerwacja w tych przedziałach czasu już istnieje dla daty końcowej.')
+        if(reservationUpdate===ERROR_HANDLING_EXIST_RANGE_DATE_EX_2){
+            setErrorMessage(ERROR_HANDLING_EXIST_RANGE_DATE_EX_2_MSG)
         } 
-        if(reservationUpdate==='zawarty zakres dat'){
-            setErrorMessage('Rezerwacja w tych przedziałach czasu już istnieje.')
-        } 
-
-        if(reservationUpdate==='zakres dat najmu istnieje dla dataStart'){
-            setErrorMessage('Najem w tych przedziałach czasu już istnieje dla daty początkowej.')
-        } 
-        if(reservationUpdate==='zakres dat najmu istnieje dla dataEnd'){
-            setErrorMessage('Najem w tych przedziałach czasu już istnieje dla daty końcowej.')
-        } 
-        if(reservationUpdate==='zawarty zakres dat dla najmu'){
-            setErrorMessage('Najem w tych przedziałach czasu już istnieje.')
+        if(reservationUpdate===ERROR_HANDLING_EXIST_RANGE_DATE_EX_3){
+            setErrorMessage(ERROR_HANDLING_EXIST_RANGE_DATE_EX_3_MSG)
         } 
 
-        if(reservationUpdate==="Operacja zakończona sukcesem"){
+        if(reservationUpdate===ERROR_HANDLING_EXIST_RANGE_DATE_EX_4){
+            setErrorMessage(ERROR_HANDLING_EXIST_RANGE_DATE_EX_4_MSG)
+        } 
+        if(reservationUpdate===ERROR_HANDLING_EXIST_RANGE_DATE_EX_5){
+            setErrorMessage(ERROR_HANDLING_EXIST_RANGE_DATE_EX_5_MSG)
+        } 
+        if(reservationUpdate===ERROR_HANDLING_EXIST_RANGE_DATE_EX_6){
+            setErrorMessage(ERROR_HANDLING_EXIST_RANGE_DATE_EX_6_MSG)
+        } 
+
+        if(reservationUpdate===SUCCESS_EDIT_RESERVATION){
             setSuccessMessage(SUCCESS_MESSAGE_EDIT_RESERVATION)
             const timeout = setTimeout(() =>{
                 dispatch({type:CAR_SINGLE_EDIT_RESERVATION_RESET})
@@ -438,8 +456,7 @@ function CarSingleEditReservation() {
                             ? 
                             <LinkContainer to={`/mainpage/${locationId}/car-list`}>  
                                 <Button 
-                                    variant='warning' 
-                                    className='btn-reservation bg-brown rounded'
+                                    className='btn-back'
                                 >
                                     <FontAwesomeIcon icon={faAngleDoubleLeft} /> {CAR_SINGLE_EDIT_RESERVATION_BTN_BACK_TO_MENU}
                                 </Button>
@@ -450,8 +467,7 @@ function CarSingleEditReservation() {
                             ? 
                             <LinkContainer to={`/car/${carId}/${locationId}/edit-reservation`}>  
                                 <Button 
-                                    variant='warning' 
-                                    className='btn-reservation bg-brown rounded'
+                                    className='btn-back'
                                 >
                                     <FontAwesomeIcon icon={faAngleDoubleLeft} /> {CAR_SINGLE_EDIT_RESERVATION_BTN_BACK}
                                 </Button>
@@ -463,7 +479,7 @@ function CarSingleEditReservation() {
                                 variant='info' 
                                 className='m-1'
                             >
-                                <FontAwesomeIcon icon={faCalendar} /> Kalendarz
+                                <FontAwesomeIcon icon={faCalendar} /> {BTN_CALENDAR}
                             </Button>
                         </LinkContainer> 
 
@@ -500,7 +516,6 @@ function CarSingleEditReservation() {
                                 <Form.Select 
                                     aria-label="Default select example"
                                     name = 'documentType'
-                                    aria-label="Default select example"
                                     {...register("documentType", 
                                         {
                                             required: 'Pole wymagane',
@@ -661,7 +676,6 @@ function CarSingleEditReservation() {
                                 <Form.Select
                                     aria-label="Default select example"
                                     name = 'location'
-                                    aria-label="Default select example"
                                     {...register("location")}                             
                                     onChange = {selectlocationHandler}
                                     className='form-reservation'
@@ -679,7 +693,7 @@ function CarSingleEditReservation() {
                     <Form.Group controlId='note'>
                         <Row>
                             <Col md={9} xs={12}>
-                              <Form.Label className="mt-3">Uwagi do rezerwacji</Form.Label>
+                              <Form.Label className="mt-3">{CAR_SINGLE_EDIT_RESERVATION_ADDITIONAL_INFO_TITLE}</Form.Label>
                               <Form.Control
                                 as="textarea"
                                 name="note"

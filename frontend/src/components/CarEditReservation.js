@@ -18,13 +18,18 @@ import {
 
 import {
   CAR_EDIT_RESERVATION_NO_RESERVATION_TITLE,
-  CAR_EDIT_RESERVATION_BACK_TO_MENU_BUTTON_NAME,
 
   CAR_EDIT_RESERVATION_DELETE_MSG,
 
   CAR_EDIT_RESERVATION_PHONE_NO,
   CAR_EDIT_RESERVATION_EMAIL,
-  DELETE
+  DELETE,
+
+  BTN_BACK,
+  BTN_CALENDAR,
+  BTN_EDIT,
+  BTN_DELETE
+
  } from '../constants/EnvConstans'
 
 
@@ -99,7 +104,7 @@ function CarEditReservation() {
                               variant='dark' 
                               className='btn-md'
                             >
-                              <FontAwesomeIcon icon={faAngleDoubleLeft} />  {CAR_EDIT_RESERVATION_BACK_TO_MENU_BUTTON_NAME}
+                              <FontAwesomeIcon icon={faAngleDoubleLeft} />  {BTN_BACK}
                             </Button>
                           </LinkContainer>
 
@@ -108,7 +113,7 @@ function CarEditReservation() {
                               variant='info' 
                               className='btn-md m-1'
                             >
-                              <FontAwesomeIcon icon={faCalendar} /> Kalendarz
+                              <FontAwesomeIcon icon={faCalendar} /> {BTN_CALENDAR}
                             </Button>
                           </LinkContainer>
                         </Col>
@@ -150,7 +155,7 @@ function CarEditReservation() {
                                   variant='warning' 
                                   className='btn-md'
                                 >
-                                  <FontAwesomeIcon icon={faEdit} /> Edycja
+                                  <FontAwesomeIcon icon={faEdit} /> {BTN_EDIT}
                                 </Button>
                               </LinkContainer>
                               
@@ -160,7 +165,7 @@ function CarEditReservation() {
                                   className='btn-md mt-1'
                                   onClick={() => deleteHandler(res.id)}
                                 >
-                                  <i className={DELETE}></i> Kasuj
+                                  <i className={DELETE}></i> {BTN_DELETE}
                                 </Button>
                               </div>
                             </Col>

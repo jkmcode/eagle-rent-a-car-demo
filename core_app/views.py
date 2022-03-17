@@ -77,7 +77,7 @@ def createUser(request):
 @api_view(['GET'])
 @permission_classes([IsAdminUser])
 def getUsers(request):
-    users = User.objects.all()
+    users = User.objects.all().order_by('username')
     serializer = UserSerializer(users, many=True)
     return Response(serializer.data)
 
@@ -122,7 +122,7 @@ def updateUser(request, pk):
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
 def getLocations(request):
-    locations = Locations.objects.filter(is_active=True).order_by('name')
+    locations = Locations.objects.filter(is_active=True).order_by('short_name')
     serializer = LocationsSerializer(locations, many=True)
     return Response(serializer.data)
 
@@ -132,12 +132,15 @@ def getLocations(request):
 def createLocation(request):
     data = request.data
     print('data', data)
+    print('creator', type(data['creator']))
+    creator_str = str(data['creator'])
+    print('creator_str', type(creator_str))
     try:
         print('wchodzę do funcji try')
         location = Locations.objects.create(
             name=data['name'],
             short_name=data['shortName'],
-            creator= data['creator'],
+            creator= creator_str,
             supp_unique_var= data['supp_unique_var']
         )
 
@@ -219,7 +222,7 @@ def newLocationUploadImage(request):
 @api_view(['GET'])
 @permission_classes([IsAdminUser])
 def getCars(request):
-    cars = Cars.objects.all()
+    cars = Cars.objects.all().order_by('short_name')
     serializer = CarsSerializer(cars, many=True)
     return Response(serializer.data)
 
@@ -327,27 +330,10 @@ def updateCar(request, pk):
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
 def getCarListByLocationToRent(request, pk):
-    carList = Cars.objects.filter(location=pk, is_active=True, on_the_way=False)
-
-    # page = request.query_params.get('page')
-    # paginator = Paginator(carList, 4)
-
-    # try:
-    #     carList = paginator.page(page)
-    # except PageNotAnInteger:
-    #     carList = paginator.page(1)
-    # except EmptyPage:
-    #     carList = paginator.page(paginator.num_pages)
-
-    # if page == None:
-    #     page = 1
-
-    # page = int(page)
-
+    carList = Cars.objects.filter(location=pk, is_active=True, on_the_way=False).order_by('short_name')
     serializer = CarsSerializer(carList, many=True)
 
     return Response(serializer.data)
-    #return Response({'carList':serializer.data, 'page':page, 'pages': paginator.num_pages})
 
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
@@ -440,7 +426,7 @@ def getCarListByLocationReservations(request, pk):
         carReservations__location=pk,
         carReservations__date_from__gt = today,
         carReservations__is_active = True
-    )
+    ).order_by('short_name')
 
     unique_cars_list=[]
     for car in carList:
@@ -456,7 +442,7 @@ def getCarListByLocationReservations(request, pk):
 @permission_classes([IsAuthenticated])
 def getCarListByLocationNewReservations(request, pk):
 
-    carList = Cars.objects.filter(location=pk)
+    carList = Cars.objects.filter(location=pk).order_by('short_name')
 
     serializer = CarsSerializer(carList, many=True)
 

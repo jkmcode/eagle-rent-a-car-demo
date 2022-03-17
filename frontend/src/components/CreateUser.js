@@ -16,6 +16,35 @@ import {
         faAngleDoubleLeft
 } from "@fortawesome/free-solid-svg-icons"
 
+import {
+    CREATE_USER_TITLE,
+    CREATE_USER_NAME_TITLE,
+    CREATE_USER_EMAIL_TITLE,
+    CREATE_USER_PASSWORD_TITLE,
+    CREATE_USER_CONFIRM_PASSWORD_TITLE,
+
+    CREATE_USER_NAME_PLACEHOLDER,
+    CREATE_USER_EMAIL_PLACEHOLDER,
+    CREATE_USER_PASSWORD_PLACEHOLDER,
+    CREATE_USER_CONFIRM_PASSWORD_PLACEHOLDER,
+
+    CREATE_USER_NAME_REQUIRED,
+    CREATE_USER_NAME_MIN_LENGTH,
+    CREATE_USER_NAME_PATTERN,
+
+    CREATE_USER_EMAIL_PATTERN,
+
+    CREATE_USER_PASSWORD_REQUIRED,
+    CREATE_USER_PASSWORD_MIN_LENGTH,
+
+    CREATE_USER_CONFIRM_PASSWORD_REQUIRED,
+    CREATE_USER_CONFIRM_PASSWORD_MIN_LENGTH,
+
+    ENTERED_PASSWORD_ARE_NOT_THE_SAME,
+    BTN_BACK,
+    BTN_SAVE
+} from '../constants/EnvConstans'
+
 function CreateUser() {
 
     const navigate = useNavigate()
@@ -36,7 +65,7 @@ function CreateUser() {
 
     const onSubmit = (data) => {
         if(data.password != data.passwordConfirm){
-            setMessagePassword('Podane hasła nie są takie same')
+            setMessagePassword(ENTERED_PASSWORD_ARE_NOT_THE_SAME)
         }
         else{
             dispatch(createUser(data.name, data.email, data.password))
@@ -67,13 +96,13 @@ function CreateUser() {
                {loading && <Loader/>}
                <Row>
                     <Col>
-                        <h2>Utwórz konto</h2>
+                        <h2>{CREATE_USER_TITLE}</h2>
                     </Col>
 
                     <Col className='btn-position'>
                         <LinkContainer to={`/admin/userslist`}>  
                             <Button className='btn-md btn-back'>
-                                <FontAwesomeIcon icon={faAngleDoubleLeft} /> Powrót
+                                <FontAwesomeIcon icon={faAngleDoubleLeft} /> {BTN_BACK}
                             </Button>
                         </LinkContainer>                    
                     </Col>
@@ -81,20 +110,20 @@ function CreateUser() {
                 
                <Form onSubmit={handleSubmit(onSubmit)}>
                     <Form.Group controlId='name'>
-                        <Form.Label>Nazwa użytkownika</Form.Label>
+                        <Form.Label>{CREATE_USER_NAME_TITLE}</Form.Label>
                         <Form.Control
                             type='text'
-                            placeholder = 'Brak nazwy użytkownika'
+                            placeholder = {CREATE_USER_NAME_PLACEHOLDER}
                             {...register("name", 
                                 {
-                                    required: 'Pole wymagane',
+                                    required: CREATE_USER_NAME_REQUIRED,
                                     minLength: {
                                         value: 2,
-                                        message: 'Nazwa uzytkownika musi składać się z przynajmniej 2 liter',
+                                        message: CREATE_USER_NAME_MIN_LENGTH,
                                     },
                                     pattern: {
                                         value: /[A-Za-z -]/,
-                                        message: 'Można uzywać tylko liter',
+                                        message: CREATE_USER_NAME_PATTERN,
                                     },
                                 }                               
                             )}
@@ -106,14 +135,14 @@ function CreateUser() {
                     </Form.Group>
 
                     <Form.Group controlId='email'>
-                        <Form.Label>Email</Form.Label>
+                        <Form.Label>{CREATE_USER_EMAIL_TITLE}</Form.Label>
                             <Form.Control
                                 type="text"
-                                placeholder = 'Brak adresu email'
+                                placeholder = {CREATE_USER_EMAIL_PLACEHOLDER}
                                 {...register("email", {
                                     pattern: {
                                     value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                                    message: 'Niepoprawny format email',                                
+                                    message: CREATE_USER_EMAIL_PATTERN,                                
                             
                                 }})}
                                 onKeyUp={() => {trigger("email")}}
@@ -124,16 +153,16 @@ function CreateUser() {
                     </Form.Group> 
 
                     <Form.Group controlId='password'>
-                        <Form.Label>Hasło</Form.Label>
+                        <Form.Label>{CREATE_USER_PASSWORD_TITLE}</Form.Label>
                         <Form.Control
                             type='password'
-                            placeholder = 'Hasło'
+                            placeholder = {CREATE_USER_PASSWORD_PLACEHOLDER}
                             {...register("password", 
                                 {
-                                    required: 'Pole wymagane',
+                                    required: CREATE_USER_PASSWORD_REQUIRED,
                                     minLength: {
                                         value: 8,
-                                        message: 'Hasło musi mieć przynajmniej 8 znaków',
+                                        message: CREATE_USER_PASSWORD_MIN_LENGTH,
                                     },
                                 }                               
                             )}
@@ -145,16 +174,16 @@ function CreateUser() {
                     </Form.Group>                    
 
                     <Form.Group controlId='passwordConfirm'>
-                        <Form.Label>Powtórz hasło</Form.Label>
+                        <Form.Label>{CREATE_USER_CONFIRM_PASSWORD_TITLE}</Form.Label>
                         <Form.Control
                             type='password'
-                            placeholder = 'Potwierdź hasło'
+                            placeholder = {CREATE_USER_CONFIRM_PASSWORD_PLACEHOLDER}
                             {...register("passwordConfirm", 
                                 {
-                                    required: 'Pole wymagane',
+                                    required: CREATE_USER_CONFIRM_PASSWORD_REQUIRED,
                                     minLength: {
                                         value: 8,
-                                        message: 'Hasło musi mieć przynajmniej 8 znaków',
+                                        message: CREATE_USER_CONFIRM_PASSWORD_MIN_LENGTH,
                                     },
                                 }                               
                             )}
@@ -166,7 +195,7 @@ function CreateUser() {
                     </Form.Group>  
 
                     <Button type='submit' variant='primary' className='my-3 bnt-block bg-brown rounded'>
-                        Zapisz
+                        {BTN_SAVE}
                     </Button>
                 </Form>
             </FormContainer>

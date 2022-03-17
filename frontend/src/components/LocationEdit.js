@@ -4,7 +4,7 @@ import Header from './Header';
 import FormContainer from './FormContainer';
 import Loader from './Loader';
 import Message from './Message';
-import { Form, Button , Row, Col, Image} from 'react-bootstrap';
+import { Form, Button , Row, Col } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 import { useForm } from "react-hook-form";
 import { updateLocation, getLocationDetails, listLocation } from '../action/locationAction';
@@ -17,9 +17,30 @@ import {
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { 
-        faEdit,
         faAngleDoubleLeft
 } from "@fortawesome/free-solid-svg-icons"
+
+import {
+    LOCATION_EDIT_TITLE,
+    LOCATION_EDIT_LOCATION_NAME_TITLE,
+    LOCATION_EDIT_LOCATION_SHORT_NAME_TITLE,
+    LOCATION_EDIT_CHOOSE_PICTURE,
+    LOCATION_EDIT_LOCATION_NAME_PLACEHOLDER,
+    LOCATION_EDIT_LOCATION_SHORT_NAME_PLACEHOLDER,
+    LOCATION_EDIT_LOCATION_NAME_REQUIRED,
+    LOCATION_EDIT_LOCATION_SHORT_NAME_REQUIRED,
+    LOCATION_EDIT_LOCATION_NAME_MIN_LENGTH,
+    LOCATION_EDIT_LOCATION_SHORT_NAME_MIN_LENGTH,
+    LOCATION_EDIT_LOCATION_NAME_PATTERN,
+    LOCATION_EDIT_LOCATION_SHORT_NAME_PATTERN,
+
+    BTN_CHANGE,
+    BTN_BACK,
+
+    REQUEST_FAILED_WITH_STATUS_CODE_500,
+    REQUEST_FAILED_WITH_STATUS_CODE_500_PL,
+    REQUEST_FAILED_REST_OF_STATUS_CODE
+} from '../constants/EnvConstans'
 
 function LocationEdit() {
 
@@ -28,7 +49,6 @@ function LocationEdit() {
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const [uploading, setUploading] = useState(false)
-    const [msgTextUpload, setMsgTextUpload] = useState('')
 
     const locationUpdate = useSelector(state => state.locationUpdate)
     const { error: errorUpdate, success: successUpdate } = locationUpdate
@@ -106,16 +126,18 @@ function LocationEdit() {
     //UseEffect -słownik błędów
     useEffect(() => {
         if(errorDetailsFail){
-            if(errorDetailsFail==='Request failed with status code 500'){
-                setErrorMessage('Błąd serwera lub brak dostępu do internetu. Sprawdź połaczenie z internetem i uruchom aplikacje jeszcze raz.')
+            if(errorDetailsFail===REQUEST_FAILED_WITH_STATUS_CODE_500){
+                setErrorMessage(REQUEST_FAILED_WITH_STATUS_CODE_500_PL)
+            }else{
+                setErrorUpdateMessage(REQUEST_FAILED_REST_OF_STATUS_CODE)
             }
         }
 
         if(errorUpdate){
-            if(errorUpdate==='Request failed with status code 500'){
-                setErrorUpdateMessage('Błąd serwera lub brak dostępu do internetu. Sprawdź połaczenie z internetem i uruchom aplikacje jeszcze raz.')
+            if(errorUpdate===REQUEST_FAILED_WITH_STATUS_CODE_500){
+                setErrorUpdateMessage(REQUEST_FAILED_WITH_STATUS_CODE_500_PL)
             }else{
-                setErrorUpdateMessage('Błąd sieciowy. Sprawdź połaczenie z internetem i uruchom aplikacje jeszcze raz.')
+                setErrorUpdateMessage(REQUEST_FAILED_REST_OF_STATUS_CODE)
             }
         }
     }, [errorDetailsFail, errorUpdate])
@@ -136,31 +158,31 @@ function LocationEdit() {
                                     <Form.Group controlId='name'>
                                         <Row>
                                             <Col>
-                                                <h3 className='location-edit-title'>Edytowanie lokalizacji</h3>
+                                                <h3 className='location-edit-title'>{LOCATION_EDIT_TITLE}</h3>
                                             </Col>
                                             <Col className='btn-position'>
                                                 <LinkContainer to={`/admin/localisation`}>  
                                                     <Button className='btn-md btn-back'>
-                                                        <FontAwesomeIcon icon={faAngleDoubleLeft} /> Powrót
+                                                        <FontAwesomeIcon icon={faAngleDoubleLeft} /> {BTN_BACK}
                                                     </Button>
                                                 </LinkContainer>                                                  
                                             </Col>
 
                                         </Row>
-                                        <Form.Label>Nazwa lokalizacji</Form.Label>
+                                        <Form.Label>{LOCATION_EDIT_LOCATION_NAME_TITLE}</Form.Label>
                                         <Form.Control
                                             type='text'
-                                            placeholder = 'Brak nazwy lokalizacji'
+                                            placeholder = {LOCATION_EDIT_LOCATION_NAME_PLACEHOLDER}
                                             {...register("name", 
                                                 {
-                                                    required: 'Pole wymagane',
+                                                    required: LOCATION_EDIT_LOCATION_NAME_REQUIRED,
                                                     minLength: {
                                                         value: 10,
-                                                        message: 'Nazwa lokalizacji musi składać się z przynajmniej 10 liter',
+                                                        message: LOCATION_EDIT_LOCATION_NAME_MIN_LENGTH,
                                                     },
                                                     pattern: {
                                                         value: /[A-Za-z -]/,
-                                                        message: 'Można uzywać tylko liter',
+                                                        message: LOCATION_EDIT_LOCATION_NAME_PATTERN,
                                                     },
                                                 }                               
                                             )}
@@ -172,20 +194,20 @@ function LocationEdit() {
                                     </Form.Group>                       
 
                                     <Form.Group controlId='shortName'>
-                                        <Form.Label>Nazwa skrócona</Form.Label>
+                                        <Form.Label>{LOCATION_EDIT_LOCATION_SHORT_NAME_TITLE}</Form.Label>
                                             <Form.Control
                                                 type="text"
-                                                placeholder = 'Brak nazwy skróconej'
+                                                placeholder = {LOCATION_EDIT_LOCATION_SHORT_NAME_PLACEHOLDER}
                                                 {...register("shortName", 
                                                 {
-                                                    required: 'Pole wymagane',
+                                                    required: LOCATION_EDIT_LOCATION_SHORT_NAME_REQUIRED,
                                                     minLength: {
                                                         value: 2,
-                                                        message: 'Nazwa lokalizacji musi składać się z przynajmniej 2 litery',
+                                                        message: LOCATION_EDIT_LOCATION_SHORT_NAME_MIN_LENGTH,
                                                     },
                                                     pattern: {
                                                         value: /[A-Za-z -]/,
-                                                        message: 'Można uzywać tylko liter',
+                                                        message: LOCATION_EDIT_LOCATION_SHORT_NAME_PATTERN,
                                                     },
                                                 }                               
                                             )}
@@ -196,19 +218,18 @@ function LocationEdit() {
                                             {errors.shortName && (<div className='form-msg-style'>{errors.shortName.message}</div>)}
                                     </Form.Group> 
 
-                                    <Form.Label className="mt-3">Wybierz zdjęcie</Form.Label>
+                                    <Form.Label className="mt-3">{LOCATION_EDIT_CHOOSE_PICTURE}</Form.Label>
                                     <Form.Group controlId="formFile" className='test-img'>
                                         <Form.Control 
                                             type="file"
                                             onChange={uploadFileHandler}
                                         />
                                         {uploading && <Loader/>}
-                                        {msgTextUpload && <p className='text_img_uploaded'>Zdjęcie zostało pobrane</p>}
                                     
                                     </Form.Group>
 
                                     <Button type='submit' variant='primary' className='bnt-block bg-brown rounded my-3 btn-location-edit'>
-                                        Zmień
+                                        {BTN_CHANGE}
                                     </Button>
                                 </Form>                            
                             )

@@ -15,6 +15,19 @@ import {
         faAngleDoubleLeft
 } from "@fortawesome/free-solid-svg-icons"
 
+import {
+    LOCALISATION_TITLE,
+    BTN_EDIT,
+    BTN_BACK,
+    BTN_NEW_LOCALISATION,
+    LACK_OF_LOCALISATION,
+
+    REQUEST_FAILED_WITH_STATUS_CODE_500,
+    REQUEST_FAILED_WITH_STATUS_CODE_500_PL,
+    REGISTRATION_NO_ALREADY_EXIST
+
+} from '../constants/EnvConstans'
+
 function Localisation() {
 
     const locationList = useSelector(state => state.locationList)
@@ -36,10 +49,10 @@ function Localisation() {
     //UseEffect -słownik błędów
     useEffect(() => {
         if(error){
-            if(error==='Request failed with status code 500'){
-                setErrorMessage('Błąd serwera lub brak dostępu do internetu. Sprawdź połaczenie z internetem i uruchom aplikacje jeszcze raz.')
+            if(error==={REQUEST_FAILED_WITH_STATUS_CODE_500}){
+                setErrorMessage({REQUEST_FAILED_WITH_STATUS_CODE_500_PL})
                 
-            }else if (error==='Podany kod rejestracyjny już istnieje'){
+            }else if (error==={REGISTRATION_NO_ALREADY_EXIST}){
                 setErrorMessage(error)
             }
         }
@@ -58,13 +71,13 @@ function Localisation() {
                         <section>
                             <Row>
                                 <Col >
-                                    <h2 className="localisation-title">Lokalizacje</h2>
+                                    <h2 className="localisation-title">{LOCALISATION_TITLE}</h2>
                                 </Col>
                                 <Col className='btn-position-right'>
                                     <div>
                                         <LinkContainer to={`/admin`}>  
                                             <Button className='btn-md btn-back mt-1 mb-1'>
-                                                <FontAwesomeIcon icon={faAngleDoubleLeft} /> Powrót
+                                                <FontAwesomeIcon icon={faAngleDoubleLeft} /> {BTN_BACK}
                                             </Button>
                                         </LinkContainer>                                          
                                     </div>
@@ -74,7 +87,7 @@ function Localisation() {
                                 <Col className='btn-position-right'>
                                     <div>
                                         <Button className="new-location-bg mb-5" onClick={createLocateHandler}>
-                                            <i className="fas fa-plus"></i> Nowa lokalizacja  
+                                            <i className="fas fa-plus"></i> {BTN_NEW_LOCALISATION}  
                                         </Button>
                                     </div>
                                 </Col>
@@ -95,7 +108,7 @@ function Localisation() {
                                                             <Col className='btn-location-edit-position'>
                                                                 <LinkContainer to={`/admin/location/${location.id}/edit`}>
                                                                     <Button variant='warning' className='btn-md'>
-                                                                        <FontAwesomeIcon icon={faEdit} /> Edycja
+                                                                        <FontAwesomeIcon icon={faEdit} /> {BTN_EDIT}
                                                                     </Button>
                                                                 </LinkContainer>
                                                             </Col>
@@ -105,7 +118,7 @@ function Localisation() {
                                             </Card>
                                         ))}
                                     </div> ) 
-                                :  <h1>Brak lokalizacji</h1>                   
+                                :  <h2>{LACK_OF_LOCALISATION}</h2>                   
                             }
                         </section>
 

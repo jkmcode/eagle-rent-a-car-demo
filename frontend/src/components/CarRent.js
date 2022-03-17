@@ -28,6 +28,7 @@ import {
 
 import { 
     CAR_RENT_TITLE,
+    CAR_RENT_RENT_BASED_ON_RESERVATION,
     CAR_RENT_NO_CUSTOMER_NAME,
     CAR_RENT_TO_FROM,
 
@@ -45,7 +46,6 @@ import {
     CAR_RENT_TOTAL_PRICE_IS_PAID_TITLE,
     CAR_RENT_NOTE_MSG_TITLE,
     CAR_RENT_LOCATION_TITLE,
-    CAR_RENT_COME_BACK_TITLE,
 
     CAR_RENT_TAKE_BACK_SUBTITLE,
     CAR_RENT_GENERAL_INFO_SUBTITLE,
@@ -98,19 +98,17 @@ import {
     OPTION_CCY,
     OPTION_DOC,
     TIME_STEP,
-    TIME_DEFAULT_VALUE_START,
     TIME_DEFAULT_VALUE_END,
     TIME_MIN_VALUE,
     TIME_MAX_VALUE,
     SET_DATE_TIME_RESERVATION,
-    SET_DATE_TIME_RESERVATION_MSG,
     MIN_DURATION,
     MIN_DURATION_RENT_MSG,
     TIME_CLEAR_MSG,
     TRANSFER_TIME,
+    BTN_BACK,
 
     CAR_RENT_BUTTON_NAME,
-
 } from '../constants/EnvConstans'
 
 function CarRent() {
@@ -475,7 +473,7 @@ function CarRent() {
             {dateMsg &&<Message variant='danger'>{dateMsg}</Message>}
             {dateMsgError &&<Message variant='danger'>{dateMsgError}</Message>}
             {actionResToRent
-                ? <h3>Wynajem auta z rezerwacji</h3> : <h3>{CAR_RENT_TITLE}</h3>
+                ? <h3>{CAR_RENT_RENT_BASED_ON_RESERVATION}</h3> : <h3>{CAR_RENT_TITLE}</h3>
             }
             
                 <Row>
@@ -491,7 +489,7 @@ function CarRent() {
                                 variant='warning' 
                                 className='btn-back m-1'
                             >
-                                <FontAwesomeIcon icon={faAngleDoubleLeft} /> Powrót
+                                <FontAwesomeIcon icon={faAngleDoubleLeft} /> {BTN_BACK}
                             </Button>
                         </LinkContainer>
                         {actionResToRent
@@ -633,14 +631,12 @@ function CarRent() {
                                     autoComplete='off'
                                     autocomplete="off"
                                     placeholderText={CAR_RENT_TO_FROM}
-                                    //selected={actionResToRent ? resDate : null}
                                     selected={newEvent.end}
                                     style={{ marginRight: "10px" }} 
                                     className='date-picker-style form-reservation'
                                     onChange={SubmitEndDate}
                                     name = 'dateTo'
                                     locale={language}
-                                    //disabled
                                 />
                                 {endDateMsg ? <p className='docTypeMessage-style'>{endDateMsg}</p> : null}
                             </Col>
@@ -656,7 +652,6 @@ function CarRent() {
                                     max = {TIME_MAX_VALUE}
                                     step={TIME_STEP}
                                     onChange = {SubmitEndTime}
-                                    //disabled
                                 />
                                 {selectEndTimeMsg ? <p className='docTypeMessage-style'>{selectEndTimeMsg}</p> : null}
                             </Col>
@@ -791,25 +786,12 @@ function CarRent() {
                                 </Form.Select>
                                 {location ? <p className='form-msg-style'>{location}</p> : null}
                             </Col> 
-                            {/* <Col md={4} xs={2}>
-                                <Form.Label className="mt-3"></Form.Label>
-                                <Form.Group controlId='isComeBack' className='mt-3'>
-                                    <Form.Check
-                                        type='checkbox'
-                                        label = {CAR_RENT_COME_BACK_TITLE}
-                                        onChange={(e) => setComeBack(e.target.checked)}
-                                        name = 'isComeBack'
-                                        className='form-reservation'
-                                    >
-                                    </Form.Check>
-                                </Form.Group>                               
-                            </Col>            */}
                         </Row>
                         <Row >
                             <Col md={12}>
                                 <Form.Label className="mt-3">{CAR_RENT_NOTE_MSG_TITLE}</Form.Label>
                                 <Form.Control
-                                        type="text"
+                                        as="textarea"
                                         name="note"
                                         className='form-rent-msg'
                                         {...register("note")}

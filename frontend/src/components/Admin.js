@@ -3,6 +3,12 @@ import Header from './Header';
 import { Row, Col, Container } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 
+import {
+    ADMIN_USERS_TITLE,
+    ADMIN_LOCATIONS_TITLE,
+    ADMIN_CARS_TITLE
+} from '../constants/EnvConstans'
+
 function Admin() {
     return (
         <main>
@@ -12,21 +18,21 @@ function Admin() {
                     <LinkContainer to="/admin/userslist"> 
                         <Col>
                             <div className='intro-section mb-3'>
-                                Użytkownicy
+                                {ADMIN_USERS_TITLE}
                             </div>
                         </Col>
                     </LinkContainer> 
                     <LinkContainer to="/admin/localisation"> 
                         <Col>
                             <div className='intro-section mb-3'>
-                                Lokalizacje
+                                {ADMIN_LOCATIONS_TITLE}
                             </div>
                         </Col>
                     </LinkContainer> 
                     <LinkContainer to="/admin/cars"> 
                         <Col>
                             <div className='intro-section mb-3'>
-                                Samochody
+                                {ADMIN_CARS_TITLE}
                             </div>
                         </Col>
                     </LinkContainer> 

@@ -1,14 +1,15 @@
-
+from django.urls import include, re_path, path
 from django.contrib import admin
-from django.urls import path, re_path
-from core_app import views
-from django.conf import settings
 from django.conf.urls.static import static
+from django.conf import settings
+
+from core_app import views
 from django.views.generic import TemplateView
 
 urlpatterns = [
 
     path('',TemplateView.as_view(template_name='index.html')),
+    path('', include('pwa.urls')),
 
     #users
     path('api/users/', views.getUsers, name='userslist'),
@@ -52,7 +53,6 @@ urlpatterns = [
     path('mainpage/<str:pk>/car-list/fiter-rents/', views.getCarListFilterRents, name='get-carlist-by-location-fiter-rents'),
     path('mainpage/<str:pk>/car-list/fiter-all/', views.getCarListByLocationToDo, name='get-carlist-by-location-fiter-all'),
     
-
     #carReservation 
     path('api/reservation/car/create/', views.createReservationCar, name='create-reservation-car'),
     path('api/reservation/list/car/<str:pk>/<str:loc>/', views.listReservationCar, name='list-reservation-car'),
@@ -69,7 +69,6 @@ urlpatterns = [
     path('api/<str:pk>/rent-details/', views.getRentDetailsByCarId, name='get-rent-details-by-car-id'),
     path('api/rent/update/<str:pk>/', views.carUpdateRent, name='car-update-rent'),
 ]
-
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
