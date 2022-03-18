@@ -66,7 +66,12 @@ import {
 
     CAR_RENT_EDIT_REQUEST,
     CAR_RENT_EDIT_SUCCESS,
-    CAR_RENT_EDIT_FAIL,    
+    CAR_RENT_EDIT_FAIL,  
+    
+    FILTER_RESERVATIONS_REQUEST,
+    FILTER_RESERVATIONS_SUCCESS,
+    FILTER_RESERVATIONS_FAIL,
+
 
 } from '../constants/CarsConstans'
 
@@ -176,6 +181,44 @@ export const getRentDetailsByCarId = (carId) => async (dispatch, getState) => {
     }catch(error){
         dispatch({
             type: CAR_RENT_DETAILS_FAIL,
+            payload: error.response && error.response.data.detail
+            ? error.response.data.detail
+            : error.message,
+        })
+    }
+}
+
+export const filterReservations = (filter) => async (dispatch, getState) => {
+    try{
+        dispatch({
+            type: FILTER_RESERVATIONS_REQUEST
+        })
+
+        const {
+            userLogin: { userInfo },
+        } = getState()
+
+        const config = {
+            headers:{
+                'Content-type': 'application/json',
+                Authorization: `Bearer ${userInfo.token}`
+            }
+        }
+
+        const {data} = await axios.put(
+            '/api/filter/reservation/',
+            filter,
+            config
+        )
+
+        dispatch({
+            type: FILTER_RESERVATIONS_SUCCESS,
+            payload: data,
+        })
+
+    }catch(error){
+        dispatch({
+            type: FILTER_RESERVATIONS_FAIL,
             payload: error.response && error.response.data.detail
             ? error.response.data.detail
             : error.message,

@@ -20,7 +20,8 @@ import CarEditReservation from './components/CarEditReservation';
 import CarRent from './components/CarRent';
 import CarRentEdit from './components/CarRentEdit';
 import CarPickUp from './components/CarPickUp';
-import CarSingleEditReservation from './components/CarSingleEditReservation'
+import CarSingleEditReservation from './components/CarSingleEditReservation';
+import SearchReservation from './components/SearchReservation';
 
 import UploadImage from './components/UploadImage';
 import ReservationCalendar from './components/ReservationCalendar';
@@ -57,7 +58,8 @@ function App() {
         <Route exact path = '/car/:id/show/rent/:idLocation/:action' element={<CarShow />}></Route>
         <Route exact path = '/car/:id/show/:action/:idRes/:idLocation' element={<CarShow />}></Route>
         <Route exact path = '/car/:id/show/:action/' element={<CarShow />}></Route>
-        
+
+        <Route exact path = '/search/reservation/' element={<SearchReservation />}></Route>
         
         <Route exact path = '/car/:id/reservation/id-location/:idLocation' element={<CarReservation />}></Route>
 

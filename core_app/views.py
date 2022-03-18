@@ -659,6 +659,18 @@ def updateReservation(request, pk):
 
     return Response('Operacja zakończona sukcesem')
 
+@api_view(['PUT'])
+@permission_classes([IsAuthenticated])
+def filterReservations(request):  
+    data = request.data
+    obj_cars = Cars.objects.filter(is_active=True)
+
+
+    serializer = CarsSerializer(obj_cars, many=True)
+    return Response(serializer.data)
+
+
+
 #CAR RENT
 
 @api_view(['POST'])

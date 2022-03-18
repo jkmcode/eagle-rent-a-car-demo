@@ -199,7 +199,7 @@ OPIS carRentEdit (mechanika daty i czasu)
 
 2. Wybór godziny
    -- po włączeniu komponentu zostaje uruchomionu Use effect z komentarzem 'Set default endTimeValue' ,który ustala początkową wartość godziny (10:00).
-   Wtedy zeienna 'endTimeValue' zostaje uzupełniona początkową godziną.
+   Wtedy zmienna 'endTimeValue' zostaje uzupełniona początkową godziną.
    -- gdy zmienimy godzine to wtedy UseEffect z komentarzem 'Set default endTimeValue' uruchomi się ale nie spełni warunku. Dzieki temu godzina nie ustawi się na wartość początkową czyli na 10:00.
    -- przy zmianie godziny zostaje uruchomiana funcja 'SubmitEndTime'. W paramentrze tej funkcji zostaje przekazany obiekt 'time', z którego możemy wyciągnąć godzine (let getTime = time.nativeEvent.text) i przypisać ją do zmiennej 'getEndTimeHoursAndMinutes' (setEndTimeGetHoursAndMinutes(getTime)).
 

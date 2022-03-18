@@ -1,5 +1,6 @@
 import React,{ useState, useEffect } from 'react';
 import FormContainer from './FormContainer';
+import LoginContainer from './LoginContainer';
 import Loader from './Loader';
 import Message from './Message';
 import { Form, Button } from 'react-bootstrap';
@@ -44,12 +45,12 @@ function Login() {
 
     useEffect(() =>{
         setErrorMsg(error)
-        if(error=={REQUEST_FAIL_WITH_STATUS_CODE_404}){  
-            setErrorMsg({REQUEST_FAIL_WITH_STATUS_CODE_404_PL})
-        }else if(error=={REQUEST_FAILED_WITH_STATUS_CODE_500}){  
-            setErrorMsg({REQUEST_FAILED_WITH_STATUS_CODE_500_PL})
-        }else if(error=={WRONG_CREDENTIALS}){  
-            setErrorMsg({WRONG_CREDENTIALS_PL})
+        if(error==REQUEST_FAIL_WITH_STATUS_CODE_404){  
+            setErrorMsg(REQUEST_FAIL_WITH_STATUS_CODE_404_PL)
+        }else if(error==REQUEST_FAILED_WITH_STATUS_CODE_500){  
+            setErrorMsg(REQUEST_FAILED_WITH_STATUS_CODE_500_PL)
+        }else if(error==WRONG_CREDENTIALS){  
+            setErrorMsg(WRONG_CREDENTIALS_PL)
         }else{
             setErrorMsg(error)
         }
@@ -85,7 +86,7 @@ function Login() {
     }
 
     return (
-        <FormContainer className='center-position'>
+        <LoginContainer>
                 <h2>{LOGIN_TITLE}</h2>
                 <h4>{LOGIN_SUBTITLE}</h4>
                 {loading && <Loader/>}
@@ -146,7 +147,7 @@ function Login() {
                         {SUBMIT_BTN}
                     </Button>
                 </Form>
-        </FormContainer>
+        </LoginContainer>
     )
 }
 

@@ -11,8 +11,12 @@ function Header() {
 
     const navigate = useNavigate()
     const dispatch = useDispatch()
+
     const userLogin = useSelector(state => state.userLogin)
     const { userInfo } = userLogin
+
+    const locationList = useSelector(state => state.locationList)
+    const { locations } = locationList
 
     const logoutHandler = () =>{
         dispatch(logout())
@@ -58,7 +62,21 @@ function Header() {
                             <NavDropdown.Item onClick={logoutHandler}>Logout</NavDropdown.Item>
                         </LinkContainer> 
                     </NavDropdown>
-                    
+
+                    <NavDropdown title="Lokalizacje" id="navbarScrollingDropdown" className='syling-navlink'>
+                        {locations.map(location => (
+                            <LinkContainer  
+                                key={location.id} 
+                                to= {`/mainpage/${location.id}/car-list`}
+                            > 
+                                <NavDropdown.Item>{location.short_name}</NavDropdown.Item>
+                            </LinkContainer>
+                        ))}
+                    </NavDropdown>
+
+                    <LinkContainer to="/search/reservation"> 
+                        <Nav.Link className='syling-navlink'>Rezerwacja</Nav.Link>    
+                    </LinkContainer>  
                 </Nav>
             </Navbar.Collapse>
         </Container>

@@ -37,7 +37,8 @@ import {
     carsListRentsReducers,
     carRentDetailsReducers,
     carUpdateRentReducers,
-    carEditRentReducers
+    carEditRentReducers,
+    filterReservationsReducers
 } from './reducer/carsReducer'
 
 
@@ -74,7 +75,8 @@ const reducer = combineReducers({
     carsListRents: carsListRentsReducers,
     carRentDetails: carRentDetailsReducers,
     carUpdateRent: carUpdateRentReducers,
-    carEditRent: carEditRentReducers
+    carEditRent: carEditRentReducers,
+    filterListReservations: filterReservationsReducers
 })
 
 const userInfoFromStorage = localStorage.getItem('userInfo') ?

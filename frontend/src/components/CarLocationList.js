@@ -273,7 +273,8 @@ function CarLocationList() {
         listSwitcherEditReservations,
         filterReservations,
         filterRents,
-        successDelete
+        successDelete,
+        locationId
     ]) 
 
     //UseEffect - releted to Error with database connection

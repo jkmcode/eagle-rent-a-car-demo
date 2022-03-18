@@ -2,8 +2,9 @@
 export const SET_DATE_TIME_RESERVATION = 1000*60*60
 export const SET_DATE_TIME_RESERVATION_MSG = 'Data rezerwacji musi być z godzinnym wyprzedzeniem'
 export const MIN_DURATION = 1000*60*60
-export const MIN_DURATION_MSG = 'Data końca rezerwacji musi być póżniejsza od jej początku. Minimalny czas wynajmu wynosi 1 godzinę.'
+export const MIN_DURATION_MSG = 'Data końca rezerwacji musi być póżniejsza od jej początku.'
 export const MIN_DURATION_RENT_MSG = 'Wybrałeś złą date zwrotu samochodu. Minimalny czas wynajmu wynosi 1 godzinę.'
+export const WRONG_START_DATE_AND_TIME = 'Błędnie wybrana data'
 export const MIN_DURATION_RENT_EDIT_MSG = 'Zwrot samochou musi nastąpić na 1 godzinę przed rezerwacją'
 export const TIME_CLEAR_MSG = 5000
 export const TRANSFER_TIME = 4000*60*60
@@ -85,6 +86,7 @@ export const BTN_RENT = 'Najem'
 export const BTN_RESRVATION = 'Rezerwuj'
 export const BTN_SHOW_MORE = 'Pokaż'
 export const BTN_WRAP_OUT = 'Zwiń'
+export const BTN_NEXT = 'Dalej'
 
 //Options
 export const OPTION_0 = '0'
@@ -654,3 +656,18 @@ export const CAR_RESERVATION_ERROR_HANDLING_EXIST_RANGE_DATE_EX_6_MSG = 'Najem w
 ///Button
 export const CAR_RESERVATION_BUTTON_NAME = "Kalendarz" 
 
+//************SearchReservation************//
+// Title
+export const SEARCH_RESERVATION_TITLE = 'Lista samochodów możliwych do rezerwacji'
+export const SEARCH_RESERVATION_SUBTITLE = 'Wybierz zakres dat rezerwacji'
+export const SEARCH_RESERVATION_FROM_TITLE = 'Data od'
+export const SEARCH_RESERVATION_TIME_FROM = 'Godzina od'
+export const SEARCH_RESERVATION_TO_TITLE = 'Data do'
+export const SEARCH_RESERVATION_TIME_TO = 'Godzina do'
+
+/// Placeholder 
+export const SEARCH_RESERVATION_FROM = 'Data początkowa'
+export const SEARCH_RESERVATION_TO = "Data końcowa"
+
+/// Validations 
+export const SEARCH_RESERVATION_DATE_AND_TIME_REQUIRED = 'Pole wymagane'
