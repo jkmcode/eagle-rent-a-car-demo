@@ -1,11 +1,18 @@
-# Foobar
+# Project Title
 
-Foobar is a Python library for dealing with word pluralization.
+CAR RENTAL
 
-## Installation
+## Demo link:
 
-Use the package manager [pip](https://pip.pypa.io/en/stable/) to install foobar.
+Access my site at https://rent-car-demo.herokuapp.com/
 
-```bash
-pip install foobar
-```
+## Table of Content:
+
+- About The App
+- Screenshots
+- Technologies
+- Setup
+- Approach
+- Status
+- Credits
+- License
