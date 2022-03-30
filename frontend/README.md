@@ -210,3 +210,5 @@ OPIS carRentEdit (mechanika daty i czasu)
    -- gdy posiadamy date i godzine zostaną spełnione dwa warunki: if(getEndTimeHoursAndMinutes) i zagnieżdżony w nim if(endDateTimeCombiner). Drugi warunek zostaje spełniony ponieważ została do niego przypisana wartość daty (let endDateTimeCombiner = endDate).
    -- w następnym etapie godzina zostaje dopisana do endDateTimeCombiner : godziny: endDateTimeCombiner.setHours(getEndTimeHoursAndMinutes.getHours()) i minuty endDateTimeCombiner.setMinutes(getEndTimeHoursAndMinutes.getMinutes())
    -- następny warunek porównuję datę i godzinę wybraną z formularza (czyli endDateTimeCombiner) z bieżącą datą najmu (currentRentDate.getTime() > newRentDate.getTime())
+
+   //https://jsdzem.pl/na-czym-polega-asynchronicznosc-w-react/

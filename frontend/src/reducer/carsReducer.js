@@ -83,11 +83,17 @@ import {
     CAR_RENT_EDIT_FAIL,
     CAR_RENT_EDIT_RESET,
 
+    SEARCH_RESERVATIONS_REQUEST,
+    SEARCH_RESERVATIONS_SUCCESS,
+    SEARCH_RESERVATIONS_FAIL,
+    SEARCH_RESERVATIONS_RESET,
+
     FILTER_RESERVATIONS_REQUEST,
     FILTER_RESERVATIONS_SUCCESS,
     FILTER_RESERVATIONS_FAIL,
     FILTER_RESERVATIONS_RESET
 } from '../constants/CarsConstans'
+
 
 export const filterReservationsReducers = (state = { filter:{} }, action) =>{
     switch(action.type){
@@ -101,6 +107,25 @@ export const filterReservationsReducers = (state = { filter:{} }, action) =>{
             return { loading: false, error: action.payload }
 
         case FILTER_RESERVATIONS_RESET:
+            return { filter:{} }
+
+        default:
+            return state
+    }
+}
+
+export const searchReservationsReducers = (state = { filter:{} }, action) =>{
+    switch(action.type){
+        case SEARCH_RESERVATIONS_REQUEST:
+            return { loading: true}
+
+        case SEARCH_RESERVATIONS_SUCCESS:
+            return { loading: false, filter: action.payload}
+
+        case SEARCH_RESERVATIONS_FAIL:
+            return { loading: false, error: action.payload }
+
+        case SEARCH_RESERVATIONS_RESET:
             return { filter:{} }
 
         default:

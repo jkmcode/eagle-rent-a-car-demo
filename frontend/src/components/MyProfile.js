@@ -1,6 +1,7 @@
 import React,{ useState, useEffect } from 'react'
 import Header from './Header';
 import FormContainer from './FormContainer';
+import BackLogin from './BackToLogin';
 import { Form, Button} from 'react-bootstrap';
 import { useForm } from "react-hook-form";
 import { useDispatch,useSelector } from 'react-redux';
@@ -128,6 +129,7 @@ function MyProfile() {
 
     return (
         <main>
+            <BackLogin />
             <Header />
             <FormContainer>
                 {loading ? (<Loader/>)

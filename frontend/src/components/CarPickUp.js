@@ -8,6 +8,7 @@ import { LinkContainer } from 'react-router-bootstrap';
 import { useForm } from "react-hook-form";
 import Loader from './Loader';
 import Message from './Message';
+import BackLogin from './BackToLogin';
 import { scroller } from "react-scroll";
 
 import { getRentDetailsByCarId, carUpdateRentbyId } from '../action/carsAction';
@@ -211,6 +212,7 @@ function CarPickUp() {
 
   return (
       <main>
+          <BackLogin />
           <Header />
           <FormContainer>
             {pickUpMsgSuccess &&<Message variant='success'>{pickUpMsgSuccess}</Message>}

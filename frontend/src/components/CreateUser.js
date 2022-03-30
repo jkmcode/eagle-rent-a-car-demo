@@ -8,7 +8,8 @@ import { useNavigate } from 'react-router-dom';
 import FormContainer from '../components/FormContainer';
 import Header from './Header';
 import Message from './Message';
-import Loader from './Loader'
+import Loader from './Loader';
+import BackLogin from './BackToLogin';
 import { USER_CREATE_RESET } from '../constants/UserConstants';
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -89,6 +90,7 @@ function CreateUser() {
 
     return (
         <main>
+            <BackLogin />
             <Header />
             <FormContainer>
                {messagePassword && <Message variant='danger'>{messagePassword}</Message>}

@@ -8,6 +8,7 @@ import Loader from './Loader';
 import Message from './Message';
 import { Image, Form, Button , Row, Col } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
+import BackLogin from './BackToLogin';
 
 import { getCarDetails, getRentDetailsByCarId } from '../action/carsAction';
 import { getLocationDetails } from '../action/locationAction';
@@ -340,6 +341,7 @@ function CarRentEdit() {
 
     return (
         <main>
+            <BackLogin />
             <Header />
             <FormContainer>
                 {dateMsgSuccess &&<Message variant='success'>{dateMsgSuccess}</Message>}

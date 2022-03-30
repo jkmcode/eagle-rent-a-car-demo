@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Form, Button , Row, Col, Image} from 'react-bootstrap';
 import { useParams, useNavigate } from 'react-router-dom';
 import { editLocationUploadImage } from '../action/locationAction';
+import BackLogin from './BackToLogin';
 
 function UploadImageLocation() {
 
@@ -24,12 +25,11 @@ function UploadImageLocation() {
         formData.append('locationId', locationId)
 
         dispatch(editLocationUploadImage(formData))
-        //dispatch({type:CARS_DETAILS_RESET})
-        //navigate(`/admin/car/${carId}/edit`)
     }
 
     return (
         <main>
+            <BackLogin />
             <Header />
             <FormContainer>
                 <Row>

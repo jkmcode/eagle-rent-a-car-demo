@@ -9,6 +9,7 @@ import { LinkContainer } from 'react-router-bootstrap';
 import DatePicker, { registerLocale } from "react-datepicker";
 import Message from './Message';
 import Loader from './Loader';
+import BackLogin from './BackToLogin';
 import { scroller } from "react-scroll";
 import '../App.css';
 import { TimePickerComponent } from '@syncfusion/ej2-react-calendars';
@@ -413,6 +414,9 @@ function CarSingleEditReservation() {
                 if(action === 'single-edit'){
                     navigate(`/car/${carId}/${locationId}/edit-reservation`)
                 }
+                if(action === 'filter-edit'){
+                    navigate(`/filter/reservation`)
+                }
             }, TIME_CLEAR_MSG)
         }
   
@@ -431,6 +435,7 @@ function CarSingleEditReservation() {
 
     return(
         <main>
+            <BackLogin />
             <Header />
             <FormContainer>
             {loading && <Loader/>}
@@ -466,6 +471,17 @@ function CarSingleEditReservation() {
                         {action === 'single-edit'
                             ? 
                             <LinkContainer to={`/car/${carId}/${locationId}/edit-reservation`}>  
+                                <Button 
+                                    className='btn-back'
+                                >
+                                    <FontAwesomeIcon icon={faAngleDoubleLeft} /> {CAR_SINGLE_EDIT_RESERVATION_BTN_BACK}
+                                </Button>
+                            </LinkContainer> 
+                            :null                       
+                        }
+                        {action === 'filter-edit'
+                            ? 
+                            <LinkContainer to={`/filter/reservation`}>  
                                 <Button 
                                     className='btn-back'
                                 >

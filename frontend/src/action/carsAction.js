@@ -68,10 +68,13 @@ import {
     CAR_RENT_EDIT_SUCCESS,
     CAR_RENT_EDIT_FAIL,  
     
+    SEARCH_RESERVATIONS_REQUEST,
+    SEARCH_RESERVATIONS_SUCCESS,
+    SEARCH_RESERVATIONS_FAIL,
+
     FILTER_RESERVATIONS_REQUEST,
     FILTER_RESERVATIONS_SUCCESS,
-    FILTER_RESERVATIONS_FAIL,
-
+    FILTER_RESERVATIONS_FAIL
 
 } from '../constants/CarsConstans'
 
@@ -191,7 +194,7 @@ export const getRentDetailsByCarId = (carId) => async (dispatch, getState) => {
 export const filterReservations = (filter) => async (dispatch, getState) => {
     try{
         dispatch({
-            type: FILTER_RESERVATIONS_REQUEST
+            type: SEARCH_RESERVATIONS_REQUEST
         })
 
         const {
@@ -212,13 +215,13 @@ export const filterReservations = (filter) => async (dispatch, getState) => {
         )
 
         dispatch({
-            type: FILTER_RESERVATIONS_SUCCESS,
+            type: SEARCH_RESERVATIONS_SUCCESS,
             payload: data,
         })
 
     }catch(error){
         dispatch({
-            type: FILTER_RESERVATIONS_FAIL,
+            type: SEARCH_RESERVATIONS_FAIL,
             payload: error.response && error.response.data.detail
             ? error.response.data.detail
             : error.message,
@@ -646,6 +649,45 @@ export const listOfCars = () => async (dispatch, getState) => {
         })
     }
 }
+
+
+export const listOfReservations = () => async (dispatch, getState) => {
+    try{
+        dispatch({
+            type: FILTER_RESERVATIONS_REQUEST
+        })
+
+        const {
+            userLogin: { userInfo },
+        } = getState()
+
+        const config = {
+            headers:{
+                'Content-type': 'application/json',
+                Authorization: `Bearer ${userInfo.token}`
+            }
+        }
+
+        const {data} = await axios.get(
+            `/list-of-reservations/cars/`,
+            config
+        )
+
+        dispatch({
+            type: FILTER_RESERVATIONS_SUCCESS,
+            payload: data,
+        })
+
+    }catch(error){
+        dispatch({
+            type: FILTER_RESERVATIONS_FAIL,
+            payload: error.response && error.response.data.detail
+            ? error.response.data.detail
+            : error.message,
+        })
+    }
+}
+
 
 
 export const createCar = (car) => async (dispatch, getState) => {

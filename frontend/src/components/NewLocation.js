@@ -1,6 +1,7 @@
 import React,{ useState, useEffect } from 'react'
 import Header from './Header';
 import FormContainer from './FormContainer';
+import BackLogin from './BackToLogin';
 import { Form, Button, Row, Col  } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 import { useForm } from "react-hook-form";
@@ -192,6 +193,7 @@ function NewLocation() {
 
     return (
         <main>
+            <BackLogin />
             <Header />
             <FormContainer>
                {success &&<Message variant='success'>{successMessage}</Message>}

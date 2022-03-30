@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import Header from './Header';
 import Loader from './Loader';
 import Background from './Background';
+import BackLogin from './BackToLogin'
 
 import {
     MAINPAGE_TITLE
@@ -30,6 +31,7 @@ function MainPage() {
 
     return (
         <main>
+            <BackLogin />
             {loading || userLoginLoading || !userInfo
                 ? (<Loader/>)
                 : 

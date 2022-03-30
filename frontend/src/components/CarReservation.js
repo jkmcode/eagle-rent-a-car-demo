@@ -9,6 +9,7 @@ import { LinkContainer } from 'react-router-bootstrap';
 import DatePicker, { registerLocale } from "react-datepicker";
 import Message from './Message';
 import Loader from './Loader';
+import BackLogin from './BackToLogin';
 import '../App.css';
 import { TimePickerComponent } from '@syncfusion/ej2-react-calendars';
 import { createReservation, getCarDetails } from '../action/carsAction';
@@ -104,6 +105,7 @@ function CarReservation() {
 
     const carId = params.id
     const locationId = params.idLocation
+    const action = params.action
 
     const dispatch = useDispatch()
     const navigate = useNavigate()
@@ -124,6 +126,10 @@ function CarReservation() {
     const locationDetails = useSelector(state => state.locationDetails)
     const {errorDetailsFail, location:locationInfo} = locationDetails
 
+    //Fetch data from Localstorage
+    const fiterRangeofDateFromStorage = localStorage.getItem('filterRangeOfDate') ?
+    JSON.parse(localStorage.getItem('filterRangeOfDate')) : null
+
     // Form variables 
     const [docTypeMessage, setDocTypeMessage] = useState('')
     const [newEvent, setNewEvent] = useState({start:"", end:""})
@@ -139,11 +145,6 @@ function CarReservation() {
     const [startTimeValue,setStartTimeValue] = useState('')
     const [phoneNrMsg, setPhoneNrMsg] = useState('')
     const [location, setLocation] = useState('')
-    const [comeBack, setComeBack] = useState(false)
-    
-
-    const [dispatchRunner, setDispatchRunner] = useState(false)
-    const [flag, setFlag] = useState(false)
 
     const [selectStartTimeMsg, setSelectStartTimeMsg] = useState('')
     const [selectEndTimeMsg, setSelectEndTimeMsg] = useState('')
@@ -167,12 +168,8 @@ function CarReservation() {
     const submitHandler = (data) => {
         scroller.scrollTo('navbar', {smooth: true, offset: -90,duration: 10,})
 
-        console.log('data', data)
-
         let startDateTimeCombiner = newEvent.start
         let endDateTimeCombiner = newEvent.end
-
-        setFlag(true)
 
         if(data.name){
             setClientNameMsg('')
@@ -193,7 +190,6 @@ function CarReservation() {
             }
         }else{
             setSelectStartTimeMsg(CAR_RESERVATION_DATE_AND_TIME_REQUIRED)
-            setFlag(false)
         }
 
         if(getEndTimeHoursAndMinutes){
@@ -203,38 +199,28 @@ function CarReservation() {
             }
         }else {
             setSelectEndTimeMsg(CAR_RESERVATION_DATE_AND_TIME_REQUIRED)
-            setFlag(false)
         }
 
         if(!startDateTimeCombiner){
             setStartDateMsg(CAR_RESERVATION_DATE_AND_TIME_REQUIRED)
-            setFlag(false)
         } else if(startDateTimeCombiner < (new Date().valueOf() + SET_DATE_TIME_RESERVATION)) {
             setStartDateMsg(SET_DATE_TIME_RESERVATION_MSG)
-            setFlag(false)
         }
 
         if(!endDateTimeCombiner){
             setEndDateMsg(CAR_RESERVATION_DATE_AND_TIME_REQUIRED)
-            setFlag(false)
         } else if((endDateTimeCombiner - MIN_DURATION) < startDateTimeCombiner) {
             setWrongBackDateMsg(MIN_DURATION_MSG)
-            setFlag(false)
         }
 
         if(data.documentType === OPTION_0){
             setDocTypeMessage(CAR_RESERVATION_SELECT_FROM_THE_LIST)
-            setFlag(false)
         }
 
         if(data.phone){
             setPhoneNrMsg('')
         }else{
             setPhoneNrMsg(CAR_RESERVATION_PHONE_NO_REQUIRED)
-        }
-
-        if(flag){
-            setDispatchRunner(true)
         }
 
         if(data.location === CAR_RESERVATION_OPTION_0){
@@ -331,19 +317,48 @@ function CarReservation() {
         
       if(!errorDetailsFail){
         if(!locationInfo.name || locationInfo.id !== Number(locationId)){
-            dispatch(getLocationDetails(locationId))
+            if(locationId){
+                dispatch(getLocationDetails(locationId))
+            }
         }
       }
     }, [carId, carCarDetails, locationId, locationInfo]) 
     
-    
+
+    //Set Date and Time -- default or based on localStorage 
+    useEffect(() => {
+        if(!getStartTimeHoursAndMinutes){
+            setStartTimeValue(new Date(TIME_DEFAULT_VALUE_START))
+            setStartTimeGetHoursAndMinutes(new Date(TIME_DEFAULT_VALUE_START))
+        }
+
+        if(!getEndTimeHoursAndMinutes){
+            setEndTimeValue(new Date(TIME_DEFAULT_VALUE_END))
+            setEndTimeGetHoursAndMinutes(new Date(TIME_DEFAULT_VALUE_END))
+        }
+
+        if(fiterRangeofDateFromStorage && action){
+            setNewEvent({ ...newEvent, 
+                start: new Date(fiterRangeofDateFromStorage.date_from),
+                end: new Date(fiterRangeofDateFromStorage.date_to)
+            })   
+            setStartTimeValue(new Date(fiterRangeofDateFromStorage.time_from))    
+            setEndTimeValue(new Date(fiterRangeofDateFromStorage.time_to))     
+        }
+
+    }, [])     
+
     //UseEffect - Error handling and success, set default time 
     useEffect(() => {
         if(car===CAR_RESERVATION_ERROR_HANDLING_SUCCESS){
             dispatch({type:CAR_RESERVATION_RESET})
             setDateMsgSuccess(CAR_RESERVATION_CREATE_MSG)
             const timeout = setTimeout(() =>{
-                navigate(`/car/${carId}/show/id-location/${locationId}`)
+                if (action){
+                    navigate(`/mainpage`)
+                }else{
+                    navigate(`/car/${carId}/show/id-location/${locationId}`)
+                }
             }, TIME_CLEAR_MSG)
             
         } 
@@ -366,17 +381,7 @@ function CarReservation() {
         if(car===CAR_RESERVATION_ERROR_HANDLING_EXIST_RANGE_DATE_EX_6){
             setDateMsg(CAR_RESERVATION_ERROR_HANDLING_EXIST_RANGE_DATE_EX_6_MSG)
         } 
-
-        if(!getEndTimeHoursAndMinutes){
-            setEndTimeValue(new Date(TIME_DEFAULT_VALUE_END))
-            setEndTimeGetHoursAndMinutes(endTimeValue)
-        }
-
-        if(!getStartTimeHoursAndMinutes){
-            setStartTimeValue(TIME_DEFAULT_VALUE_START)
-            setStartTimeGetHoursAndMinutes(startTimeValue)
-        }
-    }, [car, loading, endTimeValue, startTimeValue])
+    }, [car, loading])
 
     //UseEffect - Error handling with connection to database
     useEffect(() => {
@@ -404,6 +409,7 @@ function CarReservation() {
 
     return(
         <main>
+            <BackLogin />
             <Header />
             <FormContainer>
                 {loading && <Loader/>}
@@ -421,14 +427,27 @@ function CarReservation() {
                         </div>
                     </Col>
                     <Col className='btn-position'>
-                        <LinkContainer to={`/car/${carId}/show/id-location/${locationId}`}>  
-                            <Button 
-                                variant='warning' 
-                                className='btn-back'
-                            >
-                                <FontAwesomeIcon icon={faAngleDoubleLeft} /> {BTN_BACK}
-                            </Button>
-                        </LinkContainer>
+                        {!action
+                         ?
+                            <LinkContainer to={`/car/${carId}/show/id-location/${locationId}`}>  
+                                <Button 
+                                    variant='warning' 
+                                    className='btn-back'
+                                >
+                                    <FontAwesomeIcon icon={faAngleDoubleLeft} /> {BTN_BACK}
+                                </Button>
+                            </LinkContainer>                        
+                         :
+                            <LinkContainer to={`/car/${carId}/show/search-reservation`}>  
+                                <Button 
+                                    variant='warning' 
+                                    className='btn-back'
+                                >
+                                    <FontAwesomeIcon icon={faAngleDoubleLeft} /> {BTN_BACK}
+                                </Button>
+                            </LinkContainer>   
+                        }
+
                     </Col>
                 </Row>
                 <h4>Informacje o kliencie</h4>
@@ -554,6 +573,7 @@ function CarReservation() {
                                     style={{ marginRight: "10px" }} 
                                     className='date-picker-style form-reservation'
                                     selected={newEvent.start}
+                                    disabled = {action ? true : false}
                                     onChange={SubmitStartDate}
                                     name = 'dateFrom'
                                     locale={language}
@@ -563,16 +583,37 @@ function CarReservation() {
 
                             <Col md={2} xs={4}>
                                 <Form.Label className="mt-3">{CAR_RESERVATION_TIME_TITLE}</Form.Label>
-                                <TimePickerComponent
-                                    id="timepicker" 
-                                    placeholder="" 
-                                    format = "HH:mm"
-                                    value={TIME_DEFAULT_VALUE_START}
-                                    min = {TIME_MIN_VALUE}
-                                    max = {TIME_MAX_VALUE}
-                                    step={TIME_STEP}
-                                    onChange = {SubmitStartTime}
-                                />
+                                {!action 
+                                    ?
+                                    <TimePickerComponent
+                                        id="timepicker" 
+                                        placeholder="" 
+                                        format = "HH:mm"
+                                        value={startTimeValue}
+                                        min = {TIME_MIN_VALUE}
+                                        max = {TIME_MAX_VALUE}
+                                        step={TIME_STEP}
+                                        onChange = {SubmitStartTime}
+                                    />
+                                    : 
+                                    <Form.Control
+                                        type="text"
+                                        className='form-reservation'
+                                        value = {startTimeValue 
+                                            ? 
+                                            startTimeValue.getHours() > 9 && startTimeValue.getMinutes() > 9
+                                                ? `${startTimeValue.getHours()} : ${startTimeValue.getMinutes()}`
+                                                    :startTimeValue.getHours() > 9 && startTimeValue.getMinutes() < 10
+                                                        ? `${startTimeValue.getHours()} : 0${startTimeValue.getMinutes()}`
+                                                    :startTimeValue.getHours() < 10 && startTimeValue.getMinutes() < 10
+                                                        ? `0${startTimeValue.getHours()} : 0${startTimeValue.getMinutes()}`
+                                                        : `0${startTimeValue.getHours()} : ${startTimeValue.getMinutes()}`
+                                            : null
+                                        }
+                                        disabled
+                                    ></Form.Control>
+                                }
+
                                 {selectStartTimeMsg ? <p className='docTypeMessage-style'>{selectStartTimeMsg}</p> : null}
                             </Col>
 
@@ -585,6 +626,7 @@ function CarReservation() {
                                     autoComplete='off'
                                     placeholderText={CAR_RESERVATION_DATE_TO}
                                     selected={newEvent.end}
+                                    disabled = {action ? true : false}
                                     style={{ marginRight: "10px" }} 
                                     className='date-picker-style form-reservation'
                                     onChange={SubmitEndDate}
@@ -597,16 +639,37 @@ function CarReservation() {
 
                             <Col md={2} xs={4}>
                                 <Form.Label className="mt-3">{CAR_RESERVATION_TIME_TITLE}</Form.Label>
-                                <TimePickerComponent
-                                    id="timepicker" 
-                                    placeholder="" 
-                                    format = "HH:mm"
-                                    value={TIME_DEFAULT_VALUE_END}
-                                    min = {TIME_MIN_VALUE}
-                                    max = {TIME_MAX_VALUE}
-                                    step={TIME_STEP}
-                                    onChange = {SubmitEndTime}
-                                />
+                                {!action
+                                    ?
+                                    <TimePickerComponent
+                                        id="timepicker" 
+                                        placeholder="" 
+                                        format = "HH:mm"
+                                        value={endTimeValue}
+                                        min = {TIME_MIN_VALUE}
+                                        max = {TIME_MAX_VALUE}
+                                        step={TIME_STEP}
+                                        onChange = {SubmitEndTime}
+                                    />   
+                                    :                             
+                                    <Form.Control
+                                        type="text"
+                                        className='form-reservation'
+                                        value = {endTimeValue 
+                                            ? 
+                                            endTimeValue.getHours() > 9 && endTimeValue.getMinutes() > 9
+                                                ? `${endTimeValue.getHours()} : ${endTimeValue.getMinutes()}`
+                                                    :endTimeValue.getHours() > 9 && endTimeValue.getMinutes() < 10
+                                                        ? `${endTimeValue.getHours()} : 0${endTimeValue.getMinutes()}`
+                                                    :endTimeValue.getHours() < 10 && endTimeValue.getMinutes() < 10
+                                                        ? `0${endTimeValue.getHours()} : 0${endTimeValue.getMinutes()}`
+                                                        : `0${endTimeValue.getHours()} : ${endTimeValue.getMinutes()}`
+                                            : null
+                                        }
+                                        disabled
+                                    ></Form.Control>                                
+                                }
+
                                 {selectEndTimeMsg ? <p className='docTypeMessage-style'>{selectEndTimeMsg}</p> : null}
                             </Col>
                             {wrongBackDateMsg ? <p className='docTypeMessage-style'>{wrongBackDateMsg}</p> : null}
@@ -616,7 +679,8 @@ function CarReservation() {
                     <hr />
                     <Form.Group controlId='localisation'>
                         <Row>
-                            <h5>{CAR_RESERVATION_LOCATISATION_SUBTITLE} {locationInfo.short_name}</h5>
+                            <h5>{CAR_RESERVATION_LOCATISATION_SUBTITLE} {locationInfo.short_name}</h5>                                
+                            
                             <Col md={8} xs={8}>
                                 <Form.Label className="mt-3">{CAR_RESERVATION_LOCATION_TITLE}</Form.Label>
                                 <Form.Select

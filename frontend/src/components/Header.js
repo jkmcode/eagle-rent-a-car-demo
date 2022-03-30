@@ -22,7 +22,6 @@ function Header() {
         dispatch(logout())
         dispatch(resetLocations())
     }
-    //href="/mainpage"
 
     return (
         <Navbar expand="lg" className='bg-navbar' id='navbar'>
@@ -39,13 +38,45 @@ function Header() {
             <Navbar.Collapse id="navbarScroll">
                 <Nav
                     className="mt-1 nav-link-position"
-                    style={{ maxHeight: '150px'}}
+                    style={{ maxHeight: '300px'}}
                     navbarScroll
                 >
-                    <LinkContainer to="/mainpage"> 
-                        <Nav.Link className='syling-navlink'>Home</Nav.Link>    
-                    </LinkContainer>   
+                    {locations
+                        ?
+                            <NavDropdown 
+                                title="Lokalizacje" 
+                                id="navbarScrollingDropdown" 
+                                className='syling-navlink'
+                            >
+                                {locations.map(location => (
+                                    <LinkContainer  
+                                        key={location.id} 
+                                        to= {`/mainpage/${location.id}/car-list`}
+                                    > 
+                                        <NavDropdown.Item>{location.short_name}</NavDropdown.Item>
+                                    </LinkContainer>
+                                ))}
+                            </NavDropdown>
+                        : null
+                    }
 
+                    <NavDropdown title="Rezerwacja" id="navbarScrollingDropdown" className='syling-navlink'>
+                        <LinkContainer to="/search/reservation"> 
+                            <NavDropdown.Item>Nowa</NavDropdown.Item> 
+                        </LinkContainer>
+
+                        <LinkContainer to="/filter/reservation"> 
+                            <NavDropdown.Item>Wyszukaj</NavDropdown.Item>  
+                        </LinkContainer>
+                    </NavDropdown>  
+                </Nav>
+            </Navbar.Collapse>
+
+            <Navbar.Collapse className="justify-content-end">
+                <Nav
+                    style={{ maxHeight: '200px'}}
+                    navbarScroll
+                >
                     <NavDropdown title="User" id="navbarScrollingDropdown" className='syling-navlink'>
                         <LinkContainer to="/myprofile"> 
                             <NavDropdown.Item>Mój profil</NavDropdown.Item>
@@ -59,24 +90,9 @@ function Header() {
 
                         <NavDropdown.Divider />
                         <LinkContainer to="/"> 
-                            <NavDropdown.Item onClick={logoutHandler}>Logout</NavDropdown.Item>
+                            <NavDropdown.Item onClick={logoutHandler}>Wyloguj się</NavDropdown.Item>
                         </LinkContainer> 
                     </NavDropdown>
-
-                    <NavDropdown title="Lokalizacje" id="navbarScrollingDropdown" className='syling-navlink'>
-                        {locations.map(location => (
-                            <LinkContainer  
-                                key={location.id} 
-                                to= {`/mainpage/${location.id}/car-list`}
-                            > 
-                                <NavDropdown.Item>{location.short_name}</NavDropdown.Item>
-                            </LinkContainer>
-                        ))}
-                    </NavDropdown>
-
-                    <LinkContainer to="/search/reservation"> 
-                        <Nav.Link className='syling-navlink'>Rezerwacja</Nav.Link>    
-                    </LinkContainer>  
                 </Nav>
             </Navbar.Collapse>
         </Container>

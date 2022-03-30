@@ -2,6 +2,7 @@ import React from 'react';
 import Header from './Header';
 import { Row, Col, Container } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
+import BackLogin from './BackToLogin'
 
 import {
     ADMIN_USERS_TITLE,
@@ -12,6 +13,7 @@ import {
 function Admin() {
     return (
         <main>
+            <BackLogin />
             <Header />
             <Container container-fluid="true" className='mt-3'>
                 <Row xs={1} md={1} lg={3} className='position-center'>

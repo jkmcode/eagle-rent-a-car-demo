@@ -6,6 +6,7 @@ import Header from './Header';
 import Loader from './Loader';
 import Message from './Message';
 import FormContainer from './FormContainer';
+import BackLogin from './BackToLogin'
 import { LinkContainer } from 'react-router-bootstrap';
 import { listOfCarOfReservations, getCarDetails, deleteReservation } from '../action/carsAction'
 
@@ -42,6 +43,7 @@ function CarEditReservation() {
     const locationId = params.idLocation
     const dispatch = useDispatch()
 
+    //Fetch data from Redux
     const carDetails = useSelector(state => state.carDetails)
     const {car} = carDetails
 
@@ -84,6 +86,7 @@ function CarEditReservation() {
 
   return (
       <main>
+          <BackLogin />
           <Header />
           <FormContainer>
             {loading 

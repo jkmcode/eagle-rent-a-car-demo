@@ -9,6 +9,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { updateUser, getUserDetails } from '../action/userAction';
 import { useParams, useNavigate } from 'react-router-dom';
 import { USER_UPDATE_RESET } from '../constants/UserConstants';
+import BackLogin from './BackToLogin';
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { 
@@ -117,6 +118,7 @@ function UserEdit() {
 
     return (
         <main>
+            <BackLogin />
             <Header />
             <FormContainer>
                     {messagePassword && <Message variant='danger'>{messagePassword}</Message>}

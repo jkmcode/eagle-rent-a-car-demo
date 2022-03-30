@@ -1,13 +1,14 @@
 //************************************GLOBAL************************************//
 export const SET_DATE_TIME_RESERVATION = 1000*60*60
-export const SET_DATE_TIME_RESERVATION_MSG = 'Data rezerwacji musi być z godzinnym wyprzedzeniem'
 export const MIN_DURATION = 1000*60*60
+export const TRANSFER_TIME = 4000*60*60
+export const MAX_TIME_LOGOUT = 1000*60*60*24*20 
+export const SET_DATE_TIME_RESERVATION_MSG = 'Data rezerwacji musi być z godzinnym wyprzedzeniem'
 export const MIN_DURATION_MSG = 'Data końca rezerwacji musi być póżniejsza od jej początku.'
 export const MIN_DURATION_RENT_MSG = 'Wybrałeś złą date zwrotu samochodu. Minimalny czas wynajmu wynosi 1 godzinę.'
 export const WRONG_START_DATE_AND_TIME = 'Błędnie wybrana data'
 export const MIN_DURATION_RENT_EDIT_MSG = 'Zwrot samochou musi nastąpić na 1 godzinę przed rezerwacją'
 export const TIME_CLEAR_MSG = 5000
-export const TRANSFER_TIME = 4000*60*60
 export const OPTION_CCY = ['EUR', 'USD', 'PLN', 'GBP']
 export const OPTION_DOC = ['Paszport', 'Dowód osobisty', 'Prawo jazdy','Karta pobytu', 'Inny']
 
@@ -30,6 +31,7 @@ export const PICK_UP_ICON = "fas fa-arrow-circle-left"
 
 //Delete message
 export const DELETE_MESSAGE = 'Czy jesteś pewny, że chcesz skasować użytkownika?'
+export const DELETE_RESERVATION_MSG = 'Czy jesteś pewny, że chcesz skasować rezerwacje?'
 
 //Errors and Success
 export const REQUEST_FAIL_WITH_STATUS_CODE_404 = 'Request failed with status code 404'
@@ -87,6 +89,7 @@ export const BTN_RESRVATION = 'Rezerwuj'
 export const BTN_SHOW_MORE = 'Pokaż'
 export const BTN_WRAP_OUT = 'Zwiń'
 export const BTN_NEXT = 'Dalej'
+export const BTN_SEARCH = 'Wyszukaj'
 
 //Options
 export const OPTION_0 = '0'
@@ -400,7 +403,7 @@ export const CAR_SINGLE_EDIT_RESERVATION_OPTION_DRIVING_LICENSE = 'Prawo jazdy'
 export const CAR_SINGLE_EDIT_RESERVATION_OPTION_OTHER = 'Inne'
 
 /// Button
-export const CAR_SINGLE_EDIT_RESERVATION_BUTTON_NAME = 'Zapisz zmiany'
+export const CAR_SINGLE_EDIT_RESERVATION_BUTTON_NAME = 'Edycja'
 export const CAR_SINGLE_EDIT_RESERVATION_BTN_BACK = 'Powrót'
 export const CAR_SINGLE_EDIT_RESERVATION_BTN_BACK_TO_MENU = 'Powórt do menu'
 
@@ -671,3 +674,17 @@ export const SEARCH_RESERVATION_TO = "Data końcowa"
 
 /// Validations 
 export const SEARCH_RESERVATION_DATE_AND_TIME_REQUIRED = 'Pole wymagane'
+
+
+//************FilterReservation************//
+//Title
+export const FILTER_RESERVATION_TITLE = 'Wyszukaj rezerwacje'
+export const FILTER_RESERVATION_SUBTITLE = 'Lista rezerwacji'
+export const FILTER_RESERVATION_DATE_FROM = 'Data od: '
+export const FILTER_RESERVATION_DATE_TO = 'Data do: '
+export const FILTER_RESERVATION_MORE_INFO_CLIENT = 'Informacje o kliencie:'
+export const FILTER_RESERVATION_MORE_INFO_TEL = 'Tel: '
+export const FILTER_RESERVATION_MORE_LOCATION = 'Odbiór w: '
+
+/// Placeholder 
+export const FILTER_RESERVATION_SEARCH_PLACEHOLDER = 'Wyszukaj'

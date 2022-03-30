@@ -7,15 +7,15 @@ from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from rest_framework_simplejwt.views import TokenObtainPairView
 from django.contrib.auth.hashers import make_password
 from rest_framework import status
-# from .serializers import UserSerializer, UserSeralizerWithToken, LocationsSerializer, CarsSerializer, CarsSerializerWithMainLocation, CarsReservationSerializer
 from .serializers import *
 from django.contrib.auth.models import User
 from .models import *
+from django.db.models import Q
 from datetime import datetime
 from datetime import timedelta
 from django.utils import timezone
 import pytz
-from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+
 
 
 class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
@@ -208,8 +208,6 @@ def newLocationUploadImage(request):
     data = request.data
     supp_unique = data['suppUniqueVar']
 
-    print('supp_unique', supp_unique)
-
     locationWithImage = Locations.objects.get(supp_unique_var=supp_unique)
     locationWithImage.image = request.FILES.get('image')  
     locationWithImage.save()
@@ -394,8 +392,6 @@ def getCarListFilterReservation(request, pk):
     today_plus = timezone.now() + timedelta(hours=12)
     carRes = Cars_Reservation.objects.filter(
         location=pk,
-        #date_from__lt = today,
-        #date_from__gt = timezone.now(),
         date_from__lt = today_plus,
         date_from__gt = today_minus,
         is_active = True
@@ -663,12 +659,71 @@ def updateReservation(request, pk):
 @permission_classes([IsAuthenticated])
 def filterReservations(request):  
     data = request.data
-    obj_cars = Cars.objects.filter(is_active=True)
+    start_date = convertDate(data['date_from'])
+    end_date = convertDate(data['date_to'])
 
+    extension = timedelta(milliseconds=data['transfer_time'])
 
-    serializer = CarsSerializer(obj_cars, many=True)
+    cars_with_available_terms_list = []
+    cars_not_available_list = []
+    cars_rent_list = []
+    unique_list = []
+    unique_list2 = []
+    car_without_reservations = []
+    final_list = []
+
+    obj_cars = Cars.objects.filter(is_active = True)
+    obj_res = Cars_Reservation.objects.filter(is_active = True)
+    obj_rents = Cars_Rents.objects.filter(is_active = True)
+    
+    for car in obj_cars:
+        for res in obj_res:
+            if car.id == res.id_cars.id:
+                if ((res.date_from - extension) > start_date and (res.date_from - extension) > end_date) or ((res.date_to + extension) < start_date and (res.date_to + extension) < end_date):
+                    cars_with_available_terms_list.append(car)
+                else:
+                    cars_not_available_list.append(car)
+
+    for car in obj_cars:
+        for rent in obj_rents:
+            if car.id == rent.id_cars.id:
+                if ((rent.date_to + extension) > start_date):
+                    cars_rent_list.append(car)
+
+    for i in cars_with_available_terms_list:
+        if i not in unique_list:
+            unique_list.append(i)
+
+    for i in cars_not_available_list:
+        if i not in unique_list2:
+            unique_list2.append(i)
+    
+    combine_unique_lists = unique_list + unique_list2
+
+    for i in obj_cars:
+        if i not in combine_unique_lists:
+            car_without_reservations.append(i)
+
+    unique_available_cars_list = unique_list + car_without_reservations
+
+    for i in unique_available_cars_list:
+        if i not in cars_rent_list:
+            final_list.append(i)
+
+    serializer = CarsSerializer(final_list, many=True)
+
     return Response(serializer.data)
 
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def getReservationList(request):
+    carReservationList = Cars_Reservation.objects.filter(
+        is_active = True
+    ).order_by('date_from')
+
+    carSerializerReservations = CarsReservationSerializer(carReservationList, many=True)
+
+    return Response(carSerializerReservations.data)
 
 
 #CAR RENT

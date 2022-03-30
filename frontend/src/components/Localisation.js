@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import Loader from './Loader';
 import Message from './Message';
+import BackLogin from './BackToLogin';
 import { listLocation, getLocationDetails } from '../action/locationAction';
 import { LinkContainer } from 'react-router-bootstrap';
 
@@ -61,6 +62,7 @@ function Localisation() {
 
     return (
         <main>
+            <BackLogin />
             <Header />
             <FormContainer>
                 {loading 

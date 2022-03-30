@@ -9,6 +9,7 @@ import { Button } from 'react-bootstrap';
 import Loader from './Loader';
 import Message from './Message';
 import FormContainer from './FormContainer';
+import BackLogin from './BackToLogin';
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { 
@@ -65,6 +66,7 @@ function UsersList() {
 
     return (
         <main>
+            <BackLogin />
             <Header />
             <FormContainer>
                 {loading

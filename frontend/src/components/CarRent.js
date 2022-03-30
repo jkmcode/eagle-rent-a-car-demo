@@ -7,6 +7,7 @@ import { useDispatch,useSelector } from 'react-redux';
 import { useParams, useNavigate } from 'react-router-dom';
 import Loader from './Loader';
 import Message from './Message';
+import BackLogin from './BackToLogin';
 import { TimePickerComponent } from '@syncfusion/ej2-react-calendars';
 import { LinkContainer } from 'react-router-bootstrap';
 import { scroller } from "react-scroll";
@@ -467,6 +468,7 @@ function CarRent() {
 
   return (
       <main>
+          <BackLogin />
           <Header />
           <FormContainer>
             {dateMsgSuccess &&<Message variant='success'>{dateMsgSuccess}</Message>}

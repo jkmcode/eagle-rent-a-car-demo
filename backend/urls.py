@@ -52,6 +52,7 @@ urlpatterns = [
     path('mainpage/<str:pk>/car-list/fiter-reservations/', views.getCarListFilterReservation, name='get-carlist-by-location-fiter-reservations'),
     path('mainpage/<str:pk>/car-list/fiter-rents/', views.getCarListFilterRents, name='get-carlist-by-location-fiter-rents'),
     path('mainpage/<str:pk>/car-list/fiter-all/', views.getCarListByLocationToDo, name='get-carlist-by-location-fiter-all'),
+    path('list-of-reservations/cars/', views.getReservationList, name='get-reservation-list-fiter-all'),
     
     #carReservation 
     path('api/filter/reservation/', views.filterReservations, name='filter-reservations'),

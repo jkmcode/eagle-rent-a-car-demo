@@ -29,15 +29,16 @@ import {
     WRONG_CREDENTIALS,
     WRONG_CREDENTIALS_PL,
     REQUEST_FAIL_WITH_STATUS_CODE_404,
-    REQUEST_FAIL_WITH_STATUS_CODE_404_PL
+    REQUEST_FAIL_WITH_STATUS_CODE_404_PL,
+
+    MAX_TIME_LOGOUT
 
 } from '../constants/EnvConstans'
 
 function Login() {
     const navigate = useNavigate()
     const dispatch = useDispatch()
-
-
+    
     const [errorMsg, setErrorMsg] = useState('')
     
     const userLogin = useSelector(state => state.userLogin)
@@ -58,13 +59,12 @@ function Login() {
     }, [error])   
     
     const today = (new Date().valueOf())
-
     const converDate = Date.parse(userDateLogin)
 
     useEffect(() =>{
         if(userInfo){
-            if((converDate + 1000*60*1 ) < today){
-                console.log('userDateLogin2', userDateLogin.valueOf())
+            if((converDate + MAX_TIME_LOGOUT ) < today){
+                navigate('/')
             }else{
                 dispatch(listLocation()) 
                 navigate('/mainpage')

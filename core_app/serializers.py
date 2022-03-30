@@ -85,7 +85,7 @@ class CarsSerializerWithMainLocation(serializers.ModelSerializer):
 
     class Meta:
         model = Cars
-        fields = ['id','name', 'short_name', 'code_registration', 'image', 'is_active', 'to_the_location', 'main_location']
+        fields = ['id','name', 'short_name', 'code_registration','location', 'image', 'is_active', 'to_the_location', 'main_location']
 
 
 class CarsReservationSerializer(serializers.ModelSerializer):
@@ -276,3 +276,4 @@ class CarsRentsSerializer(serializers.ModelSerializer):
         else:
             return 'Najem'
         
+

@@ -78,6 +78,14 @@ code {
   width: 120px;
 }
 
+.position-user {
+  background-color: #198754;
+}
+
+.test-position {
+  text-align: right !important;
+}
+
 /* ListOfCars */
 
 .styling-card {
@@ -240,6 +248,14 @@ code {
   top: 50%;
   -ms-transform: translateY(-50%);
   transform: translateY(-50%);
+}
+
+.position-right-corner {
+  text-align: right;
+}
+
+.font-weight-bold {
+  font-weight: bold;
 }
 
 .code_registration-position {

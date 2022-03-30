@@ -8,7 +8,7 @@ import { getCarDetails } from '../action/carsAction';
 import { LinkContainer } from 'react-router-bootstrap';
 import { listOfCarOfReservations, listOfCarOfRents } from '../action/carsAction'
 import { scroller } from "react-scroll";
-
+import BackLogin from './BackToLogin';
 import format from "date-fns/format";
 import { pl } from "date-fns/locale";
 import getDay from "date-fns/getDay";
@@ -65,6 +65,7 @@ function CarShow() {
 
     const events = []
 
+
     if(reservations){
         reservations.map(res => (
             events.push({
@@ -102,6 +103,7 @@ function CarShow() {
 
     return (
         <main>
+            <BackLogin />
             <Header />
             <FormContainer>
                 <Row>
@@ -145,20 +147,39 @@ function CarShow() {
                     :null
                     }                        
 
-                    {locationId && action == 'id-location' 
+                    {(locationId && action == 'id-location') ||  action == 'search-reservation'
                         ?
                             <Col className="btn-position">
-                                <LinkContainer to={`/mainpage/${locationId}/car-list`}> 
-                                    <Button className='btn-car-show-reservation m-1'>
-                                        <FontAwesomeIcon icon={faAngleDoubleLeft} /> {BTN_BACK}
-                                    </Button>
-                                </LinkContainer> 
+                                {locationId
+                                    ?
+                                        <div>
+                                            <LinkContainer to={`/mainpage/${locationId}/car-list`}> 
+                                                <Button className='btn-car-show-reservation m-1'>
+                                                    <FontAwesomeIcon icon={faAngleDoubleLeft} /> {BTN_BACK}
+                                                </Button>
+                                            </LinkContainer> 
 
-                                <LinkContainer to={`/car/${carId}/reservation/id-location/${locationId}`}> 
-                                    <Button className='btn-car-show-reservation'>
-                                        <i className="fas fa-plus"></i> {BTN_ADD_RESRVATION}
-                                    </Button>
-                                </LinkContainer>  
+                                            <LinkContainer to={`/car/${carId}/reservation/id-location/${locationId}`}> 
+                                                <Button className='btn-car-show-reservation'>
+                                                    <i className="fas fa-plus"></i> {BTN_ADD_RESRVATION}
+                                                </Button>
+                                            </LinkContainer> 
+                                        </div>
+                                    :
+                                        <div>
+                                            <LinkContainer to={`/search/reservation/search-reservation`}> 
+                                                <Button className='btn-car-show-reservation m-1'>
+                                                    <FontAwesomeIcon icon={faAngleDoubleLeft} /> {BTN_BACK}
+                                                </Button>
+                                            </LinkContainer> 
+
+                                            <LinkContainer to={`/car/${carId}/reservation/id-location/${car.location}/storage`}> 
+                                                <Button className='btn-car-show-reservation'>
+                                                    <i className="fas fa-plus"></i> {BTN_ADD_RESRVATION}
+                                                </Button>
+                                            </LinkContainer> 
+                                        </div>                                    
+                                } 
                             </Col>  
                         :null
                     }

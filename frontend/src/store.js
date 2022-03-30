@@ -38,6 +38,7 @@ import {
     carRentDetailsReducers,
     carUpdateRentReducers,
     carEditRentReducers,
+    searchReservationsReducers,
     filterReservationsReducers
 } from './reducer/carsReducer'
 
@@ -76,17 +77,19 @@ const reducer = combineReducers({
     carRentDetails: carRentDetailsReducers,
     carUpdateRent: carUpdateRentReducers,
     carEditRent: carEditRentReducers,
-    filterListReservations: filterReservationsReducers
+    searchReservations: searchReservationsReducers,
+    filterReservations: filterReservationsReducers
 })
 
 const userInfoFromStorage = localStorage.getItem('userInfo') ?
      JSON.parse(localStorage.getItem('userInfo')) : null
 
+const dateLoginFromStorage = localStorage.getItem('dateLogin') ?
+     JSON.parse(localStorage.getItem('dateLogin')) : null
+
 const listLocationFromStorage = localStorage.getItem('listLocation') ?
      JSON.parse(localStorage.getItem('listLocation')) : null
 
-const dateLoginFromStorage = localStorage.getItem('dateLogin') ?
-     JSON.parse(localStorage.getItem('dateLogin')) : null
 
 const initialState = {
     userLogin: {

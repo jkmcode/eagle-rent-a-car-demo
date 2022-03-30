@@ -7,6 +7,7 @@ import { Form, Button, Row, Col, Image } from 'react-bootstrap';
 import { CARS_DETAILS_RESET } from '../constants/CarsConstans';
 import { editCarUploadImage } from '../action/carsAction';
 import { LinkContainer } from 'react-router-bootstrap';
+import BackLogin from './BackToLogin';
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -45,6 +46,7 @@ function UploadImage() {
 
     return (
         <main>
+            <BackLogin />
             <Header />
             <FormContainer>
                 <Row>

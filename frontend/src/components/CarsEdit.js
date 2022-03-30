@@ -3,6 +3,7 @@ import Header from './Header';
 import FormContainer from './FormContainer';
 import Loader from './Loader';
 import Message from './Message';
+import BackLogin from './BackToLogin';
 import { Form, Button , Row, Col, Image} from 'react-bootstrap';
 import { useForm } from "react-hook-form";
 import { useParams, useNavigate } from 'react-router-dom';
@@ -178,6 +179,7 @@ function CarsEdit() {
 
     return (
         <main>
+            <BackLogin />
             <Header />
             <FormContainer>
                 {loading
@@ -215,9 +217,17 @@ function CarsEdit() {
                                                 </div>   
                                             )
                                             : 
-                                            <LinkContainer to={`/upload-image/${carId}/`}>
-                                                <Button>{BTN_ADD_PICTURE}</Button>
-                                            </LinkContainer>   
+                                            <div>
+                                                <LinkContainer to={`/admin/cars`}>
+                                                    <Button className='btn-back'>
+                                                        <FontAwesomeIcon icon={faAngleDoubleLeft} /> {BTN_BACK}
+                                                    </Button>
+                                                </LinkContainer>
+
+                                                <LinkContainer to={`/upload-image/${carId}/`}>
+                                                    <Button className='m-1'>{BTN_ADD_PICTURE}</Button>
+                                                </LinkContainer>
+                                            </div>   
                                         }
                                     </Col>
                                 </Row>

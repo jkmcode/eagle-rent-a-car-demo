@@ -5,15 +5,17 @@ import { Card, ListGroup, Form, Button , Row, Col, Image  } from 'react-bootstra
 import { LinkContainer } from 'react-router-bootstrap';
 import { useDispatch,useSelector } from 'react-redux';
 import DatePicker, { registerLocale } from "react-datepicker";
-import { useForm } from "react-hook-form";
 import "react-datepicker/dist/react-datepicker.css";
 import { pl } from "date-fns/locale";
+import { useForm } from "react-hook-form";
+import { useParams } from 'react-router-dom';
 import { scroller } from "react-scroll";
 import { TimePickerComponent } from '@syncfusion/ej2-react-calendars';
 import { filterReservations } from '../action/carsAction';
-import { FILTER_RESERVATIONS_RESET } from '../constants/CarsConstans'
+import { SEARCH_RESERVATIONS_RESET } from '../constants/CarsConstans'
 import Loader from './Loader';
 import Message from './Message';
+import BackLogin from './BackToLogin';
 
 import {
     SEARCH_RESERVATION_TITLE,
@@ -35,22 +37,29 @@ import {
     WRONG_START_DATE_AND_TIME,
 
     BTN_NEXT,
-    BTN_SHOW,
-    BTN_EDIT,
+    BTN_RESRVATION,
+
+    TRANSFER_TIME,
 
     SEARCH_RESERVATION_DATE_AND_TIME_REQUIRED,
+
+    REQUEST_FAILED_WITH_STATUS_CODE_500,
+    REQUEST_FAILED_WITH_STATUS_CODE_500_PL,
+    REQUEST_FAILED_REST_OF_STATUS_CODE
+
 } from '../constants/EnvConstans'
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { 
-        faEdit,
-        faAngleDoubleLeft,
-        faEye
+        faAddressBook
 } from "@fortawesome/free-solid-svg-icons"
 
 function SearchReservation() {
 
     const dispatch = useDispatch()
+    const params = useParams()
+
+    const action = params.action
 
     registerLocale("pl", pl);
     const [language, setLanguage] = useState("pl")
@@ -64,8 +73,15 @@ function SearchReservation() {
     } = useForm()
 
     //Fetch data from Redux
-    const filterListReservations = useSelector(state => state.filterListReservations)
-    const { loading, error, filter } = filterListReservations    
+    const searchReservations = useSelector(state => state.searchReservations)
+    const { loading, error, filter } = searchReservations  
+
+    const locationList = useSelector(state => state.locationList)
+    const { locations } = locationList
+
+    //Fetch data from Localstorage
+    const fiterRangeofDateFromStorage = localStorage.getItem('filterRangeOfDate') ?
+    JSON.parse(localStorage.getItem('filterRangeOfDate')) : null
 
     //Date and Time variables
     const [newEvent, setNewEvent] = useState({start:"", end:""})
@@ -80,6 +96,9 @@ function SearchReservation() {
     const [getEndTimeHoursAndMinutes, setEndTimeGetHoursAndMinutes] = useState('')
     const [endTimeValue,setEndTimeValue] = useState('')
 
+    //Error handling variables
+    const [msgError, setMsgError] = useState('')
+
     //DateTime function
 
     const SubmitStartDate = (start) => {
@@ -91,9 +110,10 @@ function SearchReservation() {
     const SubmitStartTime = (time) => {
         let getTime = time.nativeEvent.text
         setStartTimeGetHoursAndMinutes(getTime)
+        setStartTimeValue(new Date(`01/02/2021 ${getTime.getHours()}:${getTime.getMinutes()}`))
         setSelectStartTimeMsg('')
         setWrongStartDateMsg('')
-    }
+    } 
 
     const SubmitEndDate = (end) => {
         setNewEvent({ ...newEvent, end })
@@ -104,11 +124,13 @@ function SearchReservation() {
     const SubmitEndTime = (time) => {
         let getTime = time.nativeEvent.text
         setEndTimeGetHoursAndMinutes(getTime)
+        setEndTimeValue(new Date(`01/02/2021 ${getTime.getHours()}:${getTime.getMinutes()}`))
+
         setSelectEndTimeMsg('')
         setWrongEndDateMsg('')
     }
 
-    const submitHandler = (data) => {
+    const submitHandler = () => {
         scroller.scrollTo('navbar', {smooth: true, offset: -90,duration: 10,})
         let startDateTimeCombiner = newEvent.start
         let endDateTimeCombiner = newEvent.end
@@ -119,7 +141,7 @@ function SearchReservation() {
 
         if(!endDateTimeCombiner){
             setEndDateMsg(SEARCH_RESERVATION_DATE_AND_TIME_REQUIRED)
-        }        
+        }      
 
         if(getStartTimeHoursAndMinutes){
             if(startDateTimeCombiner){
@@ -169,41 +191,76 @@ function SearchReservation() {
             const endHours = endDateTimeCombiner.getHours()
             const endMinutes = endDateTimeCombiner.getMinutes()
 
-             dispatch(filterReservations({
+            const filter = {
                 date_from: `${startYear}-${startMonth}-${startDay} ${startHours}:${startMinutes}`,
                 date_to: `${endYear}-${endMonth}-${endDay} ${endHours}:${endMinutes}`,
-            }))
+                time_from: `01/02/2021 ${startHours}:${startMinutes}`,
+                time_to: `01/02/2021 ${endHours}:${endMinutes}`, 
+                transfer_time: TRANSFER_TIME,             
+            }
+
+            localStorage.setItem('filterRangeOfDate', JSON.stringify(filter))
+
+            dispatch(filterReservations(filter))
 
         }
         
-    }
+    } 
 
-
-    //Set default Start Time 
+    //Set Date and Time -- default or based on localStorage 
     useEffect(() => {
         if(!getStartTimeHoursAndMinutes){
             setStartTimeValue(new Date(TIME_DEFAULT_VALUE_START))
-            setStartTimeGetHoursAndMinutes(startTimeValue)
+            setStartTimeGetHoursAndMinutes(new Date(TIME_DEFAULT_VALUE_START))
         }
+
         if(!getEndTimeHoursAndMinutes){
             setEndTimeValue(new Date(TIME_DEFAULT_VALUE_END))
-            setEndTimeGetHoursAndMinutes(endTimeValue)
+            setEndTimeGetHoursAndMinutes(new Date(TIME_DEFAULT_VALUE_END))
         }
-    }, [startTimeValue, endTimeValue]) 
 
-    //Clear filter list from redux 
+        if(fiterRangeofDateFromStorage && action){
+            setNewEvent({ ...newEvent, 
+                start: new Date(fiterRangeofDateFromStorage.date_from),
+                end: new Date(fiterRangeofDateFromStorage.date_to)
+            })   
+            setStartTimeValue(new Date(fiterRangeofDateFromStorage.time_from))    
+            setEndTimeValue(new Date(fiterRangeofDateFromStorage.time_to))     
+        }
+
+    }, []) 
+
+    //Error handling related to database connection
     useEffect(() => {
-        dispatch({type:FILTER_RESERVATIONS_RESET})
-    }, [])     
+        if(error){
+            if(error===REQUEST_FAILED_WITH_STATUS_CODE_500){
+                setMsgError(REQUEST_FAILED_WITH_STATUS_CODE_500_PL)
+            }else{
+                setMsgError(REQUEST_FAILED_REST_OF_STATUS_CODE)
+            } 
+        }
+        
+    }, [error]) 
 
+    //Clear filter and localStorage list from redux 
+    useEffect(() => {
+        if (!action){
+            dispatch({type:SEARCH_RESERVATIONS_RESET})
+            localStorage.removeItem('filterRangeOfDate')
+        } 
+    }, [])     
 
     return (
         <main>
+            <BackLogin />
             <Header />
+            <FormContainer>
             {loading
                 ? (<Loader />)
-                :
-                    <FormContainer>
+                :   error
+                    ? (<Message variant='danger'>{msgError}</Message>)
+                    :
+                    <div>
                         <h3>{SEARCH_RESERVATION_TITLE}</h3>
                         <h4>{SEARCH_RESERVATION_SUBTITLE}</h4>
                         <Form onSubmit={handleSubmit(submitHandler)}>
@@ -287,56 +344,56 @@ function SearchReservation() {
                                 ?
                                 <div>
                                     {filter.map(car => (
-                                        <Card key={car.id} className='mb-3'>
-                                            <ListGroup variant="flush">
-                                                <ListGroup.Item className='card-car-admin-bg'>
-                                                    <Row >
-                                                        <Col>
-                                                            <div>
-                                                                <h4>{car.short_name}</h4>
-                                                            </div>
+                                        car.id 
+                                        ?
+                                            <Card key={car.id} className='mb-3'>
+                                                <ListGroup variant="flush">
+                                                    <ListGroup.Item className='card-car-admin-bg'>
+                                                        <Row >
+                                                            <Col>
+                                                                <div>
+                                                                    <h4>{car.short_name}</h4>
+                                                                </div>
 
-                                                            <div>
-                                                                <h5 className='car-registration-style'>{car.name}</h5>
-                                                            </div>
+                                                                <div>
+                                                                    <h5 className='car-registration-style'>{car.code_registration}</h5>
+                                                                </div>
 
-                                                            <div>
-                                                                <h5 className='car-registration-style'>{car.code_registration}</h5>
-                                                            </div>
+                                                                {locations.map(loc => (
+                                                                    loc.id == car.location
+                                                                        ? 
+                                                                        <h5 key={loc.id} className='car-registration-style'>Lokalizacja: {loc.name}</h5>
+                                                                        : null
+                                                                ))}
 
-                                                            <div>
-                                                                <Image src = {car.image} className='car-admin-img-sizing'/>
-                                                            </div>
-                                                        </Col>
+                                                                <div>
+                                                                    <Image src = {car.image} className='car-admin-img-sizing'/>
+                                                                </div>
+                                                            </Col>
 
-                                                        <Col className='carslist-position'>
-                                                            <div>
-                                                                <LinkContainer to={`/car/${car.id}/show/`}>
-                                                                    <Button variant='info' className='btn-md'>
-                                                                        <FontAwesomeIcon icon={faEye} /> {BTN_SHOW}
-                                                                    </Button>
-                                                                </LinkContainer>
-                                                            </div>
-                                                            <div>
-                                                                <LinkContainer to={`/admin/car/${car.id}/edit`}>
-                                                                    <Button variant='warning' className='btn-md mt-1'>
-                                                                        <FontAwesomeIcon icon={faEdit} /> {BTN_EDIT}
-                                                                    </Button>
-                                                                </LinkContainer>
-                                                            </div>
-                                                        </Col>
-                                                    </Row>                                            
-                                                </ListGroup.Item>
-                                            </ListGroup>
-                                        </Card>
+                                                            <Col className='carslist-position'>
+                                                                <div>
+                                                                    <LinkContainer to={`/car/${car.id}/show/search-reservation/`}>
+                                                                        <Button variant='warning' className='btn-md'>
+                                                                            <FontAwesomeIcon icon={faAddressBook} /> {BTN_RESRVATION}
+                                                                        </Button>
+                                                                    </LinkContainer>
+                                                                </div>
+                                                            </Col>
+                                                        </Row>                                            
+                                                    </ListGroup.Item>
+                                                </ListGroup>
+                                            </Card>
+                                        : null
                                     ))}
                                 </div>
                                 : null
                             }
                         </div>
-                    </FormContainer>
+                    </div>
+                    
             }
-
+        </FormContainer>
         </main>
     )
 }
