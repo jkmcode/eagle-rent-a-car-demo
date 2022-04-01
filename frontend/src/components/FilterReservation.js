@@ -11,6 +11,7 @@ import BackLogin from './BackToLogin';
 import { useForm } from "react-hook-form";
 
 import { listOfReservations, deleteReservation } from '../action/carsAction';
+import { FILTER_RESERVATIONS_RESET } from '../constants/CarsConstans';
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { 
@@ -47,8 +48,8 @@ function FilterReservation() {
 
     const dispatch = useDispatch()
 
-    const [filteredByString, setFilteredByString] = useState([]);
     const [filteredResults, setFilteredResults] = useState([]);
+    const [carName, setCarName] = useState('');
     const [searchInput, setSearchInput] = useState('');
 
     const {
@@ -80,6 +81,7 @@ function FilterReservation() {
     //delete function
     const deleteHandler = (id) =>{
         if(window.confirm(DELETE_RESERVATION_MSG)){
+            dispatch({type:FILTER_RESERVATIONS_RESET}) 
             dispatch(deleteReservation({
               'id':id,
               'creator':userInfo.id,
@@ -89,40 +91,28 @@ function FilterReservation() {
     }
 
     const submitHandler = (data) => {
-      //console.log('działa submitHandler', data.searchValue)
       setSearchInput(data.searchValue)
 
-      if (data.searchValue == false) {
+      if (data.searchValue == "") {
         setFilteredResults(filterRes)
       } else {
-        console.log('Input has a value')
-
         const filteredData = filterRes.filter((item) => {
-          return Object.values(item).join('').toLowerCase().includes(searchInput.toLowerCase())
+          return Object.values(item).join('').toLowerCase().includes(data.searchValue.toLowerCase())
         })
 
-        setFilteredResults(filteredData)
+        const filteredData2 = filterRes.filter((item) => {
+          return Object.values(item.id_cars).join('').toLowerCase().includes(data.searchValue.toLowerCase())
+        })
 
-        console.log('filteredData', filteredData)
+        const filteredDataSum = filteredData.concat(filteredData2.filter((item) => filteredData.indexOf(item) < 0))
+
+        setFilteredResults(filteredDataSum)
       }
-      
-      //console.log('filteredResults', filteredResults)
-
-        // for (let index=0; index < filter.length; index++){
-        //   if(filter[index].client_name.includes(data.searchValue)){
-            //console.log('warunek jest okey')
-            //setFilteredByString([...filteredByString, filter[index]])
-            //filteredByString.push(filter[index])
-        //   }
-        //   setFilteredResults(filteredByString)
-        // }
-
-      //console.log('filteredByString w submitHandler', filteredByString)
     }
 
-    // useEffect(() => {
-    //   console.log('render dla filteredByString', filteredByString)
-    // }, [filteredByString])    
+    useEffect(() => {
+      console.log('render dla filteredResults', filteredResults)
+    }, [filteredResults, iterator, moreInfo])    
 
     //function related to show info
     const moreInfoHandler = (index) => {
@@ -140,8 +130,10 @@ function FilterReservation() {
 
     //Fetch data from DB 
     useEffect(() => {
-      console.log('render')
-      dispatch(listOfReservations()) 
+      if (!filterRes[0]){
+        console.log('wchodze do funkcji')
+        dispatch(listOfReservations()) 
+      }
     }, [successDelete])
 
     //Error handling related to database connection
@@ -155,23 +147,6 @@ function FilterReservation() {
         }
         
     }, [error]) 
-
-    // if(filter){
-    //   for (let index=0; index < filter.length; index++){
-    //     if(filter[index].client_name.includes('Jan')){
-    //       filteredByString.push(filter[index])
-    //     }
-    //     filteredByString.push(filter[index])
-    //   }
-    // }
-
-    // setFilterByString(filter)
-    //console.log('filteredByString',filteredByString)
-
-    //testing
-    //console.log('filter',filter)
-    //console.log('filter.length', filter.length)
-    // console.log('filteredByString', filteredByString)
 
     return (
         <main>
@@ -200,7 +175,7 @@ function FilterReservation() {
                   </Form>
                   <hr />
                   <h4>{FILTER_RESERVATION_SUBTITLE}</h4>
-                  {searchInput.length > 1
+                  {filteredResults.length > 0
                     ? 
                       filteredResults.map((res, index) => (
                         <Card key={res.id} className='mb-3'>
@@ -378,7 +353,7 @@ function FilterReservation() {
                             </ListGroup>
                           </Card>
                         ))
-                      :<h6>Brak wyników</h6>           
+                      : null          
                   }
 
                 </div>

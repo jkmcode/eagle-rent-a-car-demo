@@ -64,6 +64,20 @@ Beside this Admin can:
 - create and edit location,
 - create, edit and delete user.
 
+## Business logic
+
+After logging in, the user is redirected to choose the location where he will perform activities related to renting, booking and picking up the car.
+
+When the user selects the location where he wants to work, he will be in the employee panel, containing 5 sections:
+
+- Rent (all cars available for rent today appear),
+- In Use (rental cars to be picked up at this Location),
+- To do list (activities that the user will have to perform today, eg picking up the car, confirming the reservation by the client, contacting the client if the car is not delivered on time or editing reservations and rentals). It should be noted that activities not performed in the previous days will be included in this section, e.g. delayed rental.
+- New reservation (list of all cars assigned to the Location),
+- Edycja rezerwacji (lista rezerwacji przypisanych do Lokalizacji).
+
+The user can change the location by clicking on the logo (then he will be redirected to the location selection) or select the location via the navigation bar.
+
 ## Technologies
 
 - HTML 5
