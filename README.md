@@ -78,6 +78,8 @@ When the user selects the location where he wants to work, he will be in the emp
 
 The user can change the location by clicking on the logo (then he will be redirected to the location selection) or select the location via the navigation bar.
 
+https://miro.com/app/board/uXjVOF-piFg=/?moveToWidget=3458764521803910917&cot=14
+
 ## Technologies
 
 - HTML 5

@@ -175,9 +175,9 @@ class CarsReservationSerializer(serializers.ModelSerializer):
 
     def get_type(self, obj):
         if obj.date_from < timezone.now():
-            return 'Rezerwacja opóźniona'
+            return 'Reservation delayed'
         else:
-            return 'Rezerwacja'
+            return 'Reservation'
 
 class CarsRentsSerializer(serializers.ModelSerializer):
     start_year = serializers.SerializerMethodField(read_only=True)
@@ -272,8 +272,8 @@ class CarsRentsSerializer(serializers.ModelSerializer):
 
     def get_type(self, obj):
         if obj.date_to < timezone.now():
-            return 'Najem opóźniony'
+            return 'Delayed rental'
         else:
-            return 'Najem'
+            return 'Rental'
         
 

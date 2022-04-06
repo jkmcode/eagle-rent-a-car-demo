@@ -1,11 +1,7 @@
-import React from 'react'
+import React from "react";
 
-function Background({children}) {
-    return (
-        <div className='parent-bg'>
-            {children}
-        </div>
-    )
+function Background({ children }) {
+  return <div className="parent-bg">{children}</div>;
 }
 
-export default Background
+export default Background;

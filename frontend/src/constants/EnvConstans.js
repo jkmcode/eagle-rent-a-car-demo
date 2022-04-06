@@ -1,690 +1,773 @@
 //************************************GLOBAL************************************//
-export const SET_DATE_TIME_RESERVATION = 1000*60*60
-export const MIN_DURATION = 1000*60*60
-export const TRANSFER_TIME = 4000*60*60
-export const MAX_TIME_LOGOUT = 1000*60*60*24*20 
-export const SET_DATE_TIME_RESERVATION_MSG = 'Data rezerwacji musi być z godzinnym wyprzedzeniem'
-export const MIN_DURATION_MSG = 'Data końca rezerwacji musi być póżniejsza od jej początku.'
-export const MIN_DURATION_RENT_MSG = 'Wybrałeś złą date zwrotu samochodu. Minimalny czas wynajmu wynosi 1 godzinę.'
-export const WRONG_START_DATE_AND_TIME = 'Błędnie wybrana data'
-export const MIN_DURATION_RENT_EDIT_MSG = 'Zwrot samochou musi nastąpić na 1 godzinę przed rezerwacją'
-export const TIME_CLEAR_MSG = 5000
-export const OPTION_CCY = ['EUR', 'USD', 'PLN', 'GBP']
-export const OPTION_DOC = ['Paszport', 'Dowód osobisty', 'Prawo jazdy','Karta pobytu', 'Inny']
-
+export const SET_DATE_TIME_RESERVATION = 1000 * 60 * 60;
+export const MIN_DURATION = 1000 * 60 * 60;
+export const TRANSFER_TIME = 4000 * 60 * 60;
+export const MAX_TIME_LOGOUT = 1000 * 60 * 60 * 24 * 20;
+export const SET_DATE_TIME_RESERVATION_MSG =
+  "The reservation date must be one hour in advance";
+export const MIN_DURATION_MSG =
+  "The reservation end date must be later than the start date.";
+export const MIN_DURATION_RENT_MSG =
+  "You have chosen the wrong date of returning the car. The minimum rental period is 1 hour.";
+export const WRONG_START_DATE_AND_TIME = "Date selected incorrectly";
+export const MIN_DURATION_RENT_EDIT_MSG =
+  "The car must be returned 1 hour before booking";
+export const TIME_CLEAR_MSG = 5000;
+export const OPTION_CCY = ["EUR", "USD", "PLN", "GBP"];
+export const OPTION_DOC = [
+  "Passport",
+  "Identity card",
+  "Driving license",
+  "esidence card",
+  "Other",
+];
 
 //TimePicker
-export const TIME_STEP = 15
-export const TIME_MIN_VALUE = new Date("01/02/2021 06:00 AM")
-export const TIME_MAX_VALUE = new Date("01/02/2021 08:00 PM")
-export const TIME_DEFAULT_VALUE_START = new Date("01/02/2021 01:00 PM")
-export const TIME_DEFAULT_VALUE_END = new Date("01/02/2021 10:00 AM")
-
+export const TIME_STEP = 15;
+export const TIME_MIN_VALUE = new Date("01/02/2021 06:00 AM");
+export const TIME_MAX_VALUE = new Date("01/02/2021 08:00 PM");
+export const TIME_DEFAULT_VALUE_START = new Date("01/02/2021 01:00 PM");
+export const TIME_DEFAULT_VALUE_END = new Date("01/02/2021 10:00 AM");
 
 //Icons
-export const RESERVATION_ICON = "fas fa-book-reader"
-export const RENT_ICON = "fas fa-car"
-export const BACK_TO_MENU = 'fas fa-backward'
-export const EDIT = "fas fa-pen"
-export const DELETE = "fas fa-trash"
-export const PICK_UP_ICON = "fas fa-arrow-circle-left"
+export const RESERVATION_ICON = "fas fa-book-reader";
+export const RENT_ICON = "fas fa-car";
+export const BACK_TO_MENU = "fas fa-backward";
+export const EDIT = "fas fa-pen";
+export const DELETE = "fas fa-trash";
+export const PICK_UP_ICON = "fas fa-arrow-circle-left";
 
 //Delete message
-export const DELETE_MESSAGE = 'Czy jesteś pewny, że chcesz skasować użytkownika?'
-export const DELETE_RESERVATION_MSG = 'Czy jesteś pewny, że chcesz skasować rezerwacje?'
+export const DELETE_MESSAGE = "Are you sure you want to delete the user?";
+export const DELETE_RESERVATION_MSG =
+  "Are you sure you want to delete reservations?";
 
 //Errors and Success
-export const REQUEST_FAIL_WITH_STATUS_CODE_404 = 'Request failed with status code 404'
-export const REQUEST_FAIL_WITH_STATUS_CODE_404_PL = 'Brak połaczenia z serwerem'
-export const REQUEST_FAILED_WITH_STATUS_CODE_500 = 'Request failed with status code 500'
-export const REQUEST_FAILED_REST_OF_STATUS_CODE = 'Błąd sieciowy. Sprawdź połaczenie z internetem i uruchom aplikacje jeszcze raz.'
-export const REQUEST_FAILED_WITH_STATUS_CODE_500_PL = 'Błąd serwera lub brak dostępu do internetu. Sprawdź połaczenie z internetem i uruchom aplikacje jeszcze raz.'
-export const WRONG_CREDENTIALS = 'No active account found with the given credentials'
-export const WRONG_CREDENTIALS_PL = 'Niepoprawna nazwa użytkownika lub hasło'
-export const REGISTRATION_NO_ALREADY_EXIST = 'Podany kod rejestracyjny już istnieje'
-export const NAME_ALREADY_EXIST = 'Podana nazwa już istnieje'
-export const ERROR_UPLOAD_PICTURE = 'Błąd sieciowy. Zdjęcie nie zostało dodane.'
-export const ENTERED_PASSWORD_ARE_NOT_THE_SAME = 'Podane hasła nie są takie same'
+export const REQUEST_FAIL_WITH_STATUS_CODE_404 =
+  "Request failed with status code 404";
+export const REQUEST_FAIL_WITH_STATUS_CODE_404_PL =
+  "No connection to the server";
+export const REQUEST_FAILED_WITH_STATUS_CODE_500 =
+  "Request failed with status code 500";
+export const REQUEST_FAILED_REST_OF_STATUS_CODE =
+  "Network error. Check your internet connection and run the application again.";
+export const REQUEST_FAILED_WITH_STATUS_CODE_500_PL =
+  "Server error or no internet access. Check your internet connection and run the application again.";
+export const WRONG_CREDENTIALS =
+  "No active account found with the given credentials";
+export const WRONG_CREDENTIALS_PL = "Invalid username or password";
+export const REGISTRATION_NO_ALREADY_EXIST =
+  "Podany kod rejestracyjny już istnieje";
+export const NAME_ALREADY_EXIST = "Podana nazwa już istnieje";
+export const ERROR_UPLOAD_PICTURE =
+  "Network error. The photo has not been added.";
+export const ENTERED_PASSWORD_ARE_NOT_THE_SAME =
+  "The given password  or username do not match";
 
-export const SUCCESS_MESSAGE_EDIT_RESERVATION = 'Rezerwacja została zmieniona pomyślnie'
-export const SUCCESS_LOCATION_ADD = 'Lokalizacja została dodana do listy'
-export const SUCCESS_CAR_ADD = 'Samochód został dodany do listy'
-export const SUCCESS_CAR_EDIT = 'Dane samochodu zostały zminione poprawnie'
-export const SUCCESS = 'Success'
-export const SUCCESS_PICK_UP = 'Samochód został odebrany od klienta'
-export const SUCCESS_EDIT_RESERVATION = 'Operacja zakończona sukcesem'
+export const SUCCESS_MESSAGE_EDIT_RESERVATION =
+  "The reservation was changed successfully";
+export const SUCCESS_LOCATION_ADD = "The location has been added to the list";
+export const SUCCESS_CAR_ADD = "The car has been added to the list";
+export const SUCCESS_CAR_EDIT = "The car data has been changed correctly";
+export const SUCCESS = "Success";
+export const SUCCESS_PICK_UP = "The car was picked up from the customer";
+export const SUCCESS_EDIT_RESERVATION = "The operation was successful";
 
-export const ERROR_HANDLING_EXIST_RANGE_DATE_EX_1 = 'zakres dat istnieje dla dataStart'
-export const ERROR_HANDLING_EXIST_RANGE_DATE_EX_2 = 'zakres dat istnieje dla dataEnd'
-export const ERROR_HANDLING_EXIST_RANGE_DATE_EX_3 = 'zawarty zakres dat'
-export const ERROR_HANDLING_EXIST_RANGE_DATE_EX_4 = 'zakres dat najmu istnieje dla dataStart'
-export const ERROR_HANDLING_EXIST_RANGE_DATE_EX_5 = 'zakres dat najmu istnieje dla dataEnd'
-export const ERROR_HANDLING_EXIST_RANGE_DATE_EX_6 = 'zawarty zakres dat dla najmu'
+export const ERROR_HANDLING_EXIST_RANGE_DATE_EX_1 =
+  "zakres dat istnieje dla dataStart";
+export const ERROR_HANDLING_EXIST_RANGE_DATE_EX_2 =
+  "zakres dat istnieje dla dataEnd";
+export const ERROR_HANDLING_EXIST_RANGE_DATE_EX_3 = "zawarty zakres dat";
+export const ERROR_HANDLING_EXIST_RANGE_DATE_EX_4 =
+  "zakres dat najmu istnieje dla dataStart";
+export const ERROR_HANDLING_EXIST_RANGE_DATE_EX_5 =
+  "zakres dat najmu istnieje dla dataEnd";
+export const ERROR_HANDLING_EXIST_RANGE_DATE_EX_6 =
+  "zawarty zakres dat dla najmu";
 
-export const ERROR_HANDLING_EXIST_RANGE_DATE_EX_1_MSG = 'Rezerwacja w tych przedziałach czasu już istnieje dla daty początkowej.'
-export const ERROR_HANDLING_EXIST_RANGE_DATE_EX_2_MSG = 'Rezerwacja w tych przedziałach czasu już istnieje dla daty końcowej.'
-export const ERROR_HANDLING_EXIST_RANGE_DATE_EX_3_MSG = 'Rezerwacja w tych przedziałach czasu już istnieje.'
-export const ERROR_HANDLING_EXIST_RANGE_DATE_EX_4_MSG = 'Najem w tych przedziałach czasu już istnieje dla daty początkowej.'
-export const ERROR_HANDLING_EXIST_RANGE_DATE_EX_5_MSG = 'Najem w tych przedziałach czasu już istnieje dla daty końcowej.'
-export const ERROR_HANDLING_EXIST_RANGE_DATE_EX_6_MSG = 'Najem w tych przedziałach czasu już istnieje.'
+export const ERROR_HANDLING_EXIST_RANGE_DATE_EX_1_MSG =
+  "Reservations in these period of time already exist for the start date.";
+export const ERROR_HANDLING_EXIST_RANGE_DATE_EX_2_MSG =
+  "Reservations in these period of time already exist for the end date.";
+export const ERROR_HANDLING_EXIST_RANGE_DATE_EX_3_MSG =
+  "Reservations in these period of time already exist.";
+export const ERROR_HANDLING_EXIST_RANGE_DATE_EX_4_MSG =
+  "Rentals in these time periods already exist for the start date.";
+export const ERROR_HANDLING_EXIST_RANGE_DATE_EX_5_MSG =
+  "Rentals in these time periods already exist for the end date.";
+export const ERROR_HANDLING_EXIST_RANGE_DATE_EX_6_MSG =
+  "Rentals in these time periods already exist.";
 
-
-//Button 
-export const BTN_BACK = 'Powrót'
-export const BTN_NEW_USER = 'Nowy użytkownik'
-export const BTN_NEW_CAR = 'Nowy samochód'
-export const BTN_NEW_LOCALISATION = 'Nowa lokalizacja'
-export const BTN_EDIT = 'Edycja'
-export const BTN_DELETE = 'Kasuj'
-export const SUBMIT_BTN = 'Zaloguj się'
-export const BTN_CHANGE = 'Zmień'
-export const BTN_SAVE = 'Zapisz'
-export const BTN_CALENDAR = 'Kalendarz'
-export const BTN_SHOW = 'Pokaż'
-export const BTN_ADD_PICTURE = 'Dodaj zdjęcie'
-export const BTN_ADD_RESRVATION =  'Dodaj rezerwacje'
-export const BTN_PICK_UP = 'Obierz'
-export const BTN_RENT = 'Najem'
-export const BTN_RESRVATION = 'Rezerwuj'
-export const BTN_SHOW_MORE = 'Pokaż'
-export const BTN_WRAP_OUT = 'Zwiń'
-export const BTN_NEXT = 'Dalej'
-export const BTN_SEARCH = 'Wyszukaj'
+//Button
+export const BTN_BACK = "Return";
+export const BTN_NEW_USER = "New user";
+export const BTN_NEW_CAR = "New car";
+export const BTN_NEW_LOCALISATION = "New location";
+export const BTN_EDIT = "Edition";
+export const BTN_DELETE = "Delete";
+export const SUBMIT_BTN = "Sign In";
+export const BTN_CHANGE = "Change";
+export const BTN_SAVE = "Save";
+export const BTN_CALENDAR = "Calendar";
+export const BTN_SHOW = "Show";
+export const BTN_ADD_PICTURE = "Add picture";
+export const BTN_ADD_RESRVATION = "Add reservation";
+export const BTN_PICK_UP = "Pick up";
+export const BTN_RENT = "Rent";
+export const BTN_RESRVATION = "Book";
+export const BTN_SHOW_MORE = "Show";
+export const BTN_WRAP_OUT = "Show less";
+export const BTN_NEXT = "Next";
+export const BTN_SEARCH = "Search";
 
 //Options
-export const OPTION_0 = '0'
+export const OPTION_0 = "0";
 
 //Conditions
-export const CONDITION_RENT = 'Najem'
-export const CONDITION_DELAY_RENT = 'Najem opóźniony'
-export const CONDITION_RESERVATION = 'Rezerwacja'
-export const CONDITION_DELAY_RESERVATION = 'Rezerwacja opóźniona'
-
+export const CONDITION_RENT = "Rental";
+export const CONDITION_DELAY_RENT = "Delayed rental";
+export const CONDITION_RESERVATION = "Reservation";
+export const CONDITION_DELAY_RESERVATION = "Reservation delayed";
 
 //************************************COMPONENTS************************************//
 
+//************Header************//
+export const HEADER_LOCATIONS = "Locations";
+export const HEADER_RESERVATIONS = "Reservations";
+export const HEADER_RESERVATIONS_NEW = "New";
+export const HEADER_RESERVATIONS_SEARCH = "Search";
+export const HEADER_USER = "User";
+export const HEADER_USER_MY_PROFILE = "My profile";
+export const HEADER_USER_MY_ADMIN = "Admin";
+export const HEADER_USER_MY_LOGOUT = "Logout";
 
 //************Login************//
 //Title
-export const LOGIN_TITLE = 'Wypożyczalnia samochodów'
-export const LOGIN_SUBTITLE = 'Logowanie do systemu'
-export const LOGIN_USER_NAME_TITLE = 'Nazwa użytkownika'
-export const LOGIN_PASSWORD = 'Hasło'
-
+export const LOGIN_TITLE = "Car Rental";
+export const LOGIN_SUBTITLE = "Login";
+export const LOGIN_USER_NAME_TITLE = "User Name";
+export const LOGIN_PASSWORD = "Password";
 
 //Placeholder
-export const LOGIN_USER_NAME_PLACEHOLDER = 'Nazwa użytkownika'
-export const LOGIN_PASSWORD_PLACEHOLDER = 'Hasło'
+export const LOGIN_USER_NAME_PLACEHOLDER = "User Name";
+export const LOGIN_PASSWORD_PLACEHOLDER = "Password";
 
 //Validators
-export const LOGIN_USER_NAME_REQUIRED = 'Pole wymagane'
-export const LOGIN_USER_NAME_MIN_LENGTH = 'Nazwa uzytkownika musi składać się z przynajmniej 2 liter'
-export const LOGIN_USER_NAME_PATTERN = 'Można używać tylko liter'
-export const LOGIN_PASSWORD_REQUIRED = 'Pole wymagane'
-export const LOGIN_PASSWORD_MIN_LENGTH = 'Hasło musi mieć przynajmniej 8 znaków'
-
+export const LOGIN_USER_NAME_REQUIRED = "Field required";
+export const LOGIN_USER_NAME_MIN_LENGTH =
+  "Username must be at least 2 letters long";
+export const LOGIN_USER_NAME_PATTERN = "Only letters can be used";
+export const LOGIN_PASSWORD_REQUIRED = "field required";
+export const LOGIN_PASSWORD_MIN_LENGTH =
+  "Password must be at least 8 characters long";
 
 //************MainPage************//
-export const MAINPAGE_TITLE = 'Wybierz lokalizacje'
+export const MAINPAGE_TITLE = "Locations";
+
+//************MyProfile************//
+//Title
+export const MY_PROFILE_TITLE = "Password change";
+export const MY_PROFILE_USERNAME_TITLE = "Username";
+export const MY_PROFILE_EMAIL_TITLE = "Email";
+export const MY_PROFILE_PASSWORD_TITLE = "Password";
+export const MY_PROFILE_CONFIRM_PASSWORD_TITLE = "Confirm password";
+
+//Placeholder
+export const MY_PROFILE_USERNAME_PLACEHOLDER = "Type username";
+export const MY_PROFILE_EMAIL_PLACEHOLDER = "Type email address";
+export const MY_PROFILE_PASSWORD_PLACEHOLDER = "Password";
+export const MY_PROFILE_CONFIRM_PASSWORD_PLACEHOLDER = "Confirm your password";
+
+//Validators
+export const MY_PROFILE_USERNAME_REQUIRED = "Required";
+export const MY_PROFILE_USERNAME_MIN_LENGTH =
+  "Username must be at least 2 letters long";
+export const MY_PROFILE_USERNAME_PATTERN = "Only letters can be used";
+export const MY_PROFILE_EMAIL_PATTERN = "Invalid email format";
+export const MY_PROFILE_PASSWORD_REQUIRED = "Required";
+export const MY_PROFILE_PASSWORD_MIN_LENGTH =
+  "Password must be at least 8 characters long";
+export const MY_PROFILE_CONFIRM_PASSWORD_REQUIRED = "Required";
+export const MY_PROFILE_CONFIRM_PASSWORD_MIN_LENGTH =
+  "Password must be at least 8 characters long";
+
+//Error and Succes message
+export const MY_PROFILE_SUCCESS_MSG = "Password has been changed";
+export const MY_PROFILE_PASSWORD_ARE_NOT_THE_SAME =
+  "The passwords provided do not match";
 
 //************Admin************//
-export const ADMIN_USERS_TITLE = 'Użytkownicy'
-export const ADMIN_LOCATIONS_TITLE = 'Lokalizacje'
-export const ADMIN_CARS_TITLE = 'Samochody'
+export const ADMIN_USERS_TITLE = "Users";
+export const ADMIN_LOCATIONS_TITLE = "Locations";
+export const ADMIN_CARS_TITLE = "Cars";
 
 //************UsersList************//
-export const USERS_LIST_TITLE = 'Lista użytkowników'
+export const USERS_LIST_TITLE = "User list";
 
 //************CreateUser************//
 //Title
-export const CREATE_USER_TITLE = 'Utwórz konto'
-export const CREATE_USER_NAME_TITLE = 'Nazwa użytkownika'
-export const CREATE_USER_EMAIL_TITLE = 'Email'
-export const CREATE_USER_PASSWORD_TITLE = 'Hasło'
-export const CREATE_USER_CONFIRM_PASSWORD_TITLE = 'Powtórz hasło'
+export const CREATE_USER_TITLE = "Create an account";
+export const CREATE_USER_NAME_TITLE = "User Name";
+export const CREATE_USER_EMAIL_TITLE = "Email";
+export const CREATE_USER_PASSWORD_TITLE = "Password";
+export const CREATE_USER_CONFIRM_PASSWORD_TITLE = "Confirm password";
 
 //Placeholder
-export const CREATE_USER_NAME_PLACEHOLDER = 'Brak nazwy użytkownika'
-export const CREATE_USER_EMAIL_PLACEHOLDER = 'Brak adresu email'
-export const CREATE_USER_PASSWORD_PLACEHOLDER = 'Hasło'
-export const CREATE_USER_CONFIRM_PASSWORD_PLACEHOLDER = 'Potwierdź hasło'
+export const CREATE_USER_NAME_PLACEHOLDER = "Type user name";
+export const CREATE_USER_EMAIL_PLACEHOLDER = "Type email";
+export const CREATE_USER_PASSWORD_PLACEHOLDER = "Password";
+export const CREATE_USER_CONFIRM_PASSWORD_PLACEHOLDER = "Confirm password";
 
 //Validators
-export const CREATE_USER_NAME_REQUIRED = 'Pole wymagane'
-export const CREATE_USER_NAME_MIN_LENGTH = 'Nazwa użytkownika musi składać się z przynajmniej 2 liter'
-export const CREATE_USER_NAME_PATTERN = 'Można używać tylko liter'
+export const CREATE_USER_NAME_REQUIRED = "Field required";
+export const CREATE_USER_NAME_MIN_LENGTH =
+  "Username must be at least 2 letters long";
+export const CREATE_USER_NAME_PATTERN = "Only letters can be used";
 
-export const CREATE_USER_EMAIL_PATTERN = 'Niepoprawny format email'
+export const CREATE_USER_EMAIL_PATTERN = "Invalid email format";
 
-export const CREATE_USER_PASSWORD_REQUIRED = 'Pole wymagane'
-export const CREATE_USER_PASSWORD_MIN_LENGTH = 'Hasło musi mieć przynajmniej 8 znaków'
+export const CREATE_USER_PASSWORD_REQUIRED = "Field required";
+export const CREATE_USER_PASSWORD_MIN_LENGTH =
+  "Password must be at least 8 characters long";
 
-export const CREATE_USER_CONFIRM_PASSWORD_REQUIRED = 'Pole wymagane'
-export const CREATE_USER_CONFIRM_PASSWORD_MIN_LENGTH = 'Hasło musi mieć przynajmniej 8 znaków'
+export const CREATE_USER_CONFIRM_PASSWORD_REQUIRED = "Field required";
+export const CREATE_USER_CONFIRM_PASSWORD_MIN_LENGTH =
+  "Password must be at least 8 characters long";
 
 //************UserEdit************//
 //Title
-export const USER_EDIT_TITLE = 'Edycja Użytkownika'
-export const USER_EDIT_NAME_TITLE = 'Nazwa użytkownika'
-export const USER_EDIT_EMAIL_TITLE = 'Email'
-export const USER_EDIT_CHANGE_PASSWORD_TITLE = 'Chcę zmienić hasło pracownika/użytkownika'
-export const USER_EDIT_PASSWORD_TITLE = 'Hasło'
-export const USER_EDIT_CONFIRM_PASSWORD_TITLE = 'Powtórz hasło'
-export const USER_EDIT_ADMIN_TITLE = 'Admin'
+export const USER_EDIT_TITLE = "User Editing";
+export const USER_EDIT_NAME_TITLE = "User Name";
+export const USER_EDIT_EMAIL_TITLE = "Email";
+export const USER_EDIT_CHANGE_PASSWORD_TITLE =
+  "I want to change the user password";
+export const USER_EDIT_PASSWORD_TITLE = "Password";
+export const USER_EDIT_CONFIRM_PASSWORD_TITLE = "Confirm password";
+export const USER_EDIT_ADMIN_TITLE = "Admin";
 
 //Placeholder
-export const USER_EDIT_NAME_PLACEHOLDER = 'Brak nazwy użytkownika'
-export const USER_EDIT_EMAIL_PLACEHOLDER = 'Brak adresu email'
-export const USER_EDIT_PASSWORD_PLACEHOLDER = 'Hasło'
-export const USER_EDIT_CONFIRM_PASSWORD_PLACEHOLDER = 'Potwierdź hasło'
+export const USER_EDIT_NAME_PLACEHOLDER = "Type user name";
+export const USER_EDIT_EMAIL_PLACEHOLDER = "Type email";
+export const USER_EDIT_PASSWORD_PLACEHOLDER = "Password";
+export const USER_EDIT_CONFIRM_PASSWORD_PLACEHOLDER = "Confirm password";
 
 //Validators
-export const USER_EDIT_NAME_REQUIRED = 'Pole wymagane'
-export const USER_EDIT_NAME_MIN_LENGTH = 'Nazwa użytkownika musi składać się z przynajmniej 2 liter'
-export const USER_EDIT_NAME_PATTERN = 'Można używać tylko liter'
+export const USER_EDIT_NAME_REQUIRED = "Field required";
+export const USER_EDIT_NAME_MIN_LENGTH =
+  "Username must be at least 2 letters long";
+export const USER_EDIT_NAME_PATTERN = "Only letters can be used";
 
-export const USER_EDIT_EMAIL_PATTERN = 'Niepoprawny format email'
+export const USER_EDIT_EMAIL_PATTERN = "Invalid email format";
 
-export const USER_EDIT_PASSWORD_REQUIRED = 'Pole wymagane'
-export const USER_EDIT_PASSWORD_MIN_LENGTH = 'Hasło musi mieć przynajmniej 8 znaków'
+export const USER_EDIT_PASSWORD_REQUIRED = "Field required";
+export const USER_EDIT_PASSWORD_MIN_LENGTH =
+  "Password must be at least 8 characters long";
 
-export const USER_EDIT_CONFIRM_PASSWORD_REQUIRED = 'Pole wymagane'
-export const USER_EDIT_CONFIRM_PASSWORD_MIN_LENGTH = 'Hasło musi mieć przynajmniej 8 znaków'
-
+export const USER_EDIT_CONFIRM_PASSWORD_REQUIRED = "Field required";
+export const USER_EDIT_CONFIRM_PASSWORD_MIN_LENGTH =
+  "Password must be at least 8 characters long";
 
 //************Localisation************//
-export const LOCALISATION_TITLE = 'Lista lokalizacji'
-export const LACK_OF_LOCALISATION = 'Brak lokalizacji'
+export const LOCALISATION_TITLE = "Location list";
+export const LACK_OF_LOCALISATION = "No localization";
 
 //************LocationEdit************//
 //Title
-export const LOCATION_EDIT_TITLE = 'Edytowanie lokalizacji'
-export const LOCATION_EDIT_LOCATION_NAME_TITLE = 'Nazwa lokalizacji'
-export const LOCATION_EDIT_LOCATION_SHORT_NAME_TITLE = 'Nazwa skrócona'
-export const LOCATION_EDIT_CHOOSE_PICTURE = 'Wybierz zdjęcie'
+export const LOCATION_EDIT_TITLE = "Editing a location";
+export const LOCATION_EDIT_LOCATION_NAME_TITLE = "Location name";
+export const LOCATION_EDIT_LOCATION_SHORT_NAME_TITLE = "Short name";
+export const LOCATION_EDIT_CHOOSE_PICTURE = "Choose a photo";
 
 //Placeholder
-export const LOCATION_EDIT_LOCATION_NAME_PLACEHOLDER = 'Brak nazwy lokalizacji'
-export const LOCATION_EDIT_LOCATION_SHORT_NAME_PLACEHOLDER = 'Brak nazwy skróconej'
+export const LOCATION_EDIT_LOCATION_NAME_PLACEHOLDER = "Type location name";
+export const LOCATION_EDIT_LOCATION_SHORT_NAME_PLACEHOLDER = "Type short name";
 
 //Validators
-export const LOCATION_EDIT_LOCATION_NAME_REQUIRED = 'Pole wymagane'
-export const LOCATION_EDIT_LOCATION_SHORT_NAME_REQUIRED = 'Pole wymagane'
-export const LOCATION_EDIT_LOCATION_NAME_MIN_LENGTH = 'Nazwa lokalizacji musi składać się z przynajmniej 10 liter'
-export const LOCATION_EDIT_LOCATION_SHORT_NAME_MIN_LENGTH = 'Nazwa lokalizacji musi składać się z przynajmniej 2 litery'
-export const LOCATION_EDIT_LOCATION_NAME_PATTERN = 'Można uzywać tylko liter'
-export const LOCATION_EDIT_LOCATION_SHORT_NAME_PATTERN = 'Można uzywać tylko liter'
+export const LOCATION_EDIT_LOCATION_NAME_REQUIRED = "Field required";
+export const LOCATION_EDIT_LOCATION_SHORT_NAME_REQUIRED = "Field required";
+export const LOCATION_EDIT_LOCATION_NAME_MIN_LENGTH =
+  "The location name must be at least 10 letters long";
+export const LOCATION_EDIT_LOCATION_SHORT_NAME_MIN_LENGTH =
+  "The location short name must be at least 2 letters long";
+export const LOCATION_EDIT_LOCATION_NAME_PATTERN = "Only letters can be used";
+export const LOCATION_EDIT_LOCATION_SHORT_NAME_PATTERN =
+  "Only letters can be used";
 
 //************NewLocation************//
 //Title
-export const NEW_LOCATION_TITLE = 'Utwórz Lokalizacje'
-export const NEW_LOCATION_LOCATION_NAME_TITLE = 'Nazwa lokalizacji'
-export const NEW_LOCATION_LOCATION_SHORT_NAME_TITLE = 'Nazwa skrócona'
-export const NEW_LOCATION_CHOOSE_PICTURE = 'Wybierz zdjęcie'
+export const NEW_LOCATION_TITLE = "Create locations";
+export const NEW_LOCATION_LOCATION_NAME_TITLE = "Location name";
+export const NEW_LOCATION_LOCATION_SHORT_NAME_TITLE = "Short name";
+export const NEW_LOCATION_CHOOSE_PICTURE = "Choose a photo";
 
 //Placeholder
-export const NEW_LOCATION_LOCATION_NAME_PLACEHOLDER = 'Brak nazwy lokalizacji'
-export const NEW_LOCATION_LOCATION_SHORT_NAME_PLACEHOLDER = 'Brak nazwy skróconej'
+export const NEW_LOCATION_LOCATION_NAME_PLACEHOLDER = "Type location name";
+export const NEW_LOCATION_LOCATION_SHORT_NAME_PLACEHOLDER = "Type short name";
 
 //Validators
-export const NEW_LOCATION_LOCATION_NAME_REQUIRED = 'Pole wymagane'
-export const NEW_LOCATION_LOCATION_SHORT_NAME_REQUIRED = 'Pole wymagane'
-export const NEW_LOCATION_LOCATION_NAME_MIN_LENGTH = 'Nazwa lokalizacji musi składać się z przynajmniej 10 liter'
-export const NEW_LOCATION_LOCATION_SHORT_NAME_MIN_LENGTH = 'Nazwa lokalizacji musi składać się z przynajmniej 2 litery'
-export const NEW_LOCATION_LOCATION_NAME_PATTERN = 'Można uzywać tylko liter'
-export const NEW_LOCATION_LOCATION_SHORT_NAME_PATTERN = 'Można uzywać tylko liter'
+export const NEW_LOCATION_LOCATION_NAME_REQUIRED = "Field required";
+export const NEW_LOCATION_LOCATION_SHORT_NAME_REQUIRED = "Field required";
+export const NEW_LOCATION_LOCATION_NAME_MIN_LENGTH =
+  "The location name must be at least 10 letters long";
+export const NEW_LOCATION_LOCATION_SHORT_NAME_MIN_LENGTH =
+  "The location short name must be at least 2 letters long";
+export const NEW_LOCATION_LOCATION_NAME_PATTERN = "Only letters can be used";
+export const NEW_LOCATION_LOCATION_SHORT_NAME_PATTERN =
+  "Only letters can be used";
 
 //************CarsAdmin************//
-export const CARS_ADMIN_TITLE = 'Lista samochodów'
+export const CARS_ADMIN_TITLE = "List of cars";
 
 //************CarsCreate************//
 //Title
-export const CARS_CREATE_TITLE = 'Dodaj nowy samochód'
-export const CARS_CREATE_CAR_NAME_TITLE = 'Nazwa samochodu'
-export const CARS_CREATE_CAR_SHORT_NAME_TITLE = 'Nazwa skrócona'
-export const CARS_CREATE_CAR_REGISTRATION_NO_TITLE = 'Numer rejestracyjny'
-export const CARS_CREATE_CAR_MAIN_LOCATION_TITLE = 'Lokalizacja początkowa'
-export const CARS_CREATE_CHOOSE_PICTURE = 'Wybierz zdjęcie'
+export const CARS_CREATE_TITLE = "Add a new car";
+export const CARS_CREATE_CAR_NAME_TITLE = "Car name";
+export const CARS_CREATE_CAR_SHORT_NAME_TITLE = "Short name";
+export const CARS_CREATE_CAR_REGISTRATION_NO_TITLE = "Registration number";
+export const CARS_CREATE_CAR_MAIN_LOCATION_TITLE = "Initial location";
+export const CARS_CREATE_CHOOSE_PICTURE = "Choose a photo";
 
 //Placeholder
-export const CARS_CREATE_CAR_NAME_PLACEHOLDER = 'Brak nazwy samochodu'
-export const CARS_CREATE_CAR_SHORT_NAME_PLACEHOLDER = 'Brak nazwy skróconej'
-export const CARS_CREATE_CAR_REGISTRATION_NO_PLACEHOLDER = 'Brak kodu rejestracyjnego'
+export const CARS_CREATE_CAR_NAME_PLACEHOLDER = "Type car name";
+export const CARS_CREATE_CAR_SHORT_NAME_PLACEHOLDER = "Type short name";
+export const CARS_CREATE_CAR_REGISTRATION_NO_PLACEHOLDER =
+  "Type registration number";
 
 //Validators
-export const CARS_CREATE_CAR_NAME_REQUIRED = 'Pole wymagane'
-export const CARS_CREATE_CAR_NAME_MIN_LENGTH = 'Nazwa samochodu musi składać się z przynajmniej 10 znaków'
+export const CARS_CREATE_CAR_NAME_REQUIRED = "Field required";
+export const CARS_CREATE_CAR_NAME_MIN_LENGTH =
+  "The name of the car must be at least 10 characters long";
 
-export const CARS_CREATE_CAR_SHORT_NAME_REQUIRED = 'Pole wymagane'
-export const CARS_CREATE_CAR_SHORT_NAME_MIN_LENGTH = 'Nazwa samochodu musi składać się z przynajmniej 2 znaków'
+export const CARS_CREATE_CAR_SHORT_NAME_REQUIRED = "Field required";
+export const CARS_CREATE_CAR_SHORT_NAME_MIN_LENGTH =
+  "The name of the car must be at least 2 characters long";
 
-export const CARS_CREATE_CAR_REGISTRATION_NO_REQUIRED = 'Pole wymagane'
-export const CARS_CREATE_CAR_REGISTRATION_MIN_LENGTH = 'Kod rejestracyjny musi składać się przynajmniej z 6 znaków'
+export const CARS_CREATE_CAR_REGISTRATION_NO_REQUIRED = "Field required";
+export const CARS_CREATE_CAR_REGISTRATION_MIN_LENGTH =
+  "The registration code must be at least 6 characters long";
 
-export const CARS_CREATE_CAR_MAIN_LOCATION_REQUIRED = 'Pole wymagane'
+export const CARS_CREATE_CAR_MAIN_LOCATION_REQUIRED = "Field required";
 
 //************CarsEdit************//
 //Title
-export const CARS_EDIT_TITLE = 'Edycja samochodu'
-export const CARS_EDIT_CAR_NAME_TITLE = 'Nazwa samochodu'
-export const CARS_EDIT_CAR_SHORT_NAME_TITLE = 'Nazwa skrócona'
-export const CARS_EDIT_CAR_REGISTRATION_NO_TITLE = 'Numer rejestracyjny'
-export const CARS_EDIT_CAR_MAIN_LOCATION_TITLE = 'Lokalizacja początkowa'
-export const CARS_EDIT_CAR_NEW_MAIN_LOCATION_TITLE = 'Nowa lokalizacja początkowa'
-export const CARS_EDIT_CHECKBOX_READY_FOR_RENT = 'Gotowy do wynajmu'
+export const CARS_EDIT_TITLE = "Car editing";
+export const CARS_EDIT_CAR_NAME_TITLE = "Car name";
+export const CARS_EDIT_CAR_SHORT_NAME_TITLE = "Short name";
+export const CARS_EDIT_CAR_REGISTRATION_NO_TITLE = "Registration number";
+export const CARS_EDIT_CAR_MAIN_LOCATION_TITLE = "Initial location";
+export const CARS_EDIT_CAR_NEW_MAIN_LOCATION_TITLE = "New Initial location";
+export const CARS_EDIT_CHECKBOX_READY_FOR_RENT = "Ready for rent";
 
 //Placeholder
-export const CARS_EDIT_CAR_NAME_PLACEHOLDER = 'Brak nazwy samochodu'
-export const CARS_EDIT_CAR_SHORT_NAME_PLACEHOLDER = 'Brak nazwy skróconej'
-export const CARS_EDIT_CAR_REGISTRATION_NO_PLACEHOLDER = 'Brak kodu rejestracyjnego'
+export const CARS_EDIT_CAR_NAME_PLACEHOLDER = "Type car name";
+export const CARS_EDIT_CAR_SHORT_NAME_PLACEHOLDER = "Type short name";
+export const CARS_EDIT_CAR_REGISTRATION_NO_PLACEHOLDER =
+  "Type registration number";
 
 //Validators
-export const CARS_EDIT_CAR_NAME_REQUIRED = 'Pole wymagane'
-export const CARS_EDIT_CAR_NAME_MIN_LENGTH = 'Nazwa samochodu musi składać się z przynajmniej 10 znaków'
+export const CARS_EDIT_CAR_NAME_REQUIRED = "Field required";
+export const CARS_EDIT_CAR_NAME_MIN_LENGTH =
+  "The name of the car must be at least 10 characters long";
 
-export const CARS_EDIT_CAR_SHORT_NAME_REQUIRED = 'Pole wymagane'
-export const CARS_EDIT_CAR_SHORT_NAME_MIN_LENGTH = 'Nazwa samochodu musi składać się z przynajmniej 2 znaków'
+export const CARS_EDIT_CAR_SHORT_NAME_REQUIRED = "Field required";
+export const CARS_EDIT_CAR_SHORT_NAME_MIN_LENGTH =
+  "The name of the car must be at least 2 characters long";
 
-export const CARS_EDIT_CAR_REGISTRATION_NO_REQUIRED = 'Pole wymagane'
-export const CARS_EDIT_CAR_REGISTRATION_MIN_LENGTH = 'Kod rejestracyjny musi składać się przynajmniej z 6 znaków'
+export const CARS_EDIT_CAR_REGISTRATION_NO_REQUIRED = "Field required";
+export const CARS_EDIT_CAR_REGISTRATION_MIN_LENGTH =
+  "The registration code must be at least 6 characters long";
 
-export const CARS_EDIT_CAR_NEW_MAIN_LOCATION_REQUIRED = 'Pole wymagane'
+export const CARS_EDIT_CAR_NEW_MAIN_LOCATION_REQUIRED = "Field required";
 
 //************UploadImage************//
-export const UPLOAD_IMAGE_REGISTRATION_NO_TITLE = 'Numer rejestracyjny:'
-export const UPLOAD_IMAGE_CHOOSE_PICTURE = 'Wybierz zdjęcie'
+export const UPLOAD_IMAGE_REGISTRATION_NO_TITLE = "Registration number:";
+export const UPLOAD_IMAGE_CHOOSE_PICTURE = "Choose a photo";
 
 //************CarShow************//
-export const CAR_SHOW_REGISTRATION_NO_TITLE = 'Numer rejestracyjny:'
+export const CAR_SHOW_REGISTRATION_NO_TITLE = "Registration number:";
 
 //************CarLocationList************//
 // Title
-export const CAR_LOCATION_LIST_TITLE = "Lokalizacja: "
-export const CAR_LOCATION_LIST_RENT_SUBTITLE = 'Lista samochodów do wynajęcia'
-export const CAR_LOCATION_LIST_IN_USE_SUBTITLE = 'Lista samochodów w użyciu'
-export const CAR_LOCATION_LIST_TO_DO_SUBTITLE = 'Lista zadań na dziś'
-export const CAR_LOCATION_LIST_RESERVATIONS_SUBTITLE = 'Lista dostępnych aut do rezerwacji'
-export const CAR_LOCATION_LIST_EDIT_RESERVATION_SUBTITLE = 'Lista aut posiadających rezerwacje'
-export const CAR_LOCATION_LIST_EDIT_RESERVATION_FROM_SUBTITLE = 'Rezerwacja od:'
-export const CAR_LOCATION_LIST_IN_USE_DATE_SUBTITLE = 'W użyciu do: '
-export const CAR_LOCATION_LIST_OTHER_LOCATISATION = 'Samochód w innej lokalizacji'
-export const CAR_LOCATION_LIST_FILTERS = 'Filtry'
+export const CAR_LOCATION_LIST_TITLE = "Location: ";
+export const CAR_LOCATION_LIST_RENT_SUBTITLE = "Car rental list";
+export const CAR_LOCATION_LIST_IN_USE_SUBTITLE = "List of cars in use";
+export const CAR_LOCATION_LIST_TO_DO_SUBTITLE = "To-do list";
+export const CAR_LOCATION_LIST_RESERVATIONS_SUBTITLE =
+  "List of available cars for booking";
+export const CAR_LOCATION_LIST_EDIT_RESERVATION_SUBTITLE =
+  "List of cars with reservations";
+export const CAR_LOCATION_LIST_EDIT_RESERVATION_FROM_SUBTITLE =
+  "Reservation from:";
+export const CAR_LOCATION_LIST_IN_USE_DATE_SUBTITLE = "In use until: ";
+export const CAR_LOCATION_LIST_OTHER_LOCATISATION =
+  "Car is in a different location";
+export const CAR_LOCATION_LIST_FILTERS = "Filters";
 
 //Button
-export const CAR_LOCATION_LIST_RENT_BTN_NAME = "Najem"
-export const CAR_LOCATION_LIST_IN_USE_BTN_NAME = "W użyciu"
-export const CAR_LOCATION_LIST_TO_DO_BTN_NAME = "Zadania na dziś"
-export const CAR_LOCATION_LIST_NEW_RESERVATION_BTN_NAME = "Nowa rezerwacja"
-export const CAR_LOCATION_LIST_EDIT_RESERVATION_BTN_NAME = "Edycja rezerwacji"
-export const CAR_LOCATION_LIST_FILTER_ALL_BTN_NAME = "Wszystko"
-export const CAR_LOCATION_LIST_FILTER_RESERVATIONS_BTN_NAME = "Rezerwacja"
-export const CAR_LOCATION_LIST_FILTER_RENTS_BTN_NAME = "Najem"
-export const CAR_LOCATION_LIST_EDIT_BTN = "Edycja"
-export const CAR_LOCATION_LIST_RENT_BTN = "Najem"
-export const CAR_LOCATION_LIST_PICK_UP_BTN = "Odbierz"
-export const CAR_LOCATION_LIST_DELETE_BTN = "Kasuj"
+export const CAR_LOCATION_LIST_RENT_BTN_NAME = "Rent";
+export const CAR_LOCATION_LIST_IN_USE_BTN_NAME = "In use";
+export const CAR_LOCATION_LIST_TO_DO_BTN_NAME = "To do";
+export const CAR_LOCATION_LIST_NEW_RESERVATION_BTN_NAME = "New reservation";
+export const CAR_LOCATION_LIST_EDIT_RESERVATION_BTN_NAME = "Edit";
+export const CAR_LOCATION_LIST_FILTER_ALL_BTN_NAME = "All";
+export const CAR_LOCATION_LIST_FILTER_RESERVATIONS_BTN_NAME = "Reservation";
+export const CAR_LOCATION_LIST_FILTER_RENTS_BTN_NAME = "Rent";
+export const CAR_LOCATION_LIST_EDIT_BTN = "Edit";
+export const CAR_LOCATION_LIST_RENT_BTN = "Rent";
+export const CAR_LOCATION_LIST_PICK_UP_BTN = "Pick up";
+export const CAR_LOCATION_LIST_DELETE_BTN = "Delete";
 
 //List
-export const CAR_LOCATION_LIST_AMOUNT_OF_POSITIONS = 'Ilość pozycji: '
-export const CAR_LOCATION_LIST_RENT_TYPE = "Najem"
+export const CAR_LOCATION_LIST_AMOUNT_OF_POSITIONS = "Amount: ";
+export const CAR_LOCATION_LIST_RENT_TYPE = "Rent";
 
-export const CAR_LOCATION_LIST_CONTACT_INFO_TITLE = "Dane kontaktowe:"
-export const CAR_LOCATION_LIST_CONTACT_INFO_CLIENT_NAME = "Nazwa klienta:"
-export const CAR_LOCATION_LIST_CONTACT_INFO_ID_NO = "Numer:"
-export const CAR_LOCATION_LIST_CONTACT_INFO_TEL = "Telefon: "
-export const CAR_LOCATION_LIST_CONTACT_INFO_EMAIL = "Email: "
-export const CAR_LOCATION_LIST_CONTACT_INFO_DEPOSIT = "Kaucja: "
-export const CAR_LOCATION_LIST_CONTACT_INFO_TOTAL_PRICE = "Cena najmu: "
+export const CAR_LOCATION_LIST_CONTACT_INFO_TITLE = "Contact details:";
+export const CAR_LOCATION_LIST_CONTACT_INFO_CLIENT_NAME = "Client name:";
+export const CAR_LOCATION_LIST_CONTACT_INFO_ID_NO = "Number:";
+export const CAR_LOCATION_LIST_CONTACT_INFO_TEL = "Phone no: ";
+export const CAR_LOCATION_LIST_CONTACT_INFO_EMAIL = "Email: ";
+export const CAR_LOCATION_LIST_CONTACT_INFO_DEPOSIT = "Deposit: ";
+export const CAR_LOCATION_LIST_CONTACT_INFO_TOTAL_PRICE = "Rental price: ";
 
 //Delete
-export const CAR_LOCATION_LIST_DELETE_MSG = 'Czy jesteś pewny, że chcesz skasować rezerwacje?'
-
+export const CAR_LOCATION_LIST_DELETE_MSG =
+  "Are you sure you want to delete reservations?";
 
 //************CarEditReservation************//
 
 // Title
-export const CAR_EDIT_RESERVATION_NO_RESERVATION_TITLE = 'Nr rejestracyjny:'
+export const CAR_EDIT_RESERVATION_NO_RESERVATION_TITLE = "Registration number:";
 
 //Card content
-export const CAR_EDIT_RESERVATION_PHONE_NO = 'Telefon :'
-export const CAR_EDIT_RESERVATION_EMAIL = 'Email :'
+export const CAR_EDIT_RESERVATION_PHONE_NO = "Phone no :";
+export const CAR_EDIT_RESERVATION_EMAIL = "Email :";
 
 // Button
-export const CAR_EDIT_RESERVATION_BACK_TO_MENU_BUTTON_NAME = 'Powrót do menu'
+export const CAR_EDIT_RESERVATION_BACK_TO_MENU_BUTTON_NAME = "Return";
 
 //Delete
-export const CAR_EDIT_RESERVATION_DELETE_MSG = 'Czy jesteś pewny, że chcesz skasować rezerwacje?'
+export const CAR_EDIT_RESERVATION_DELETE_MSG =
+  "Are you sure you want to delete reservations?";
 
 //************CarSingleEditReservation************//
 
 //Title
-export const CAR_SINGLE_EDIT_RESERVATION_TITLE = 'Edycja rezerwacji'
+export const CAR_SINGLE_EDIT_RESERVATION_TITLE = "Edit reservation";
 
 //Form
 
 /// Title
-export const CAR_SINGLE_EDIT_RESERVATION_CUSTOMER_NAME_TITLE = 'Nazwa klienta'
-export const CAR_SINGLE_EDIT_RESERVATION_DUCUMENT_TYPE_TITLE = 'Rodzaj dokumentu'
-export const CAR_SINGLE_EDIT_RESERVATION_DUCUMENT_NO_TITLE = 'Numer dokumentu'
-export const CAR_SINGLE_EDIT_RESERVATION_PHONE_NO_TITLE = 'Numer telefonu'
-export const CAR_SINGLE_EDIT_RESERVATION_EMAIL_TITLE = 'Email'
-export const CAR_SINGLE_EDIT_RESERVATION_RENT_FROM_TITLE = 'Rezerwacja od'
-export const CAR_SINGLE_EDIT_RESERVATION_RENT_TO_TITLE = 'Rezerwacja do'
-export const CAR_SINGLE_EDIT_RESERVATION_TIME_TITLE = "Godzina"
-export const CAR_SINGLE_EDIT_RESERVATION_REGISTRATION_NO = "Numer rejestracyjny: "
-export const CAR_SINGLE_EDIT_RESERVATION_LOCATISATION_SUBTITLE = "Miejsce odbioru samochodu: "
-export const CAR_SINGLE_EDIT_RESERVATION_SUBTITLE = "Nowe miejsce odbioru samochodu"
-export const CAR_SINGLE_EDIT_RESERVATION_ADDITIONAL_INFO_TITLE = 'Uwagi do rezerwacji'
+export const CAR_SINGLE_EDIT_RESERVATION_CUSTOMER_NAME_TITLE = "Client name";
+export const CAR_SINGLE_EDIT_RESERVATION_DUCUMENT_TYPE_TITLE =
+  "Type of document";
+export const CAR_SINGLE_EDIT_RESERVATION_DUCUMENT_NO_TITLE = "Document number";
+export const CAR_SINGLE_EDIT_RESERVATION_PHONE_NO_TITLE = "Phone no";
+export const CAR_SINGLE_EDIT_RESERVATION_EMAIL_TITLE = "Email";
+export const CAR_SINGLE_EDIT_RESERVATION_RENT_FROM_TITLE = "Reservation from";
+export const CAR_SINGLE_EDIT_RESERVATION_RENT_TO_TITLE = "Reservation to";
+export const CAR_SINGLE_EDIT_RESERVATION_TIME_TITLE = "Time";
+export const CAR_SINGLE_EDIT_RESERVATION_REGISTRATION_NO =
+  "Registration number: ";
+export const CAR_SINGLE_EDIT_RESERVATION_LOCATISATION_SUBTITLE =
+  "Place of picking up the car: ";
+export const CAR_SINGLE_EDIT_RESERVATION_SUBTITLE =
+  "New place of picking up the car";
+export const CAR_SINGLE_EDIT_RESERVATION_ADDITIONAL_INFO_TITLE = "Note";
 
-/// Placeholder 
-export const CAR_SINGLE_EDIT_RESERVATION_NO_CUSTOMER_NAME = 'Brak nazwy klienta'
-export const CAR_SINGLE_EDIT_RESERVATION_DATE_FROM = 'Data początkowa'
-export const CAR_SINGLE_EDIT_RESERVATION_DATE_TO = 'Data końcowa'
+/// Placeholder
+export const CAR_SINGLE_EDIT_RESERVATION_NO_CUSTOMER_NAME =
+  "Type customer name";
+export const CAR_SINGLE_EDIT_RESERVATION_DATE_FROM = "Start date";
+export const CAR_SINGLE_EDIT_RESERVATION_DATE_TO = "End date";
 
-/// Validations 
-export const CAR_SINGLE_EDIT_RESERVATION_MIN_LENGTH_MSG = 'Nazwa klienta musi składać się z przynajmniej 10 liter'
-export const CAR_SINGLE_EDIT_RESERVATION_MIN_LENGTH_VALUE = 10
-export const CAR_SINGLE_EDIT_RESERVATION_REQUIRED_CLIENT_NAME = 'Nazwa wynajmującego jest wymagana'
-export const CAR_SINGLE_EDIT_RESERVATION_SELECT_FROM_THE_LIST = 'Należy wybrać z listy'
-export const CAR_SINGLE_EDIT_RESERVATION_DOCUMENT_NO_REQUIRED = 'Numer dokumentu jest wymagany'
-export const CAR_SINGLE_EDIT_RESERVATION_INPROPER_PHONE_NO = 'Niepoprawny numer telefonu'
-export const CAR_SINGLE_EDIT_RESERVATION_PHONE_NO_REQUIRED = 'Numer telefonu jest wymagany'
-export const CAR_SINGLE_EDIT_RESERVATION_MAX_LENGTH_MSG = 'Numer telefonu może zawirać nie więcej niż 15 znaków'
-export const CAR_SINGLE_EDIT_RESERVATION_MAX_LENGTH_VALUE = 15
-export const CAR_SINGLE_EDIT_RESERVATION_INPROPER_EMAIL = 'Niepoprawny format email'
-export const CAR_SINGLE_EDIT_RESERVATION_DATE_AND_TIME_REQUIRED = 'Pole wymagane'
-export const CAR_SINGLE_EDIT_RESERVATION_REQUIRED_LOCATION = "Lokalizacja wymagana"
+/// Validations
+export const CAR_SINGLE_EDIT_RESERVATION_MIN_LENGTH_MSG =
+  "The customer name must consist of at least 10 letters";
+export const CAR_SINGLE_EDIT_RESERVATION_MIN_LENGTH_VALUE = 10;
+export const CAR_SINGLE_EDIT_RESERVATION_REQUIRED_CLIENT_NAME =
+  "Customer name is required";
+export const CAR_SINGLE_EDIT_RESERVATION_SELECT_FROM_THE_LIST =
+  "Please select from the list";
+export const CAR_SINGLE_EDIT_RESERVATION_DOCUMENT_NO_REQUIRED =
+  "Document number is required";
+export const CAR_SINGLE_EDIT_RESERVATION_INPROPER_PHONE_NO =
+  "Invalid phone number";
+export const CAR_SINGLE_EDIT_RESERVATION_PHONE_NO_REQUIRED =
+  "Phone number is required";
+export const CAR_SINGLE_EDIT_RESERVATION_MAX_LENGTH_MSG =
+  "The phone number can be up to 15 characters long";
+export const CAR_SINGLE_EDIT_RESERVATION_MAX_LENGTH_VALUE = 15;
+export const CAR_SINGLE_EDIT_RESERVATION_INPROPER_EMAIL =
+  "Invalid email format";
+export const CAR_SINGLE_EDIT_RESERVATION_DATE_AND_TIME_REQUIRED =
+  "Field required";
+export const CAR_SINGLE_EDIT_RESERVATION_REQUIRED_LOCATION =
+  "Location required";
 
 /// Options
-export const CAR_SINGLE_EDIT_RESERVATION_OPTION_0 = '0'
-export const CAR_SINGLE_EDIT_RESERVATION_OPTION_PASSPORT = 'Paszport'
-export const CAR_SINGLE_EDIT_RESERVATION_OPTION_ID = 'Dowód osobisty'
-export const CAR_SINGLE_EDIT_RESERVATION_OPTION_DRIVING_LICENSE = 'Prawo jazdy'
-export const CAR_SINGLE_EDIT_RESERVATION_OPTION_OTHER = 'Inne'
+export const CAR_SINGLE_EDIT_RESERVATION_OPTION_0 = "0";
+export const CAR_SINGLE_EDIT_RESERVATION_OPTION_PASSPORT = "Passport";
+export const CAR_SINGLE_EDIT_RESERVATION_OPTION_ID = "ID card";
+export const CAR_SINGLE_EDIT_RESERVATION_OPTION_DRIVING_LICENSE =
+  "Driving license";
+export const CAR_SINGLE_EDIT_RESERVATION_OPTION_OTHER = "Other";
 
 /// Button
-export const CAR_SINGLE_EDIT_RESERVATION_BUTTON_NAME = 'Edycja'
-export const CAR_SINGLE_EDIT_RESERVATION_BTN_BACK = 'Powrót'
-export const CAR_SINGLE_EDIT_RESERVATION_BTN_BACK_TO_MENU = 'Powórt do menu'
+export const CAR_SINGLE_EDIT_RESERVATION_BUTTON_NAME = "Edit";
 
 //************CarRent************//
 
 //Title
-export const CAR_RENT_TITLE = 'Wynajem auta'
-export const CAR_RENT_RENT_BASED_ON_RESERVATION = 'Wynajem auta na podstawie rezerwacji'
+export const CAR_RENT_TITLE = "Car rental";
+export const CAR_RENT_RENT_BASED_ON_RESERVATION =
+  "Rent a car based on reservation";
 
 //Form
 
 /// Title
-export const CAR_RENT_CUSTOMER_NAME_TITLE = 'Nazwa klienta'
-export const CAR_RENT_DUCUMENT_TYPE_TITLE = 'Rodzaj dokumentu'
-export const CAR_RENT_DUCUMENT_NO_TITLE = 'Numer dokumentu'
-export const CAR_RENT_PHONE_NO_TITLE = 'Numer telefonu'
-export const CAR_RENT_EMAIL_TITLE = 'Email'
-export const CAR_RENT_RENT_FROM_TITLE = 'Rezerwacja od'
-export const CAR_RENT_RENT_TO_TITLE = 'Najem do'
-export const CAR_RENT_TIME_TITLE = "Godzina"
-export const CAR_RENT_DEPOSIT_TITLE = "Wysokość kaucji"
-export const CAR_RENT_DEPOSIT_IS_PAID_TITLE = "Kaucja została zapłacona"
-export const CAR_RENT_TOTAL_PRICE_TITLE = "Cena najmu"
-export const CAR_RENT_DEPOSIT_CURRENCY_TITLE = "Rodzaj waluty"
-export const CAR_RENT_TOTAL_PRICE_IS_PAID_TITLE = "Płatność z góry"
-export const CAR_RENT_NOTE_MSG_TITLE = "Dodatkowe informacje"
-export const CAR_RENT_LOCATION_TITLE = "Lokalizacja oddania samochodu"
-export const CAR_RENT_COME_BACK_TITLE = "Wróć do mnie"
-export const CAR_RESERVATION_BUTTON_BACK_TO_MENU = 'Powrót'
+export const CAR_RENT_CUSTOMER_NAME_TITLE = "Client name";
+export const CAR_RENT_DUCUMENT_TYPE_TITLE = "Type of document";
+export const CAR_RENT_DUCUMENT_NO_TITLE = "Document number";
+export const CAR_RENT_PHONE_NO_TITLE = "Phone no.";
+export const CAR_RENT_EMAIL_TITLE = "Email";
+export const CAR_RENT_RENT_FROM_TITLE = "Reservation from";
+export const CAR_RENT_RENT_TO_TITLE = "Rent to";
+export const CAR_RENT_TIME_TITLE = "Time";
+export const CAR_RENT_DEPOSIT_TITLE = "Deposit";
+export const CAR_RENT_DEPOSIT_IS_PAID_TITLE = "Deposit has been paid";
+export const CAR_RENT_TOTAL_PRICE_TITLE = "Rental price";
+export const CAR_RENT_DEPOSIT_CURRENCY_TITLE = "Currency";
+export const CAR_RENT_TOTAL_PRICE_IS_PAID_TITLE = "Payment in advance";
+export const CAR_RENT_NOTE_MSG_TITLE = "Additional informatio";
+export const CAR_RENT_LOCATION_TITLE = "Car pick up location";
+export const CAR_RESERVATION_BUTTON_BACK_TO_MENU = "Return";
 
 /// Subtitle
-export const CAR_RENT_GENERAL_INFO_SUBTITLE = "Podstawowe informacje"
-export const CAR_RENT_PAYMENTS_SUBTITLE = "Płatności"
-export const CAR_RENT_TAKE_BACK_SUBTITLE = "Odbiór samochodu"
-export const CAR_RENT_NO_REGISTRATION_SUBTITLE = "Numer rejestracyjny:"
-export const CAR_RENT_LOCATISATION_SUBTITLE = 'Bieżąca lokalizacja:'
+export const CAR_RENT_GENERAL_INFO_SUBTITLE = "General information";
+export const CAR_RENT_PAYMENTS_SUBTITLE = "Payment";
+export const CAR_RENT_TAKE_BACK_SUBTITLE = "Pick up the car";
+export const CAR_RENT_NO_REGISTRATION_SUBTITLE = "Registration number:";
+export const CAR_RENT_LOCATISATION_SUBTITLE = "Current location:";
 
-/// Placeholder 
-export const CAR_RENT_NO_CUSTOMER_NAME = 'Brak nazwy klienta'
-export const CAR_RENT_DATE_FROM = 'Data początkowa'
-export const CAR_RENT_TO_FROM = 'Data końcowa'
+/// Placeholder
+export const CAR_RENT_NO_CUSTOMER_NAME = "Type customer name";
+export const CAR_RENT_DATE_FROM = "Start date";
+export const CAR_RENT_TO_FROM = "End date";
 
-
-/// Validations 
-export const CAR_RENT_MIN_LENGTH_MSG = 'Nazwa klienta musi składać się z przynajmniej 10 liter'
-export const CAR_RENT_MIN_LENGTH_VALUE = 10
-export const CAR_RENT_REQUIRED_CLIENT_NAME = 'Nazwa wynajmującego jest wymagana'
-export const CAR_RENT_SELECT_FROM_THE_LIST = 'Należy wybrać z listy'
-export const CAR_RENT_DOCUMENT_NO_REQUIRED = 'Numer dokumentu jest wymagany'
-export const CAR_RENT_INPROPER_PHONE_NO = 'Niepoprawny numer telefonu'
-export const CAR_RENT_PHONE_NO_REQUIRED = 'Numer telefonu jest wymagany'
-export const CAR_RENT_MAX_LENGTH_MSG = 'Numer telefonu może zawirać nie więcej niż 15 znaków'
-export const CAR_RENT_MAX_LENGTH_VALUE = 15
-export const CAR_RENT_INPROPER_EMAIL = 'Niepoprawny format email'
-export const CAR_RENT_DATE_AND_TIME_REQUIRED = 'Pole wymagane'
-export const CAR_RENT_REQUIRED_DEPOSIT = 'Pole wymagane'
-export const CAR_RENT_IS_PAID_REQUIRED = 'Kaucja musi być zapłacona'
-export const CAR_RENT_INPROPER_DEPOSIT = "Niepoprawny format ceny depozytu"
-export const CAR_RENT_INPROPER_TOTAL_PRICE = "Nieprawidłowy format ceny najmu"
-export const CAR_RENT_REQUIRED_TOTAL_PRICE = 'Pole wymagane'
-export const CAR_RENT_REQUIRED_LOCATION = "Lokalizacja wymagana"
+/// Validations
+export const CAR_RENT_MIN_LENGTH_MSG =
+  "The customer name must consist of at least 10 letters";
+export const CAR_RENT_MIN_LENGTH_VALUE = 10;
+export const CAR_RENT_REQUIRED_CLIENT_NAME = "Customer name is required";
+export const CAR_RENT_SELECT_FROM_THE_LIST = "Please select from the list";
+export const CAR_RENT_DOCUMENT_NO_REQUIRED = "Document number is required";
+export const CAR_RENT_INPROPER_PHONE_NO = "Invalid phone number";
+export const CAR_RENT_PHONE_NO_REQUIRED = "Phone number is required";
+export const CAR_RENT_MAX_LENGTH_MSG =
+  "The phone number can be up to 15 characters long";
+export const CAR_RENT_MAX_LENGTH_VALUE = 15;
+export const CAR_RENT_INPROPER_EMAIL = "Invalid email format";
+export const CAR_RENT_DATE_AND_TIME_REQUIRED = "Field required";
+export const CAR_RENT_REQUIRED_DEPOSIT = "Field required";
+export const CAR_RENT_IS_PAID_REQUIRED = "The deposit must be paid";
+export const CAR_RENT_INPROPER_DEPOSIT = "Niepoprawny format ceny depozytu";
+export const CAR_RENT_INPROPER_TOTAL_PRICE = "Nieprawidłowy format ceny najmu";
+export const CAR_RENT_REQUIRED_TOTAL_PRICE = "Field required";
+export const CAR_RENT_REQUIRED_LOCATION = "Location required";
 
 /// Options
-export const CAR_RENT_OPTION_0 = 'Brak nazwy klienta'
+export const CAR_RENT_OPTION_0 = "0";
 
-/// Button
-export const CAR_RENT_BUTTON_NAME = 'Wynajmij'
-
-//Error handling 
-export const CAR_RENT_CREATE_MSG = 'Najem został dokonany'
-export const CAR_RENT_ERROR_HANDLING_SUCCESS = 'Car was rent'
-export const CAR_RENT_ERROR_HANDLING_EXIST_RANGE_DATE_EX_1 = 'zakres dat istnieje dla dataStart'
-export const CAR_RENT_ERROR_HANDLING_EXIST_RANGE_DATE_EX_2 = 'zakres dat istnieje dla dataEnd'
-export const CAR_RENT_ERROR_HANDLING_EXIST_RANGE_DATE_EX_3 = 'zawarty zakres dat'
-export const CAR_RENT_ERROR_HANDLING_EXIST_RANGE_DATE_EX_4 = 'zakres dat najmu istnieje dla dataStart'
-export const CAR_RENT_ERROR_HANDLING_EXIST_RANGE_DATE_EX_5 = 'zakres dat najmu istnieje dla dataEnd'
-export const CAR_RENT_ERROR_HANDLING_EXIST_RANGE_DATE_EX_6 = 'zawarty zakres dat dla najmu'
-export const CAR_RENT_ERROR_HANDLING_EXIST_RANGE_DATE_EX_7 = 'samochód nie został odebrany od klienta'
-
-export const CAR_RENT_ERROR_HANDLING_EXIST_RANGE_DATE_EX_1_MSG = 'Rezerwacja w tych przedziałach czasu już istnieje dla daty początkowej.'
-export const CAR_RENT_ERROR_HANDLING_EXIST_RANGE_DATE_EX_2_MSG = 'Rezerwacja w tych przedziałach czasu już istnieje dla daty końcowej.'
-export const CAR_RENT_ERROR_HANDLING_EXIST_RANGE_DATE_EX_3_MSG = 'Rezerwacja w tych przedziałach czasu już istnieje.'
-export const CAR_RENT_ERROR_HANDLING_EXIST_RANGE_DATE_EX_4_MSG = 'Najem w tych przedziałach czasu już istnieje dla daty początkowej.'
-export const CAR_RENT_ERROR_HANDLING_EXIST_RANGE_DATE_EX_5_MSG = 'Najem w tych przedziałach czasu już istnieje dla daty końcowej.'
-export const CAR_RENT_ERROR_HANDLING_EXIST_RANGE_DATE_EX_6_MSG = 'Najem w tych przedziałach czasu już istnieje.'
-export const CAR_RENT_ERROR_HANDLING_EXIST_RANGE_DATE_EX_7_MSG = 'Ten samochód nie został odebrany od klienta.'
+//Error handling
+export const CAR_RENT_CREATE_MSG = "Najem został dokonany";
+export const CAR_RENT_ERROR_HANDLING_SUCCESS = "Car was rent";
+export const CAR_RENT_ERROR_HANDLING_EXIST_RANGE_DATE_EX_7 =
+  "samochód nie został odebrany od klienta";
+export const CAR_RENT_ERROR_HANDLING_EXIST_RANGE_DATE_EX_7_MSG =
+  "Ten samochód nie został odebrany od klienta.";
 
 //************CarRentEdit************//
 //Title
-export const CAR_RENT_EDIT_TITLE = "Edycja najmu"
-export const CAR_RENT_EDIT_NO_REGISTRATION_SUBTITLE = "Numer rejestracyjny:"
-export const CAR_RENT_EDIT_GENERAL_INFO_SUBTITLE = "Informacje o kliencie"
-export const CAR_RENT_EDIT_PAYMENTS_INFO_TITLE = "Informacje o płatnościach"
+export const CAR_RENT_EDIT_TITLE = "Edit rental";
+export const CAR_RENT_EDIT_NO_REGISTRATION_SUBTITLE = "Registration number:";
+export const CAR_RENT_EDIT_GENERAL_INFO_SUBTITLE = "Customer information";
+export const CAR_RENT_EDIT_PAYMENTS_INFO_TITLE = "Payment information";
 
 ///General Information
-export const CAR_RENT_EDIT_PHONE = 'Numer telefonu: '
-export const CAR_RENT_EDIT_CLIENT_NAME = 'Imię i nazwisko wynajmującego: '
-export const CAR_RENT_EDIT_DOC_TYPE = 'Rodzaj dokumentu: '
-export const CAR_RENT_EDIT_EMAIL = 'Email: '
-export const CAR_RENT_EDIT_DATE_FROM = 'Data rozpoczęcia najmu: '
-export const CAR_RENT_EDIT_DATE_TO = 'Data końca najmu: '
+export const CAR_RENT_EDIT_PHONE = "Phone no: ";
+export const CAR_RENT_EDIT_CLIENT_NAME = "Customer name and surname: ";
+export const CAR_RENT_EDIT_DOC_TYPE = "Type of document: ";
+export const CAR_RENT_EDIT_EMAIL = "Email: ";
+export const CAR_RENT_EDIT_DATE_FROM = "Start date: ";
+export const CAR_RENT_EDIT_DATE_TO = "End date: ";
 
 ///Payments Information
-export const CAR_RENT_EDIT_DEPOSIT = "Kaucja: "
-export const CAR_RENT_EDIT_TOTAL_PRICE = "Cena najmu: "
-export const CAR_RENT_EDIT_TOTAL_PRICE_UNPAID = "niezapłacone"
-export const CAR_RENT_EDIT_TOTAL_PRICE_PAID = "zapłacone"
+export const CAR_RENT_EDIT_DEPOSIT = "Deposit: ";
+export const CAR_RENT_EDIT_TOTAL_PRICE = "Rental price: ";
+export const CAR_RENT_EDIT_TOTAL_PRICE_UNPAID = "Unpaid";
+export const CAR_RENT_EDIT_TOTAL_PRICE_PAID = "Paid";
 
 //Form
 
 ///Title
-export const CAR_RENT_EDIT_NOTE_TITLE = "Dodatkowe informacje"
-export const CAR_RENT_EDIT_DATEPICKER_TO_TITLE = "Nowa data najmu"
-export const CAR_RENT_EDIT_TIMEPICKER_TO_TITLE = "Godzina"
-export const CAR_RENT_EDIT_TOTAL_PRICE_TITLE = "Dopłata"
-export const CAR_RENT_EDIT_TOTAL_PRICE_CURRENCY_TITLE = "Waluta"
-export const CAR_RENT_EDIT_LOCATISATION_SUBTITLE = "Miejsce zwrotu samochodu :" 
-export const CAR_RENT_EDIT_LOCATION_TITLE = "Nowe miejsce zwrotu samochodu"
+export const CAR_RENT_EDIT_NOTE_TITLE = "Additional information";
+export const CAR_RENT_EDIT_DATEPICKER_TO_TITLE = "New rental date";
+export const CAR_RENT_EDIT_TIMEPICKER_TO_TITLE = "Time";
+export const CAR_RENT_EDIT_TOTAL_PRICE_TITLE = "Additional payment";
+export const CAR_RENT_EDIT_TOTAL_PRICE_CURRENCY_TITLE = "Currency";
+export const CAR_RENT_EDIT_LOCATISATION_SUBTITLE =
+  "Place of returning the car :";
+export const CAR_RENT_EDIT_LOCATION_TITLE = "New place of returning the car";
 
 ///Placeholder
-export const CAR_RENT_EDIT_DATE_DATEPICKER = 'Data końcowa najmu'
+export const CAR_RENT_EDIT_DATE_DATEPICKER = "End date of the rent";
 
 ///Validators
-export const CAR_RENT_EDIT_DATE_AND_TIME_REQUIRED = 'Należy podać nową date najmu'
-export const CAR_RENT_EDIT_TIME_REQUIRED = 'Pole wymagane'
-export const CAR_RENT_EDIT_INPROPER_DATE = 'Nowa data najmu powinna być większa od dzisiejszej daty.'
-export const CAR_RENT_EDIT_INPROPER_TOTAL_PRICE = 'Niepoprawny format'
-export const CAR_RENT_EDIT_TOTAL_PRICE_REQUIRED = "Pole wymagane"
-export const CAR_RENT_EDIT_REQUIRED_LOCATION = "Lokalizacja wymagana"
+export const CAR_RENT_EDIT_DATE_AND_TIME_REQUIRED =
+  "A new rental date should be provided";
+export const CAR_RENT_EDIT_TIME_REQUIRED = "Field required";
+export const CAR_RENT_EDIT_INPROPER_DATE =
+  "The rent date should be greater than today.";
+export const CAR_RENT_EDIT_INPROPER_TOTAL_PRICE = "Invalid format";
+export const CAR_RENT_EDIT_TOTAL_PRICE_REQUIRED = "Field required";
+export const CAR_RENT_EDIT_REQUIRED_LOCATION = "Location required";
 
 //Error handling
-export const CAR_RENT_EDIT_ERROR_HANDLING_SUCCESS = "Operacja zakończona sukcesem"
-export const CAR_RENT_EDIT_CREATE_MSG = "Edycja najmu zakończona sukcesem"
-export const CAR_RENT_EDIT_ERROR_HANDLING_EXIST_RANGE_DATE_EX_1 = 'zakres dat istnieje dla dataEnd'
-export const CAR_RENT_EDIT_ERROR_HANDLING_EXIST_RANGE_DATE_EX_1_MSG = 'Przedłużenie najmu pokrywa się z rezerwacją'
-export const CAR_RENT_EDIT_ERROR_HANDLING_EXIST_RANGE_DATE_EX_2 = 'zakres dat istnieje dla dataEnd + 1h'
-export const CAR_RENT_EDIT_ERROR_HANDLING_EXIST_RANGE_DATE_EX_2_MSG = 'Zwrot samochodu musi nastąpić na 1 godzinę przed planowaną nową rezerwacją'
+export const CAR_RENT_EDIT_ERROR_HANDLING_SUCCESS =
+  "Operacja zakończona sukcesem";
+export const CAR_RENT_EDIT_CREATE_MSG = "Edycja najmu zakończona sukcesem";
+export const CAR_RENT_EDIT_ERROR_HANDLING_EXIST_RANGE_DATE_EX_1 =
+  "zakres dat istnieje dla dataEnd";
+export const CAR_RENT_EDIT_ERROR_HANDLING_EXIST_RANGE_DATE_EX_1_MSG =
+  "Przedłużenie najmu pokrywa się z rezerwacją";
+export const CAR_RENT_EDIT_ERROR_HANDLING_EXIST_RANGE_DATE_EX_2 =
+  "zakres dat istnieje dla dataEnd + 1h";
+export const CAR_RENT_EDIT_ERROR_HANDLING_EXIST_RANGE_DATE_EX_2_MSG =
+  "Zwrot samochodu musi nastąpić na 1 godzinę przed planowaną nową rezerwacją";
 
-//Options 
-export const CAR_RENT_EDIT_OPTION_0 = '0'
-    
+//Options
+export const CAR_RENT_EDIT_OPTION_0 = "0";
 
 //************CarPickUp************//
 
 //Title
-export const CAR_PICK_UP_TITLE = 'Odbierz samochód'
-export const CAR_PICK_UP_GENERAL_INFO_TITLE = "Informacje ogólne"
-export const CAR_PICK_UP_PAYMENTS_INFO_TITLE = "Informacje o płatnościach"
+export const CAR_PICK_UP_TITLE = "Pick up the car";
+export const CAR_PICK_UP_GENERAL_INFO_TITLE = "General information";
+export const CAR_PICK_UP_PAYMENTS_INFO_TITLE = "Payment information";
 
 ///General Information
-export const CAR_PICK_UP_CLIENT_NAME = 'Imię i nazwisko wynajmującego: '
-export const CAR_PICK_UP_DOC_TYPE = 'Rodzaj dokumentu: '
-export const CAR_PICK_UP_PHONE = 'Numer telefonu: '
-export const CAR_PICK_UP_EMAIL = 'Email: '
-export const CAR_PICK_UP_DATE_FROM = 'Data rozpoczęcia najmu: '
-export const CAR_PICK_UP_DATE_TO = 'Data końca najmu: '
+export const CAR_PICK_UP_CLIENT_NAME = "Customer name and surname: ";
+export const CAR_PICK_UP_DOC_TYPE = "Type of document: ";
+export const CAR_PICK_UP_PHONE = "Phone no.: ";
+export const CAR_PICK_UP_EMAIL = "Email: ";
+export const CAR_PICK_UP_DATE_FROM = "Start date: ";
+export const CAR_PICK_UP_DATE_TO = "End date: ";
 
 ///Payments Information
-export const CAR_PICK_UP_DEPOSIT = "Kaucja: "
-export const CAR_PICK_UP_TOTAL_PRICE = "Cena najmu: "
-export const CAR_PICK_UP_TOTAL_PRICE_UNPAID = "niezapłacone"
-export const CAR_PICK_UP_TOTAL_PRICE_PAID = "zapłacone"
+export const CAR_PICK_UP_DEPOSIT = "Deposit: ";
+export const CAR_PICK_UP_TOTAL_PRICE = "Rental price: ";
+export const CAR_PICK_UP_TOTAL_PRICE_UNPAID = "Unpaid";
+export const CAR_PICK_UP_TOTAL_PRICE_PAID = "Paid";
 
 //Form
 
 ///Title
-export const CAR_PICK_UP_DEPOSIT_TITLE = "Wysokość kaucji"
-export const CAR_PICK_UP_DEPOSIT_CURRENCY_TITLE ="Rodzaj waluty"
-export const CAR_PICK_UP_DEPOSIT_IS_ACCOUNTED_TITLE = "Kaucja została rozliczona"
-export const CAR_PICK_UP_TOTAL_PRICE_TITLE = "Cena najmu"
-export const CAR_PICK_UP_TOTAL_PRICE_CURRENCY_TITLE = "Rodzaj waluty"
-export const CAR_PICK_UP_TOTAL_PRICE_IS_ACCOUNTED_TITLE = "Najem został rozliczony"
-export const CAR_PICK_UP_NOTE_TITLE = "Wiadomość dodatkowa"
+export const CAR_PICK_UP_DEPOSIT_TITLE = "Deposit";
+export const CAR_PICK_UP_DEPOSIT_CURRENCY_TITLE = "Currency";
+export const CAR_PICK_UP_DEPOSIT_IS_ACCOUNTED_TITLE = "Deposit is settled";
+export const CAR_PICK_UP_TOTAL_PRICE_TITLE = "Rental price";
+export const CAR_PICK_UP_TOTAL_PRICE_CURRENCY_TITLE = "Currency";
+export const CAR_PICK_UP_TOTAL_PRICE_IS_ACCOUNTED_TITLE = "Rental is settled";
+export const CAR_PICK_UP_NOTE_TITLE = "Additional information";
 
 ///Subtitle
-export const CAR_PICK_UP_PAYMENTS_SUBTITLE = "Rozliczenie z klientem"
+export const CAR_PICK_UP_PAYMENTS_SUBTITLE = "Settlement with the client";
 
-/// Validations 
-export const CAR_PICK_UP_ACCOUNTED_REQUIRED = "Kaucja musi zostać rozliczona"
-export const CAR_PICK_UP_IS_ACCOUNTED_TOTAL_PRICE_REQUIRED = "Najem musi zostać rozliczony"
-
-///Button
-export const CAR_PICK_UP_BUTTON_NAME = "Odbierz"
-
-
+/// Validations
+export const CAR_PICK_UP_ACCOUNTED_REQUIRED = "The deposit must be settled";
+export const CAR_PICK_UP_IS_ACCOUNTED_TOTAL_PRICE_REQUIRED =
+  "The rental must be settled";
 
 //************CarReservation************//
 // Title
-export const CAR_RESERVATION_TITLE = 'Rezerwacja samochodu'
+export const CAR_RESERVATION_TITLE = "Car reservation";
 
 //Form
 
 /// Title
-export const CAR_RESERVATION_CUSTOMER_NAME_TITLE = 'Nazwa klienta'
-export const CAR_RESERVATION_DUCUMENT_TYPE_TITLE = 'Rodzaj dokumentu'
-export const CAR_RESERVATION_DUCUMENT_NO_TITLE = 'Numer dokumentu'
-export const CAR_RESERVATION_PHONE_NO_TITLE = 'Numer telefonu'
-export const CAR_RESERVATION_EMAIL_TITLE = 'Email'
-export const CAR_RESERVATION_RENT_FROM_TITLE = 'Rezerwacja od'
-export const CAR_RESERVATION_RENT_TO_TITLE = 'Rezerwacja do'
-export const CAR_RESERVATION_TIME_TITLE = "Godzina"
-export const CAR_RESERVATION_NOTE_TITLE = "Uwagi do rezerwacji"
-export const CAR_RESERVATION_REGISTRATION_NO = "Numer rejestracyjny: "
-export const CAR_RESERVATION_LOCATISATION_SUBTITLE = "Lokalizacja bieżąca :" 
-export const CAR_RESERVATION_LOCATION_TITLE = "Lokalizacja rezerwacji samochodu"
-export const CAR_RESERVATION_COME_BACK_TITLE = "Wróć do mnie"
+export const CAR_RESERVATION_CUSTOMER_NAME_TITLE = "Client name";
+export const CAR_RESERVATION_DUCUMENT_TYPE_TITLE = "Type of document";
+export const CAR_RESERVATION_DUCUMENT_NO_TITLE = "Document number";
+export const CAR_RESERVATION_PHONE_NO_TITLE = "Phone no.";
+export const CAR_RESERVATION_EMAIL_TITLE = "Email";
+export const CAR_RESERVATION_RENT_FROM_TITLE = "Reservation from";
+export const CAR_RESERVATION_RENT_TO_TITLE = "Rezerwacja do";
+export const CAR_RESERVATION_TIME_TITLE = "Time";
+export const CAR_RESERVATION_NOTE_TITLE = "Comments";
+export const CAR_RESERVATION_REGISTRATION_NO = "Registration number: ";
+export const CAR_RESERVATION_LOCATISATION_SUBTITLE = "Current location :";
+export const CAR_RESERVATION_LOCATION_TITLE = "Car booking location";
 
-/// Placeholder 
-export const CAR_RESERVATION_NO_CUSTOMER_NAME = 'Brak nazwy klienta'
-export const CAR_RESERVATION_DATE_FROM = 'Data początkowa'
-export const CAR_RESERVATION_DATE_TO = 'Data końcowa'
+/// Placeholder
+export const CAR_RESERVATION_NO_CUSTOMER_NAME = "Type customer name";
+export const CAR_RESERVATION_DATE_FROM = "Start date";
+export const CAR_RESERVATION_DATE_TO = "End date";
 
-/// Validations 
-export const CAR_RESERVATION_MIN_LENGTH_MSG = 'Nazwa klienta musi składać się z przynajmniej 10 liter'
-export const CAR_RESERVATION_MIN_LENGTH_VALUE = 10
-export const CAR_RESERVATION_REQUIRED_CLIENT_NAME = 'Nazwa wynajmującego jest wymagana'
-export const CAR_RESERVATION_SELECT_FROM_THE_LIST = 'Należy wybrać z listy'
-export const CAR_RESERVATION_DOCUMENT_NO_REQUIRED = 'Numer dokumentu jest wymagany'
-export const CAR_RESERVATION_INPROPER_PHONE_NO = 'Niepoprawny numer telefonu'
-export const CAR_RESERVATION_PHONE_NO_REQUIRED = 'Numer telefonu jest wymagany'
-export const CAR_RESERVATION_MAX_LENGTH_MSG = 'Numer telefonu może zawirać nie więcej niż 15 znaków'
-export const CAR_RESERVATION_MAX_LENGTH_VALUE = 15
-export const CAR_RESERVATION_INPROPER_EMAIL = 'Niepoprawny format email'
-export const CAR_RESERVATION_DATE_AND_TIME_REQUIRED = 'Pole wymagane'
-export const CAR_RESERVATION_REQUIRED_LOCATION = "Lokalizacja wymagana"
-
+/// Validations
+export const CAR_RESERVATION_MIN_LENGTH_MSG =
+  "The customer name must consist of at least 10 letters";
+export const CAR_RESERVATION_MIN_LENGTH_VALUE = 10;
+export const CAR_RESERVATION_REQUIRED_CLIENT_NAME = "Customer name is required";
+export const CAR_RESERVATION_SELECT_FROM_THE_LIST =
+  "Please select from the list";
+export const CAR_RESERVATION_DOCUMENT_NO_REQUIRED =
+  "Document number is required";
+export const CAR_RESERVATION_INPROPER_PHONE_NO = "Invalid phone number";
+export const CAR_RESERVATION_PHONE_NO_REQUIRED = "Phone number is required";
+export const CAR_RESERVATION_MAX_LENGTH_MSG =
+  "The phone number can be up to 15 characters long";
+export const CAR_RESERVATION_MAX_LENGTH_VALUE = 15;
+export const CAR_RESERVATION_INPROPER_EMAIL = "Invalid email format";
+export const CAR_RESERVATION_DATE_AND_TIME_REQUIRED = "Field required";
+export const CAR_RESERVATION_REQUIRED_LOCATION = "Location required";
 
 /// Options
-export const CAR_RESERVATION_OPTION_0 = '0'
-export const CAR_RESERVATION_OPTION_PASSPORT = 'Paszport'
-export const CAR_RESERVATION_OPTION_ID = 'Dowód osobisty'
-export const CAR_RESERVATION_OPTION_DRIVING_LICENSE = 'Prawo jazdy'
-export const CAR_RESERVATION_OPTION_OTHER = 'Inne'
+export const CAR_RESERVATION_OPTION_0 = "0";
+export const CAR_RESERVATION_OPTION_PASSPORT = "Passport";
+export const CAR_RESERVATION_OPTION_ID = "ID card";
+export const CAR_RESERVATION_OPTION_DRIVING_LICENSE = "Driving license";
+export const CAR_RESERVATION_OPTION_OTHER = "Other";
 
 //Error handling
-export const CAR_RESERVATION_CREATE_MSG = 'Rezerwacja została dokonana'
-export const CAR_RESERVATION_ERROR_HANDLING_SUCCESS = 'Success'
-
-export const CAR_RESERVATION_ERROR_HANDLING_EXIST_RANGE_DATE_EX_1 = 'zakres dat istnieje dla dataStart'
-export const CAR_RESERVATION_ERROR_HANDLING_EXIST_RANGE_DATE_EX_2 = 'zakres dat istnieje dla dataEnd'
-export const CAR_RESERVATION_ERROR_HANDLING_EXIST_RANGE_DATE_EX_3 = 'zawarty zakres dat'
-export const CAR_RESERVATION_ERROR_HANDLING_EXIST_RANGE_DATE_EX_4 = 'zakres dat najmu istnieje dla dataStart'
-export const CAR_RESERVATION_ERROR_HANDLING_EXIST_RANGE_DATE_EX_5 = 'zakres dat najmu istnieje dla dataEnd'
-export const CAR_RESERVATION_ERROR_HANDLING_EXIST_RANGE_DATE_EX_6 = 'zawarty zakres dat dla najmu'
-
-export const CAR_RESERVATION_ERROR_HANDLING_EXIST_RANGE_DATE_EX_1_MSG = 'Rezerwacja w tych przedziałach czasu już istnieje dla daty początkowej.'
-export const CAR_RESERVATION_ERROR_HANDLING_EXIST_RANGE_DATE_EX_2_MSG = 'Rezerwacja w tych przedziałach czasu już istnieje dla daty końcowej.'
-export const CAR_RESERVATION_ERROR_HANDLING_EXIST_RANGE_DATE_EX_3_MSG = 'Rezerwacja w tych przedziałach czasu już istnieje.'
-export const CAR_RESERVATION_ERROR_HANDLING_EXIST_RANGE_DATE_EX_4_MSG = 'Najem w tych przedziałach czasu już istnieje dla daty początkowej.'
-export const CAR_RESERVATION_ERROR_HANDLING_EXIST_RANGE_DATE_EX_5_MSG = 'Najem w tych przedziałach czasu już istnieje dla daty końcowej.'
-export const CAR_RESERVATION_ERROR_HANDLING_EXIST_RANGE_DATE_EX_6_MSG = 'Najem w tych przedziałach czasu już istnieje.'
-
-///Button
-export const CAR_RESERVATION_BUTTON_NAME = "Kalendarz" 
+export const CAR_RESERVATION_CREATE_MSG = "Rezerwacja została dokonana";
+export const CAR_RESERVATION_ERROR_HANDLING_SUCCESS = "Success";
 
 //************SearchReservation************//
 // Title
-export const SEARCH_RESERVATION_TITLE = 'Lista samochodów możliwych do rezerwacji'
-export const SEARCH_RESERVATION_SUBTITLE = 'Wybierz zakres dat rezerwacji'
-export const SEARCH_RESERVATION_FROM_TITLE = 'Data od'
-export const SEARCH_RESERVATION_TIME_FROM = 'Godzina od'
-export const SEARCH_RESERVATION_TO_TITLE = 'Data do'
-export const SEARCH_RESERVATION_TIME_TO = 'Godzina do'
+export const SEARCH_RESERVATION_TITLE = "List of cars";
+export const SEARCH_RESERVATION_SUBTITLE =
+  "Please select a date range for your booking";
+export const SEARCH_RESERVATION_FROM_TITLE = "Start date";
+export const SEARCH_RESERVATION_TIME_FROM = "Start time";
+export const SEARCH_RESERVATION_TO_TITLE = "End date";
+export const SEARCH_RESERVATION_TIME_TO = "End time";
 
-/// Placeholder 
-export const SEARCH_RESERVATION_FROM = 'Data początkowa'
-export const SEARCH_RESERVATION_TO = "Data końcowa"
+/// Placeholder
+export const SEARCH_RESERVATION_FROM = "Start date";
+export const SEARCH_RESERVATION_TO = "End date";
 
-/// Validations 
-export const SEARCH_RESERVATION_DATE_AND_TIME_REQUIRED = 'Pole wymagane'
-
+/// Validations
+export const SEARCH_RESERVATION_DATE_AND_TIME_REQUIRED = "Field required";
 
 //************FilterReservation************//
 //Title
-export const FILTER_RESERVATION_TITLE = 'Wyszukaj rezerwacje'
-export const FILTER_RESERVATION_SUBTITLE = 'Lista rezerwacji'
-export const FILTER_RESERVATION_DATE_FROM = 'Data od: '
-export const FILTER_RESERVATION_DATE_TO = 'Data do: '
-export const FILTER_RESERVATION_MORE_INFO_CLIENT = 'Informacje o kliencie:'
-export const FILTER_RESERVATION_MORE_INFO_TEL = 'Tel: '
-export const FILTER_RESERVATION_MORE_LOCATION = 'Odbiór w: '
+export const FILTER_RESERVATION_TITLE = "Reservations searching";
+export const FILTER_RESERVATION_SUBTITLE = "List of reservations";
+export const FILTER_RESERVATION_DATE_FROM = "Start date: ";
+export const FILTER_RESERVATION_DATE_TO = "End date: ";
+export const FILTER_RESERVATION_MORE_INFO_CLIENT = "Customer information:";
+export const FILTER_RESERVATION_MORE_INFO_TEL = "Phone no: ";
+export const FILTER_RESERVATION_MORE_LOCATION = "Pickup in: ";
 
-/// Placeholder 
-export const FILTER_RESERVATION_SEARCH_PLACEHOLDER = 'Wyszukaj'
+/// Placeholder
+export const FILTER_RESERVATION_SEARCH_PLACEHOLDER = "Search...";
