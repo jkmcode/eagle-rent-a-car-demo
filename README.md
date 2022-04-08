@@ -159,14 +159,14 @@ https://miro.com/app/board/uXjVOF-piFg=/?moveToWidget=3458764521803910917&cot=14
 
 ## Download & Setup Instructions
 
-1 - Clone project: git clone https://github.com/jkmcode/eagle-rent-a-car-demo
-2 - cd eagle-rent-a-car-demo
-3 - Create virtual environment: virtualenv myenv
-4 - cd myenv\scripts
-5 - activate virtual environment: activate
-6 - back to project: eagle-rent-a-car-demo
-7 - pip install -r requirements.txt
-8 - python manage.py runserver
+- 1 - Clone project: git clone https://github.com/jkmcode/eagle-rent-a-car-demo
+- 2 - cd eagle-rent-a-car-demo
+- 3 - Create virtual environment: virtualenv myenv
+- 4 - cd myenv\scripts
+- 5 - activate virtual environment: activate
+- 6 - back to project: eagle-rent-a-car-demo
+- 7 - pip install -r requirements.txt
+- 8 - python manage.py runserver
 
 ### Frontend
 
