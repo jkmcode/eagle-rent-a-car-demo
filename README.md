@@ -143,6 +143,7 @@ Example 2
 - The customer books the car at Location 1. The car will be picked up at the same Location at 12:00. In this case, the car can be booked on the same day at 1:00 p.m.
 
 Calendar
+
 Each car has a calendar. Thanks to this, the user can see when and how long a car is booked or rented. The calendar presents data in two ways. The dates are shown in the calendar and in the form of an agenda. Bar contains basic information such as: name and surname of the client, the location where the car will be picked up from the customer or the place where the customer wants to rent the car (in the case of reservation). The blue color reflects the rental and the orange color the reservation.
 
 https://miro.com/app/board/uXjVOF-piFg=/?moveToWidget=3458764521803910917&cot=14
@@ -156,7 +157,16 @@ https://miro.com/app/board/uXjVOF-piFg=/?moveToWidget=3458764521803910917&cot=14
 - JavaScripts (React JS)
 - Python (Django, RestApi)
 
-## Installation
+## Download & Setup Instructions
+
+1 - Clone project: git clone https://github.com/jkmcode/eagle-rent-a-car-demo
+2 - cd eagle-rent-a-car-demo
+3 - Create virtual environment: virtualenv myenv
+4 - cd myenv\scripts
+5 - activate virtual environment: activate
+6 - back to project: eagle-rent-a-car-demo
+7 - pip install -r requirements.txt
+8 - python manage.py runserver
 
 ### Frontend
 
