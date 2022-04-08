@@ -163,7 +163,7 @@ https://miro.com/app/board/uXjVOF-piFg=/?moveToWidget=3458764521803910917&cot=14
 - 2 - cd eagle-rent-a-car-demo
 - 3 - Create virtual environment: virtualenv myenv
 - 4 - cd myenv\scripts
-- 5 - activate virtual environment: activate
+- 5 - activate virtual environment: activated
 - 6 - back to project: eagle-rent-a-car-demo
 - 7 - pip install -r requirements.txt
 - 8 - python manage.py runserver
