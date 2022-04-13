@@ -32,6 +32,10 @@ Moreover you able to check 'do-to' list which contains all delays of rental, exp
 
 ### Authentication
 
+Credentials to login:
+User Name: AMINUSER
+Password: AMINUSER
+
 - Only Admin can create a user account,
 - only Admin can edit password of all employees and his own,
 - the user can only change his password,
