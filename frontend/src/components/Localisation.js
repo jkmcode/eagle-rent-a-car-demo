@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 import Loader from "./Loader";
 import Message from "./Message";
 import BackLogin from "./BackToLogin";
-import { listLocation, getLocationDetails } from "../action/locationAction";
+import { listLocation } from "../action/locationAction";
 import { LinkContainer } from "react-router-bootstrap";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -35,7 +35,7 @@ function Localisation() {
 
   useEffect(() => {
     dispatch(listLocation());
-  }, []);
+  }, [dispatch]);
 
   const createLocateHandler = () => {
     navigate("/admin/createlocation");

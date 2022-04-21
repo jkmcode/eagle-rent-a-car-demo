@@ -9,10 +9,7 @@ import { useNavigate } from "react-router-dom";
 import Loader from "./Loader";
 import Message from "./Message";
 import { getUserDetails, updateUserProfile } from "../action/userAction";
-import {
-  USER_UPDATE_PROFILE_RESET,
-  USER_DETAILS_RESET,
-} from "../constants/UserConstants";
+import { USER_UPDATE_PROFILE_RESET } from "../constants/UserConstants";
 
 import {
   MY_PROFILE_TITLE,
@@ -47,9 +44,7 @@ function MyProfile() {
   const [messagePassword, setMessagePassword] = useState("");
   const [passwordConfirm, setPasswordConfirm] = useState("");
   const [messageDetails, setMessageDetails] = useState("");
-  const [errorUserUpdate, setErrorUserUpdate] = useState(false);
   const [successMsgUpdate, setSuccessMsgUpdate] = useState("");
-  const [errorMsgInfo, setErrorMsgInfo] = useState(false);
 
   const userDetails = useSelector((state) => state.userDetails);
   const { errorDetailsFail, loading, user } = userDetails;
@@ -68,7 +63,6 @@ function MyProfile() {
   const {
     success,
     errorProfileFail,
-    msgSuccess,
     loading: updateLoading,
   } = userUpdateProfile;
 
@@ -106,15 +100,17 @@ function MyProfile() {
   }, [
     dispatch,
     reset,
+    navigate,
     userInfo,
     success,
     user,
     messagePassword,
     passwordConfirm,
+    errorDetailsFail,
   ]);
 
   const submitHandler = (data) => {
-    if (data.password != data.passwordConfirm) {
+    if (data.password !== data.passwordConfirm) {
       setPasswordConfirm(MY_PROFILE_PASSWORD_ARE_NOT_THE_SAME);
       reset({ password: "", passwordConfirm: "" });
     } else {
@@ -165,7 +161,7 @@ function MyProfile() {
     }, 5000);
 
     return () => clearTimeout(timeout);
-  }, [messagePassword, passwordConfirm, successMsgUpdate]);
+  }, [dispatch, navigate, messagePassword, passwordConfirm, successMsgUpdate]);
 
   return (
     <main>

@@ -23,7 +23,7 @@ function MainPage() {
     if (!userInfo) {
       navigate("/");
     }
-  }, [userInfo]);
+  }, [navigate, userInfo]);
 
   return (
     <main>

@@ -116,11 +116,7 @@ function CarReservation() {
   const { loading, car, error } = carReservationCreate;
 
   const carDetails = useSelector((state) => state.carDetails);
-  const {
-    loading: loadingCarDetails,
-    car: carCarDetails,
-    error: errorCarDetails,
-  } = carDetails;
+  const { car: carCarDetails, error: errorCarDetails } = carDetails;
 
   const locationDetails = useSelector((state) => state.locationDetails);
   const { errorDetailsFail, location: locationInfo } = locationDetails;
@@ -157,14 +153,13 @@ function CarReservation() {
   const {
     register,
     formState: { errors },
-    reset,
     handleSubmit,
     trigger,
   } = useForm();
 
   registerLocale("pl", pl);
 
-  const [language, setLanguage] = useState("pl");
+  const [language] = useState("pl");
 
   const submitHandler = (data) => {
     scroller.scrollTo("navbar", { smooth: true, offset: -90, duration: 10 });
@@ -384,7 +379,7 @@ function CarReservation() {
     if (car === ERROR_HANDLING_EXIST_RANGE_DATE_EX_6) {
       setDateMsg(ERROR_HANDLING_EXIST_RANGE_DATE_EX_6_MSG);
     }
-  }, [car, loading]);
+  }, [navigate, car, loading]);
 
   //UseEffect - Error handling with connection to database
   useEffect(() => {
@@ -407,7 +402,7 @@ function CarReservation() {
     }, TIME_CLEAR_MSG);
 
     return () => clearTimeout(timeout);
-  }, [dateMsg, dateMsgSuccess]);
+  }, [dispatch, dateMsg, dateMsgSuccess]);
 
   return (
     <main>

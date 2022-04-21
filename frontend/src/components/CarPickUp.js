@@ -65,22 +65,13 @@ function CarPickUp() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const {
-    register,
-    formState: { errors },
-    reset,
-    handleSubmit,
-  } = useForm();
+  const { register, reset, handleSubmit } = useForm();
 
   const carRentDetails = useSelector((state) => state.carRentDetails);
   const { loading, error, rent } = carRentDetails;
 
   const carUpdateRent = useSelector((state) => state.carUpdateRent);
-  const {
-    loading: carUpdateLoading,
-    error: carUpdateError,
-    rent: carUpdateRentMsg,
-  } = carUpdateRent;
+  const { error: carUpdateError, rent: carUpdateRentMsg } = carUpdateRent;
 
   //Form variables
   const [isAccounted, setIsAccounted] = useState(false);
@@ -162,7 +153,7 @@ function CarPickUp() {
   useEffect(() => {
     if (carUpdateRentMsg === SUCCESS) {
       setPickUpMsgSuccess(SUCCESS_PICK_UP);
-      const timeout = setTimeout(() => {
+      setTimeout(() => {
         navigate(`/mainpage/${locationId}/car-list`);
       }, TIME_CLEAR_MSG);
     }
@@ -177,13 +168,13 @@ function CarPickUp() {
         setErrorMsg(REQUEST_FAILED_REST_OF_STATUS_CODE);
       }
     }
-  }, [carUpdateRentMsg, carUpdateError, error]);
+  }, [navigate, carUpdateRentMsg, carUpdateError, error, locationId]);
 
   //Fetch carRentDetails from database
   useEffect(() => {
     scroller.scrollTo("navbar", { smooth: true, offset: -90, duration: 10 });
     if (!error) {
-      if (!rent.client_name || rent.id_cars.id != carId) {
+      if (!rent.client_name || rent.id_cars.id !== carId) {
         dispatch(getRentDetailsByCarId(carId));
       } else {
         reset({
@@ -195,9 +186,9 @@ function CarPickUp() {
         });
       }
     }
-  }, [dispatch, rent]);
+  }, [dispatch, rent, carId, error, reset]);
 
-  //UseEffect - kasowanie komunikatów
+  //UseEffect - remove context
   useEffect(() => {
     const timeout = setTimeout(() => {
       setPickUpMsgSuccess("");

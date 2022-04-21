@@ -165,7 +165,7 @@ Each car has a calendar. Thanks to this, the user can see when and how long a ca
 - 2 - cd eagle-rent-a-car-demo
 - 3 - Create virtual environment: virtualenv myenv
 - 4 - cd myenv\scripts
-- 5 - activate virtual environment: activated
+- 5 - activate virtual environment: activate
 - 6 - back to project: eagle-rent-a-car-demo
 - 7 - pip install -r requirements.txt
 - 8 - python manage.py runserver

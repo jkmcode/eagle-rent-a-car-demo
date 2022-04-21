@@ -121,7 +121,7 @@ function CarShow() {
     );
     dispatch(listOfCarOfRents(carId));
     dispatch(getCarDetails(carId));
-  }, []);
+  }, [dispatch, carId]);
 
   return (
     <main>
@@ -137,7 +137,7 @@ function CarShow() {
               {CAR_SHOW_REGISTRATION_NO_TITLE} {car.code_registration}
             </h6>
           </Col>
-          {locationId && action == "edit" ? (
+          {locationId && action === "edit" ? (
             <Col className="btn-position">
               <LinkContainer
                 to={`/car/${carId}/rent/edit/${idRent}/location/${locationId}`}
@@ -149,7 +149,7 @@ function CarShow() {
             </Col>
           ) : null}
 
-          {locationId && action == "rent" ? (
+          {locationId && action === "rent" ? (
             <Col className="btn-position">
               <LinkContainer to={`/car/${carId}/rent/${locationId}`}>
                 <Button className="btn-car-show-reservation">
@@ -158,7 +158,7 @@ function CarShow() {
               </LinkContainer>
             </Col>
           ) : null}
-          {locationId && action == "edit-to-do" ? (
+          {locationId && action === "edit-to-do" ? (
             <Col className="btn-position">
               <LinkContainer
                 to={`/reservation/car/${locationId}/${carId}/${action}/${idRes}`}
@@ -170,8 +170,8 @@ function CarShow() {
             </Col>
           ) : null}
 
-          {(locationId && action == "id-location") ||
-          action == "search-reservation" ? (
+          {(locationId && action === "id-location") ||
+          action === "search-reservation" ? (
             <Col className="btn-position">
               {locationId ? (
                 <div>
@@ -209,7 +209,7 @@ function CarShow() {
             </Col>
           ) : null}
 
-          {locationId && action == "edit-reservation" ? (
+          {locationId && action === "edit-reservation" ? (
             <Col className="btn-position">
               <LinkContainer
                 to={`/car/${carId}/${locationId}/edit-reservation`}
@@ -221,7 +221,7 @@ function CarShow() {
             </Col>
           ) : null}
 
-          {locationId && action == "single-edit" ? (
+          {locationId && action === "single-edit" ? (
             <Col className="btn-position">
               <LinkContainer
                 to={`/reservation/car/${locationId}/${carId}/single-edit/${idRes}`}
@@ -233,7 +233,7 @@ function CarShow() {
             </Col>
           ) : null}
 
-          {locationId && action == "res-to-rent" ? (
+          {locationId && action === "res-to-rent" ? (
             <Col className="btn-position">
               <LinkContainer
                 to={`/car/${carId}/rent/${locationId}/res-to-rent/${idRes}`}
@@ -245,7 +245,7 @@ function CarShow() {
             </Col>
           ) : null}
 
-          {locationId && action == "in-use" ? (
+          {locationId && action === "in-use" ? (
             <Col className="btn-position">
               <LinkContainer to={`/mainpage/${locationId}/car-list`}>
                 <Button className="btn-car-show-reservation m-1">
@@ -255,7 +255,7 @@ function CarShow() {
             </Col>
           ) : null}
 
-          {action == "admin" ? (
+          {action === "admin" ? (
             <Col className="btn-position">
               <LinkContainer to={`/admin/cars`}>
                 <Button className="btn-car-show-reservation m-1">

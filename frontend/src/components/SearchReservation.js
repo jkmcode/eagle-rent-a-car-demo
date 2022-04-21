@@ -61,15 +61,9 @@ function SearchReservation() {
   const action = params.action;
 
   registerLocale("pl", pl);
-  const [language, setLanguage] = useState("pl");
+  const [language] = useState("pl");
 
-  const {
-    register,
-    formState: { errors },
-    reset,
-    handleSubmit,
-    trigger,
-  } = useForm();
+  const { handleSubmit } = useForm();
 
   //Fetch data from Redux
   const searchReservations = useSelector((state) => state.searchReservations);

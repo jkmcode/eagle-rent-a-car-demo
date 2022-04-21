@@ -31,11 +31,11 @@ function CarsAdmin() {
 
   const dispatch = useDispatch();
 
-  const [action, setAction] = useState("admin");
+  const [action] = useState("admin");
 
   useEffect(() => {
     dispatch(listOfCars());
-  }, []);
+  }, [dispatch]);
 
   const navigate = useNavigate();
   const createCarsHandler = () => {

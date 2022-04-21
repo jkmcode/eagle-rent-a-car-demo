@@ -64,12 +64,7 @@ function CarsEdit() {
   const { error: errorEditUploadImage } = carEditUlopadImage;
 
   const carUpdate = useSelector((state) => state.carUpdate);
-  const {
-    error: errorCarUpdate,
-    loading: loadingCarUpdate,
-    car: carEdit,
-    success,
-  } = carUpdate;
+  const { error: errorCarUpdate, success } = carUpdate;
 
   const locationList = useSelector((state) => state.locationList);
   const { locations } = locationList;
@@ -102,7 +97,7 @@ function CarsEdit() {
         setLocationId(car.main_location.id);
       }
     }
-  }, [carId, car]);
+  }, [dispatch, error, reset, carId, car]);
 
   //UseEffect -słownik błędów
   useEffect(() => {
@@ -143,7 +138,7 @@ function CarsEdit() {
     }, 7500);
 
     return () => clearTimeout(timeout);
-  }, [errorCarUpdate, successMessage]);
+  }, [dispatch, navigate, errorCarUpdate, successMessage]);
 
   const submitHandler = (data) => {
     if (data.selectLocation === "0") {

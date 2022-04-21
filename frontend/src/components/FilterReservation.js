@@ -53,16 +53,9 @@ function FilterReservation() {
   const dispatch = useDispatch();
 
   const [filteredResults, setFilteredResults] = useState([]);
-  const [carName, setCarName] = useState("");
   const [searchInput, setSearchInput] = useState("");
 
-  const {
-    register,
-    formState: { errors },
-    reset,
-    handleSubmit,
-    trigger,
-  } = useForm();
+  const { register, handleSubmit } = useForm();
 
   //Fetch data from Redux
   const filterReservations = useSelector((state) => state.filterReservations);
@@ -99,7 +92,7 @@ function FilterReservation() {
   const submitHandler = (data) => {
     setSearchInput(data.searchValue);
 
-    if (data.searchValue == "") {
+    if (data.searchValue === "") {
       setFilteredResults(filterRes);
     } else {
       const filteredData = filterRes.filter((item) => {
@@ -144,10 +137,9 @@ function FilterReservation() {
   //Fetch data from DB
   useEffect(() => {
     if (!filterRes[0]) {
-      console.log("wchodze do funkcji");
       dispatch(listOfReservations());
     }
-  }, [successDelete]);
+  }, [dispatch, filterRes, successDelete]);
 
   //Error handling related to database connection
   useEffect(() => {

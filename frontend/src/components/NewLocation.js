@@ -118,7 +118,7 @@ function NewLocation() {
         }
       }
     }
-  }, [flag, loading]);
+  }, [dispatch, error, flag, loading, onSubmitExecute, ulopadImage]);
 
   //UseEffect - kasowanie komunikatów o błędzie
   useEffect(() => {
@@ -145,26 +145,34 @@ function NewLocation() {
     }, 7500);
 
     return () => clearTimeout(timeout);
-  }, [successMessage, errorMessageImage, errorMessage]);
+  }, [
+    dispatch,
+    navigate,
+    reset,
+    successMessage,
+    errorMessageImage,
+    errorMessage,
+    errorUploadImage,
+  ]);
 
   //UseEffect -słownik błędów
   useEffect(() => {
     if (error) {
       if (error === REQUEST_FAILED_WITH_STATUS_CODE_500) {
         setErrorMessage(REQUEST_FAILED_WITH_STATUS_CODE_500_PL);
-        const timeout = setTimeout(() => {
+        setTimeout(() => {
           dispatch({ type: LOCATION_CREATE_RESET });
           setErrorMessage("");
         }, 7500);
       } else if (error === NAME_ALREADY_EXIST) {
         setErrorMessage(error);
-        const timeout = setTimeout(() => {
+        setTimeout(() => {
           dispatch({ type: LOCATION_CREATE_RESET });
           setErrorMessage("");
         }, 7500);
       } else {
         setErrorMessage(REQUEST_FAILED_REST_OF_STATUS_CODE);
-        const timeout = setTimeout(() => {
+        setTimeout(() => {
           dispatch({ type: LOCATION_CREATE_RESET });
           setErrorMessage("");
         }, 7500);
@@ -176,7 +184,7 @@ function NewLocation() {
       dispatch({ type: LOCATION_CREATE_RESET });
       setErrorMessageImage("");
     }
-  }, [error, errorUploadImage]);
+  }, [dispatch, error, errorUploadImage]);
 
   //UseEffect - komunikat success
   useEffect(() => {

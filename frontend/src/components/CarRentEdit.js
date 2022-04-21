@@ -93,7 +93,7 @@ function CarRentEdit() {
 
   //change language of DatePicker
   registerLocale("pl", pl);
-  const [language, setLanguage] = useState("pl");
+  const [language] = useState("pl");
 
   const {
     register,
@@ -132,7 +132,7 @@ function CarRentEdit() {
   const { errorDetailsFail, location: locationInfo } = locationDetails;
 
   //variables related to URL
-  const [action, setAction] = useState("edit");
+  const [action] = useState("edit");
 
   //variables related to show info
   const [generalInfo, setGeneralInfo] = useState(false);
@@ -267,12 +267,12 @@ function CarRentEdit() {
       setEndTimeValue(new Date(TIME_DEFAULT_VALUE_END));
       setEndTimeGetHoursAndMinutes(endTimeValue);
     }
-  }, [endTimeValue]);
+  }, [endTimeValue, getEndTimeHoursAndMinutes]);
 
   //Fetch carDetails from database
   useEffect(() => {
     if (!errorCarDetails) {
-      if (!car.name || car.id != carId) {
+      if (!car.name || car.id !== carId) {
         dispatch(getCarDetails(carId));
       }
     }
@@ -281,7 +281,7 @@ function CarRentEdit() {
   //Fetch carRentDetails and locationDetails from database
   useEffect(() => {
     if (!errorCarRentDetails) {
-      if (!rent.client_name || rent.id_cars.id != carId) {
+      if (!rent.client_name || rent.id_cars.id !== carId) {
         dispatch(getRentDetailsByCarId(carId));
       } else {
         reset({
@@ -303,7 +303,7 @@ function CarRentEdit() {
     if (rentCarEditRent === CAR_RENT_EDIT_ERROR_HANDLING_SUCCESS) {
       dispatch({ type: CAR_RENT_EDIT_RESET });
       setDateMsgSuccess(CAR_RENT_EDIT_CREATE_MSG);
-      const timeout = setTimeout(() => {
+      setTimeout(() => {
         navigate(`/mainpage/${locationId}/car-list`);
       }, TIME_CLEAR_MSG);
     }
@@ -319,7 +319,7 @@ function CarRentEdit() {
     ) {
       setDateMsg(CAR_RENT_EDIT_ERROR_HANDLING_EXIST_RANGE_DATE_EX_2_MSG);
     }
-  }, [rentCarEditRent]);
+  }, [dispatch, rentCarEditRent, locationId]);
 
   //Error handling related to database connection
   useEffect(() => {

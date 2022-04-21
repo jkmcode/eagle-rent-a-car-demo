@@ -45,12 +45,7 @@ function CreateUser() {
   const [messagePassword, setMessagePassword] = useState("");
   const dispatch = useDispatch();
   const userCreateReducers = useSelector((state) => state.userCreateReducers);
-  const {
-    error,
-    loading,
-    userInfo,
-    success: successCreateUser,
-  } = userCreateReducers;
+  const { error, loading, success: successCreateUser } = userCreateReducers;
 
   const {
     register,
@@ -61,7 +56,7 @@ function CreateUser() {
   } = useForm();
 
   const onSubmit = (data) => {
-    if (data.password != data.passwordConfirm) {
+    if (data.password !== data.passwordConfirm) {
       setMessagePassword(ENTERED_PASSWORD_ARE_NOT_THE_SAME);
     } else {
       dispatch(createUser(data.name, data.email, data.password));
@@ -81,7 +76,7 @@ function CreateUser() {
       }, 5000);
       return () => clearTimeout(timeout);
     }
-  }, [msgEmail, messagePassword, successCreateUser]);
+  }, [dispatch, navigate, msgEmail, messagePassword, successCreateUser]);
 
   return (
     <main>

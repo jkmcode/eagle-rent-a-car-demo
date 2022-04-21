@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import FormContainer from "./FormContainer";
 import LoginContainer from "./LoginContainer";
 import Loader from "./Loader";
 import Message from "./Message";
@@ -43,11 +42,11 @@ function Login() {
 
   useEffect(() => {
     setErrorMsg(error);
-    if (error == REQUEST_FAIL_WITH_STATUS_CODE_404) {
+    if (error === REQUEST_FAIL_WITH_STATUS_CODE_404) {
       setErrorMsg(REQUEST_FAIL_WITH_STATUS_CODE_404_PL);
-    } else if (error == REQUEST_FAILED_WITH_STATUS_CODE_500) {
+    } else if (error === REQUEST_FAILED_WITH_STATUS_CODE_500) {
       setErrorMsg(REQUEST_FAILED_WITH_STATUS_CODE_500_PL);
-    } else if (error == WRONG_CREDENTIALS) {
+    } else if (error === WRONG_CREDENTIALS) {
       setErrorMsg(WRONG_CREDENTIALS_PL);
     } else {
       setErrorMsg(error);
@@ -66,7 +65,7 @@ function Login() {
         navigate("/mainpage");
       }
     }
-  }, [userInfo, userDateLogin]);
+  }, [dispatch, navigate, today, userInfo, userDateLogin, converDate]);
 
   const {
     register,

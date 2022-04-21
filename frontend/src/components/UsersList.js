@@ -46,7 +46,7 @@ function UsersList() {
     if (error) {
       navigate("/mainpage");
     }
-  }, [dispatch, userInfo, successDelete, error]);
+  }, [dispatch, navigate, userInfo, successDelete, error]);
 
   const deleteHandler = (id) => {
     if (window.confirm(DELETE_MESSAGE)) {

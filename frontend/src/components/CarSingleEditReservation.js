@@ -109,7 +109,7 @@ function CarSingleEditReservation() {
   const navigate = useNavigate();
 
   registerLocale("pl", pl);
-  const [language, setLanguage] = useState("pl");
+  const [language] = useState("pl");
 
   const {
     register,
@@ -134,14 +134,8 @@ function CarSingleEditReservation() {
   const carUpdateReservation = useSelector(
     (state) => state.carUpdateReservation
   );
-  const {
-    success,
-    error: errorUpdate,
-    reservation: reservationUpdate,
-  } = carUpdateReservation;
-
-  const carDetails = useSelector((state) => state.carDetails);
-  const { car } = carDetails;
+  const { error: errorUpdate, reservation: reservationUpdate } =
+    carUpdateReservation;
 
   const locationDetails = useSelector((state) => state.locationDetails);
   const { errorDetailsFail, location: locationInfo } = locationDetails;
@@ -374,6 +368,8 @@ function CarSingleEditReservation() {
       }
     }
   }, [
+    dispatch,
+    errorDetailsFail,
     ReservationId,
     reservation,
     endTimeValue,
@@ -387,13 +383,13 @@ function CarSingleEditReservation() {
     if (errorUpdate) {
       if (errorUpdate == REQUEST_FAILED_WITH_STATUS_CODE_500) {
         setErrorMessage(REQUEST_FAILED_WITH_STATUS_CODE_500_PL);
-        const timeout = setTimeout(() => {
+        setTimeout(() => {
           dispatch({ type: CAR_SINGLE_EDIT_RESERVATION_RESET });
           setErrorMessage("");
         }, TIME_CLEAR_MSG);
       } else {
         setErrorMessage(REQUEST_FAILED_REST_OF_STATUS_CODE);
-        const timeout = setTimeout(() => {
+        setTimeout(() => {
           dispatch({ type: CAR_SINGLE_EDIT_RESERVATION_RESET });
           setErrorMessage("");
         }, TIME_CLEAR_MSG);
@@ -422,7 +418,7 @@ function CarSingleEditReservation() {
 
     if (reservationUpdate === SUCCESS_EDIT_RESERVATION) {
       setSuccessMessage(SUCCESS_MESSAGE_EDIT_RESERVATION);
-      const timeout = setTimeout(() => {
+      setTimeout(() => {
         dispatch({ type: CAR_SINGLE_EDIT_RESERVATION_RESET });
         if (action === "edit-to-do") {
           navigate(`/mainpage/${locationId}/car-list`);
@@ -435,7 +431,7 @@ function CarSingleEditReservation() {
         }
       }, TIME_CLEAR_MSG);
     }
-  }, [errorUpdate, reservationUpdate]);
+  }, [dispatch, navigate, errorUpdate, reservationUpdate, carId, locationId]);
 
   //Error handling remove content
   useEffect(() => {
@@ -446,7 +442,7 @@ function CarSingleEditReservation() {
     }, TIME_CLEAR_MSG);
 
     return () => clearTimeout(timeout);
-  }, [errorMessage, successMessage]);
+  }, [dispatch, errorMessage, successMessage]);
 
   return (
     <main>

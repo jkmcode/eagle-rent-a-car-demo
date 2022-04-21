@@ -83,11 +83,11 @@ function UserEdit() {
         }
       }
     }
-  }, [user, userId, successUpdate]);
+  }, [dispatch, navigate, reset, user, userId, successUpdate]);
 
   const submitHandler = (data) => {
     if (changingPassword) {
-      if (data.password != data.passwordConfirm) {
+      if (data.password !== data.passwordConfirm) {
         setMessagePassword(ENTERED_PASSWORD_ARE_NOT_THE_SAME);
         reset({ password: "", passwordConfirm: "" });
       } else {

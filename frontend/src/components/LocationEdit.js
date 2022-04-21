@@ -54,7 +54,7 @@ function LocationEdit() {
   const { error: errorUpdate, success: successUpdate } = locationUpdate;
 
   const locationDetails = useSelector((state) => state.locationDetails);
-  const { errorDetailsFail, loading, success, location } = locationDetails;
+  const { errorDetailsFail, loading, location } = locationDetails;
 
   //Variables for error handling
   const [errorMessage, setErrorMessage] = useState("");
@@ -82,7 +82,15 @@ function LocationEdit() {
         }
       }
     }
-  }, [location, locationId, successUpdate, errorDetailsFail]);
+  }, [
+    dispatch,
+    navigate,
+    reset,
+    location,
+    locationId,
+    successUpdate,
+    errorDetailsFail,
+  ]);
 
   const uploadFileHandler = async (e) => {
     const file = e.target.files[0];

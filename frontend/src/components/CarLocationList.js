@@ -93,9 +93,6 @@ function CarLocationList() {
   const carRentDetails = useSelector((state) => state.carRentDetails);
   const { rent } = carRentDetails;
 
-  const carUpdateRent = useSelector((state) => state.carUpdateRent);
-  const { rent: carUpdateRentMsg } = carUpdateRent;
-
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
 
@@ -103,8 +100,8 @@ function CarLocationList() {
   const { success: successDelete } = reservationDelete;
 
   //Variables related to URL
-  const [action, setAction] = useState("edit-to-do");
-  const [actionResToRent, setActionResToRent] = useState("res-to-rent");
+  const [action] = useState("edit-to-do");
+  const [actionResToRent] = useState("res-to-rent");
 
   //Variables in order to change list
   const [listName, setListName] = useState("to-rent");
@@ -232,8 +229,8 @@ function CarLocationList() {
 
   //UseEffect to change lists and upload list of cars after delete reservation
   useEffect(() => {
-    const location = locations.map((loc) => {
-      if (loc.id == locationId) {
+    locations.map((loc) => {
+      if (loc.id === locationId) {
         setLocationName(loc.short_name);
       }
     });
@@ -261,6 +258,7 @@ function CarLocationList() {
       dispatch({ type: CAR_RENT_UPDATE_RESET });
     }
   }, [
+    dispatch,
     listSwitcherRent,
     listSwitcherInUse,
     listSwitcherToDo,
@@ -270,6 +268,9 @@ function CarLocationList() {
     filterRents,
     successDelete,
     locationId,
+    listName,
+    locations,
+    rent.client_name,
   ]);
 
   //UseEffect - releted to Error with database connection
@@ -421,7 +422,7 @@ function CarLocationList() {
                       >
                         <Row>
                           <Col>
-                            {locationId != car.id_cars.location ? (
+                            {locationId !== car.id_cars.location ? (
                               <div>
                                 <h4 className="other-location-title">
                                   {CAR_LOCATION_LIST_OTHER_LOCATISATION}

@@ -19,7 +19,7 @@ function BackToLogin(props) {
         navigate("/");
       }
     }
-  }, []);
+  }, [converDate, navigate, today, userInfo]);
 
   return <div></div>;
 }

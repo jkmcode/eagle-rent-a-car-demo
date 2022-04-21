@@ -5,7 +5,6 @@ import { Image, Form, Button, Row, Col } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, useNavigate } from "react-router-dom";
-import Loader from "./Loader";
 import Message from "./Message";
 import BackLogin from "./BackToLogin";
 import { TimePickerComponent } from "@syncfusion/ej2-react-calendars";
@@ -126,7 +125,7 @@ function CarRent() {
   const { userInfo } = userLogin;
 
   const carRentCreate = useSelector((state) => state.carRentCreate);
-  const { loading, rent, error } = carRentCreate;
+  const { rent, error } = carRentCreate;
 
   const carDetails = useSelector((state) => state.carDetails);
   const { car } = carDetails;
@@ -137,11 +136,7 @@ function CarRent() {
   const carSingleReservation = useSelector(
     (state) => state.carSingleReservation
   );
-  const {
-    loading: loadingSingleReservation,
-    reservation,
-    error: errorSingleReservation,
-  } = carSingleReservation;
+  const { reservation, error: errorSingleReservation } = carSingleReservation;
 
   //Form variables
   const [clientNameMsg, setClientNameMsg] = useState("");
@@ -155,23 +150,18 @@ function CarRent() {
   const [totalPriceMsg, setTotalPrice] = useState("");
   const [totalPriceCurrency, setTotalPriceCurrency] = useState("");
   const [isPaidTotalPrice, setIsPaidTotalPrice] = useState(false);
-  const [comeBack, setComeBack] = useState(false);
+  const [comeBack] = useState(false);
   const [location, setLocation] = useState("");
   const [resToRent, setResToRent] = useState("");
 
   //Date and Time variables
   const [newEvent, setNewEvent] = useState({ start: "", end: "" });
-  const [startDateMsg, setStartDateMsg] = useState("");
   const [wrongBackDateMsg, setWrongBackDateMsg] = useState("");
-  const [selectStartTimeMsg, setSelectStartTimeMsg] = useState("");
   const [selectEndTimeMsg, setSelectEndTimeMsg] = useState("");
-  const [getStartTimeHoursAndMinutes, setStartTimeGetHoursAndMinutes] =
-    useState(new Date(`01/02/2021 10:00`));
   const [getEndTimeHoursAndMinutes, setEndTimeGetHoursAndMinutes] =
     useState("");
   const [endDateMsg, setEndDateMsg] = useState("");
   const [endTimeValue, setEndTimeValue] = useState("");
-  const [resDate, setRestDate] = useState("");
 
   //Error handling variables
   const [dateMsgSuccess, setDateMsgSuccess] = useState("");
@@ -188,7 +178,7 @@ function CarRent() {
 
   registerLocale("pl", pl);
 
-  const [language, setLanguage] = useState("pl");
+  const [language] = useState("pl");
 
   const submitHandler = (data) => {
     scroller.scrollTo("navbar", { smooth: true, offset: -90, duration: 10 });
@@ -363,12 +353,12 @@ function CarRent() {
         setEndTimeGetHoursAndMinutes(endTimeValue);
       }
     }
-  }, [endTimeValue]);
+  }, [endTimeValue, actionResToRent, getEndTimeHoursAndMinutes]);
 
   //Fetching data from database: carDetails, LocationDetails, CarSingleReservation
   //Set End Time from database
   useEffect(() => {
-    if (!car.name || car.id != carId) {
+    if (!car.name || car.id !== carId) {
       dispatch(getCarDetails(carId));
     }
 
@@ -421,6 +411,11 @@ function CarRent() {
     locationInfo,
     reservation,
     endTimeValue,
+    actionResToRent,
+    errorSingleReservation,
+    getEndTimeHoursAndMinutes,
+    newEvent,
+    reset,
   ]);
 
   //Error handling and success related to date of range
@@ -428,7 +423,7 @@ function CarRent() {
     if (rent === CAR_RENT_ERROR_HANDLING_SUCCESS) {
       dispatch({ type: CAR_RENT_CREATE_RESET });
       setDateMsgSuccess(CAR_RENT_CREATE_MSG);
-      const timeout = setTimeout(() => {
+      setTimeout(() => {
         navigate(`/mainpage/${locationId}/car-list`);
       }, TIME_CLEAR_MSG);
     }
@@ -455,7 +450,7 @@ function CarRent() {
     if (rent === CAR_RENT_ERROR_HANDLING_EXIST_RANGE_DATE_EX_7) {
       setDateMsg(CAR_RENT_ERROR_HANDLING_EXIST_RANGE_DATE_EX_7_MSG);
     }
-  }, [rent]);
+  }, [dispatch, locationId, navigate, rent]);
 
   //Error handling related to database connection
   useEffect(() => {
@@ -478,7 +473,7 @@ function CarRent() {
     }, TIME_CLEAR_MSG);
 
     return () => clearTimeout(timeout);
-  }, [dateMsgSuccess, dateMsg]);
+  }, [dispatch, dateMsgSuccess, dateMsg]);
 
   return (
     <main>

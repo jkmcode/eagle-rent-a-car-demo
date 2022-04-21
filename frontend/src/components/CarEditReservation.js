@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
-import { Card, ListGroup, Image, Button, Row, Col } from "react-bootstrap";
+import { Card, Image, Button, Row, Col } from "react-bootstrap";
 import Header from "./Header";
 import Loader from "./Loader";
 import Message from "./Message";
@@ -52,12 +52,9 @@ function CarEditReservation() {
   const reservationDelete = useSelector((state) => state.reservationDelete);
   const { success: successDelete } = reservationDelete;
 
-  const locationList = useSelector((state) => state.locationList);
-  const { locations } = locationList;
-
   //variables related to URL
-  const [action, setAction] = useState("single-edit");
-  const [actionEditList, setActionEditList] = useState("edit-reservation");
+  const [action] = useState("single-edit");
+  const [actionEditList] = useState("edit-reservation");
 
   const deleteHandler = (id) => {
     if (window.confirm(CAR_EDIT_RESERVATION_DELETE_MSG)) {
@@ -72,7 +69,7 @@ function CarEditReservation() {
   };
 
   useEffect(() => {
-    if (!car || car.id != carId) {
+    if (!car || car.id !== carId) {
       dispatch(getCarDetails(carId));
     }
 
@@ -82,7 +79,7 @@ function CarEditReservation() {
         locationId: locationId,
       })
     );
-  }, [successDelete, car]);
+  }, [successDelete, car, carId, dispatch, locationId]);
 
   return (
     <main>

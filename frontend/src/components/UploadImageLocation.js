@@ -2,8 +2,8 @@ import React from "react";
 import Header from "./Header";
 import FormContainer from "./FormContainer";
 import { useDispatch, useSelector } from "react-redux";
-import { Form, Button, Row, Col, Image } from "react-bootstrap";
-import { useParams, useNavigate } from "react-router-dom";
+import { Form, Row, Col, Image } from "react-bootstrap";
+import { useParams } from "react-router-dom";
 import { editLocationUploadImage } from "../action/locationAction";
 import BackLogin from "./BackToLogin";
 

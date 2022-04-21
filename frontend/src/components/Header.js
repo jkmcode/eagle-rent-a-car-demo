@@ -1,7 +1,6 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Navbar, Nav, Container, NavDropdown, Image } from "react-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
 import { LinkContainer } from "react-router-bootstrap";
 import { logout } from "../action/userAction";
 import { resetLocations } from "../action/locationAction";
@@ -12,14 +11,12 @@ import {
   HEADER_RESERVATIONS,
   HEADER_RESERVATIONS_NEW,
   HEADER_RESERVATIONS_SEARCH,
-  HEADER_USER,
   HEADER_USER_MY_PROFILE,
   HEADER_USER_MY_ADMIN,
   HEADER_USER_MY_LOGOUT,
 } from "../constants/EnvConstans";
 
 function Header() {
-  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const userLogin = useSelector((state) => state.userLogin);

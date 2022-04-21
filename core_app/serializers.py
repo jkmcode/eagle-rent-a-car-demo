@@ -14,7 +14,7 @@ class UserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ['id','_id','username', 'email', 'name' ,'IsAdmin', 'IsSuperUser']
+        fields = ["id", "_id", "username", "email", "name", "IsAdmin", "IsSuperUser"]
 
     def get__id(self, obj):
         _id = obj.id
@@ -24,60 +24,75 @@ class UserSerializer(serializers.ModelSerializer):
         name = obj.first_name
         if name == "":
             name = obj.email
-        return name 
+        return name
 
     def get_IsAdmin(self, obj):
         return obj.is_staff
 
     def get_IsSuperUser(self, obj):
         return obj.is_superuser
-    
+
 
 class UserSeralizerWithToken(UserSerializer):
     token = serializers.SerializerMethodField(read_only=True)
+
     class Meta:
         model = User
-        fields = ['id','_id','username', 'email', 'name' ,'IsAdmin', 'IsSuperUser', 'token']
+        fields = [
+            "id",
+            "_id",
+            "username",
+            "email",
+            "name",
+            "IsAdmin",
+            "IsSuperUser",
+            "token",
+        ]
 
     def get_token(self, obj):
         token = RefreshToken.for_user(obj)
         return str(token.access_token)
 
 
+# LOCATIONS
 
-#LOCATIONS
 
 class LocationsSerializer(serializers.ModelSerializer):
     class Meta:
         model = Locations
-        fields = '__all__'
+        fields = "__all__"
 
 
-#CARS
+# CARS
+
 
 class CarsSerializer(serializers.ModelSerializer):
-
     class Meta:
         model = Cars
-        fields = '__all__'
+        fields = "__all__"
+
 
 class CarsSerializerReservation(serializers.ModelSerializer):
     type = serializers.SerializerMethodField(read_only=True)
+
     class Meta:
         model = Cars
-        fields = ['id','name', 'short_name', 'code_registration', 'image','type']
+        fields = ["id", "name", "short_name", "code_registration", "image", "type"]
 
     def get_type(self, obj):
-        return 'Rezerwacja' 
+        return "Rezerwacja"
+
 
 class CarsSerializerRents(serializers.ModelSerializer):
     type = serializers.SerializerMethodField(read_only=True)
+
     class Meta:
         model = Cars
-        fields = ['id','name', 'short_name', 'code_registration', 'image','type']
+        fields = ["id", "name", "short_name", "code_registration", "image", "type"]
 
     def get_type(self, obj):
-        return 'Najem' 
+        return "Najem"
+
 
 class CarsSerializerWithMainLocation(serializers.ModelSerializer):
 
@@ -85,7 +100,17 @@ class CarsSerializerWithMainLocation(serializers.ModelSerializer):
 
     class Meta:
         model = Cars
-        fields = ['id','name', 'short_name', 'code_registration','location', 'image', 'is_active', 'to_the_location', 'main_location']
+        fields = [
+            "id",
+            "name",
+            "short_name",
+            "code_registration",
+            "location",
+            "image",
+            "is_active",
+            "to_the_location",
+            "main_location",
+        ]
 
 
 class CarsReservationSerializer(serializers.ModelSerializer):
@@ -109,28 +134,28 @@ class CarsReservationSerializer(serializers.ModelSerializer):
     class Meta:
         model = Cars_Reservation
         fields = [
-                  'id',
-                  'id_cars',
-                  'client_name', 
-                  'client_document_type',
-                  'client_document_identification',
-                  'client_phone', 
-                  'client_email',
-                  'date_from', 
-                  'start_year',
-                  'start_month', 
-                  'start_day',
-                  'start_hour', 
-                  'start_minute',
-                  'date_to',
-                  'end_year',
-                  'end_month', 
-                  'end_day',
-                  'end_hour', 
-                  'end_minute',
-                  'note',
-                  'type',
-                  'location'
+            "id",
+            "id_cars",
+            "client_name",
+            "client_document_type",
+            "client_document_identification",
+            "client_phone",
+            "client_email",
+            "date_from",
+            "start_year",
+            "start_month",
+            "start_day",
+            "start_hour",
+            "start_minute",
+            "date_to",
+            "end_year",
+            "end_month",
+            "end_day",
+            "end_hour",
+            "end_minute",
+            "note",
+            "type",
+            "location",
         ]
 
     def get_start_year(self, obj):
@@ -175,9 +200,10 @@ class CarsReservationSerializer(serializers.ModelSerializer):
 
     def get_type(self, obj):
         if obj.date_from < timezone.now():
-            return 'Reservation delayed'
+            return "Reservation delayed"
         else:
-            return 'Reservation'
+            return "Reservation"
+
 
 class CarsRentsSerializer(serializers.ModelSerializer):
     start_year = serializers.SerializerMethodField(read_only=True)
@@ -200,34 +226,34 @@ class CarsRentsSerializer(serializers.ModelSerializer):
     class Meta:
         model = Cars_Rents
         fields = [
-                  'id',
-                  'id_cars',
-                  'client_name', 
-                  'client_document_type',
-                  'client_document_identification',
-                  'client_phone', 
-                  'client_email',
-                  'deposit',
-                  'deposit_currency',
-                  'deposit_is_active',
-                  'total_price',
-                  'total_price_currency',
-                  'total_price_is_paid',
-                  'location',
-                  'note',
-                  'date_from', 
-                  'start_year',
-                  'start_month', 
-                  'start_day',
-                  'start_hour', 
-                  'start_minute',
-                  'date_to',
-                  'end_year',
-                  'end_month', 
-                  'end_day',
-                  'end_hour', 
-                  'end_minute',
-                  'type',
+            "id",
+            "id_cars",
+            "client_name",
+            "client_document_type",
+            "client_document_identification",
+            "client_phone",
+            "client_email",
+            "deposit",
+            "deposit_currency",
+            "deposit_is_active",
+            "total_price",
+            "total_price_currency",
+            "total_price_is_paid",
+            "location",
+            "note",
+            "date_from",
+            "start_year",
+            "start_month",
+            "start_day",
+            "start_hour",
+            "start_minute",
+            "date_to",
+            "end_year",
+            "end_month",
+            "end_day",
+            "end_hour",
+            "end_minute",
+            "type",
         ]
 
     def get_start_year(self, obj):
@@ -272,8 +298,6 @@ class CarsRentsSerializer(serializers.ModelSerializer):
 
     def get_type(self, obj):
         if obj.date_to < timezone.now():
-            return 'Delayed rental'
+            return "Delayed rental"
         else:
-            return 'Rental'
-        
-
+            return "Rental"

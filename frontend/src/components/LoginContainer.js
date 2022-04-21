@@ -1,5 +1,4 @@
 import React from "react";
-import Background from "./Background";
 import { Container, Row, Col } from "react-bootstrap";
 
 function LoginContainer({ children }) {

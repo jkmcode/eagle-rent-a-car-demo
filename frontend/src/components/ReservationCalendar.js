@@ -5,8 +5,7 @@ import parse from "date-fns/parse";
 import startOfWeek from "date-fns/startOfWeek";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import { Calendar, dateFnsLocalizer } from "react-big-calendar";
-import { useSelector, useDispatch } from "react-redux";
-import DatePicker from "react-datepicker";
+import { useDispatch } from "react-redux";
 import "react-datepicker/dist/react-datepicker.css";
 import { listOfCarOfReservations } from "../action/carsAction";
 

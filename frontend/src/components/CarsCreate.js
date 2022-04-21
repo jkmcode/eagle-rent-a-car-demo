@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Header from "./Header";
 import FormContainer from "./FormContainer";
-import Loader from "./Loader";
 import Message from "./Message";
 import BackLogin from "./BackToLogin";
 import { LinkContainer } from "react-router-bootstrap";
@@ -75,13 +74,11 @@ function CarsCreate() {
   const carCreateUploadImage = useSelector(
     (state) => state.carCreateUploadImage
   );
-  const { error: errorUploadImage, loading: loadingUploadImage } =
-    carCreateUploadImage;
+  const { error: errorUploadImage } = carCreateUploadImage;
 
   const {
     register,
     formState: { errors },
-    reset,
     handleSubmit,
     trigger,
   } = useForm();
@@ -159,7 +156,7 @@ function CarsCreate() {
         }
       }
     }
-  }, [flag, loading]);
+  }, [dispatch, error, flag, loading, ulopadImage, onSubmitExecute]);
 
   //UseEffect - kasowanie komunikatów o błędzie
   useEffect(() => {
@@ -184,7 +181,15 @@ function CarsCreate() {
     }, 7500);
 
     return () => clearTimeout(timeout);
-  }, [errorMessage, errorMessageImage, successMessage]);
+  }, [
+    dispatch,
+    navigate,
+    error,
+    errorUploadImage,
+    errorMessage,
+    errorMessageImage,
+    successMessage,
+  ]);
 
   //UseEffect -słownik błędów
   useEffect(() => {

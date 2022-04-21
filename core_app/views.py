@@ -132,12 +132,8 @@ def getLocations(request):
 @permission_classes([IsAdminUser])
 def createLocation(request):
     data = request.data
-    print("data", data)
-    print("creator", type(data["creator"]))
     creator_str = str(data["creator"])
-    print("creator_str", type(creator_str))
     try:
-        print("wchodzę do funcji try")
         location = Locations.objects.create(
             name=data["name"],
             short_name=data["shortName"],
@@ -191,20 +187,6 @@ def uploadImage(request):
 
 
 @api_view(["POST"])
-def locationUploadImage(request):
-    print("wchodzę do funkcji locationUploadImage")
-    # data = request.data
-    # location_id = data['location_id']
-    # location = Locations.objects.get(id=location_id)
-    # location.image = request.FILES.get('image')
-
-    # location.save()
-
-    # serializer = LocationsSerializer(location, many=False)
-    return Response("działa dobrze")
-
-
-@api_view(["POST"])
 def newLocationUploadImage(request):
     data = request.data
     supp_unique = data["suppUniqueVar"]
@@ -244,7 +226,6 @@ def createCar(request):
             creator=data["creator"],
             location=data["location"],
             to_the_location=data["location"],
-            # image = request.FILES.get('image')
         )
 
         serializer = CarsSerializer(car, many=False)
@@ -454,8 +435,8 @@ def convertDate(str):
     day = ""
     hour = ""
     minutes = ""
-    a = 0  # iterator
-    b = 0  # flaga
+    a = 0
+    b = 0
     for i in date:
         if i == "-" and b == 0:
             year = date[0:a]
